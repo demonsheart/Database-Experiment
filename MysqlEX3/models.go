@@ -13,9 +13,9 @@ import (
 //);
 
 type Employee struct {
-	Eid   string `gorm:"primaryKey"`
-	Ename string
-	City  string
+	Eid   string `gorm:"primaryKey" json:"eid"`
+	Ename string `json:"ename"`
+	City  string `json:"city"`
 }
 
 //
@@ -30,11 +30,11 @@ type Employee struct {
 //);
 
 type Customers struct {
-	Cid           string `gorm:"primaryKey"`
-	Cname         string
-	City          string
-	VisitsMade    int
-	LastVisitTime time.Time
+	Cid           string    `gorm:"primaryKey" json:"cid"`
+	Cname         string    `json:"cname"`
+	City          string    `json:"city"`
+	VisitsMade    int       `json:"visits_made"`
+	LastVisitTime time.Time `json:"last_visit_time"`
 }
 
 //
@@ -49,10 +49,10 @@ type Customers struct {
 //);
 
 type Suppliers struct {
-	Sid         string `gorm:"primaryKey"`
-	Sname       string `gorm:"unique"`
-	City        string
-	TelephoneNo string
+	Sid         string `gorm:"primaryKey" json:"sid"`
+	Sname       string `gorm:"unique" json:"sname"`
+	City        string `json:"city"`
+	TelephoneNo string `json:"telephone_no"`
 }
 
 //create table products
@@ -69,13 +69,13 @@ type Suppliers struct {
 //);
 
 type Products struct {
-	Pid           string `gorm:"primaryKey"`
-	Pname         string `gorm:"not null"`
-	Qoh           int    `gorm:"not null"`
-	QohThreshold  int
-	OriginalPrice float32
-	DiscntRate    float32
-	Sid           string
+	Pid           string  `gorm:"primaryKey" json:"pid"`
+	Pname         string  `gorm:"not null" json:"pname"`
+	Qoh           int     `gorm:"not null" json:"qoh"`
+	QohThreshold  int     `json:"qoh_threshold"`
+	OriginalPrice float32 `json:"original_price"`
+	DiscntRate    float32 `json:"discnt_rate"`
+	Sid           string  `json:"sid"`
 	//foreign key (sid) references suppliers (sid)
 }
 
@@ -96,13 +96,13 @@ type Products struct {
 //);
 
 type Purchases struct {
-	Purid      int    `gorm:"primaryKey"`
-	Cid        string `gorm:"not null"`
-	Eid        string `gorm:"not null"`
-	Pid        string `gorm:"not null"`
-	Qty        int
-	Ptime      time.Time
-	TotalPrice float32
+	Purid      int       `gorm:"primaryKey" json:"purid"`
+	Cid        string    `gorm:"not null" json:"cid"`
+	Eid        string    `gorm:"not null" json:"eid"`
+	Pid        string    `gorm:"not null" json:"pid"`
+	Qty        int       `json:"qty"`
+	Ptime      time.Time `json:"ptime"`
+	TotalPrice float32   `json:"total_price"`
 	//foreign key (cid) references customers(cid),
 	//foreign key (eid) references employees(eid),
 	//foreign key (pid) references products(pid)
@@ -121,10 +121,10 @@ type Purchases struct {
 //);
 
 type Logs struct {
-	LogId     int       `gorm:"primaryKey;autoIncrement"`
-	Who       string    `gorm:"not null"`
-	Time      time.Time `gorm:"not null"`
-	TableName string    `gorm:"not null"`
-	Operation string    `gorm:"not null"`
-	KeyValue  string
+	LogId     int       `gorm:"primaryKey;autoIncrement" json:"log_id"`
+	Who       string    `gorm:"not null" json:"who"`
+	Time      time.Time `gorm:"not null" json:"time"`
+	TableName string    `gorm:"not null" json:"table_name"`
+	Operation string    `gorm:"not null" json:"operation"`
+	KeyValue  string    `json:"key_value"`
 }

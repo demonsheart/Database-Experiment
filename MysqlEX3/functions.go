@@ -77,7 +77,7 @@ func GetEmployees(c *gin.Context) {
 
 func GetTables(c *gin.Context) {
 	// select table_name from information_schema.tables where table_schema='my_database';
-	tables := []string{}
+	var tables []string
 
 	if err := db.Table("information_schema.tables").Select("table_name").Where("table_schema = ? AND table_type = ?", "my_database", "BASE TABLE").Find(&tables).Error; err != nil {
 		c.AbortWithStatus(404)
