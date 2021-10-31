@@ -29,92 +29,20 @@ func main() {
 	//db.AutoMigrate(&Person{})
 
 	r := gin.Default()
+
 	r.GET("/tables", GetTables)
 	r.GET("/tables/employees", GetEmployees)
+	r.POST("/tables/employees/:method", PostEmployees)
 	r.GET("/tables/customers", GetCustomers)
+	r.POST("/tables/customers/:method", PostCustomers)
 	r.GET("/tables/suppliers", GetSuppliers)
+	r.POST("/tables/suppliers/:method", PostSuppliers)
 	r.GET("/tables/products", GetProducts)
+	r.POST("/tables/products/:method", PostProducts)
 	r.GET("/tables/purchases", GetPurchases)
+	r.POST("/tables/purchases/:method", PostPurchases)
 	r.GET("/tables/logs", GetLogs)
+	r.POST("/tables/logs/:method", PostLogs)
 
 	r.Run(":8080")
-}
-
-func GetLogs(c *gin.Context) {
-	var contents []Logs
-
-	if err := db.Find(&contents).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, contents)
-	}
-}
-
-func GetPurchases(c *gin.Context) {
-	var contents []Purchases
-
-	if err := db.Find(&contents).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, contents)
-	}
-}
-
-func GetProducts(c *gin.Context) {
-	var contents []Products
-
-	if err := db.Find(&contents).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, contents)
-	}
-}
-
-func GetSuppliers(c *gin.Context) {
-	var contents []Suppliers
-
-	if err := db.Find(&contents).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, contents)
-	}
-}
-
-func GetCustomers(c *gin.Context) {
-	var contents []Customers
-
-	if err := db.Find(&contents).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, contents)
-	}
-}
-
-func GetEmployees(c *gin.Context) {
-	var contents []Employee
-
-	if err := db.Find(&contents).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, contents)
-	}
-}
-
-func GetTables(c *gin.Context) {
-	// select table_name from information_schema.tables where table_schema='my_database';
-	tables := []string{}
-
-	if err := db.Table("information_schema.tables").Select("table_name").Where("table_schema = ?", "my_database").Find(&tables).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		fmt.Println(tables)
-		c.JSON(200, tables)
-	}
 }
