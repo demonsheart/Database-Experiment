@@ -13,9 +13,9 @@ import (
 //);
 
 type Employee struct {
-	Eid   string `gorm:"primaryKey" json:"eid"`
-	Ename string `json:"ename"`
-	City  string `json:"city"`
+	Eid   string `gorm:"primaryKey" json:"eid" binding:"required"`
+	Ename string `json:"ename" binding:"required"`
+	City  string `json:"city" binding:"required"`
 }
 
 //
@@ -30,11 +30,11 @@ type Employee struct {
 //);
 
 type Customers struct {
-	Cid           string    `gorm:"primaryKey" json:"cid"`
-	Cname         string    `json:"cname"`
-	City          string    `json:"city"`
-	VisitsMade    int       `json:"visits_made"`
-	LastVisitTime time.Time `json:"last_visit_time"`
+	Cid           string    `gorm:"primaryKey" json:"cid" binding:"required"`
+	Cname         string    `json:"cname" binding:"required"`
+	City          string    `json:"city" binding:"required"`
+	VisitsMade    int       `json:"visits_made" binding:"required"`
+	LastVisitTime time.Time `json:"last_visit_time" binding:"required"`
 }
 
 //
@@ -49,10 +49,10 @@ type Customers struct {
 //);
 
 type Suppliers struct {
-	Sid         string `gorm:"primaryKey" json:"sid"`
-	Sname       string `gorm:"unique" json:"sname"`
-	City        string `json:"city"`
-	TelephoneNo string `json:"telephone_no"`
+	Sid         string `gorm:"primaryKey" json:"sid" binding:"required"`
+	Sname       string `gorm:"unique" json:"sname" binding:"required"`
+	City        string `json:"city" binding:"required"`
+	TelephoneNo string `json:"telephone_no" binding:"required"`
 }
 
 //create table products
@@ -69,13 +69,13 @@ type Suppliers struct {
 //);
 
 type Products struct {
-	Pid           string  `gorm:"primaryKey" json:"pid"`
-	Pname         string  `gorm:"not null" json:"pname"`
-	Qoh           int     `gorm:"not null" json:"qoh"`
-	QohThreshold  int     `json:"qoh_threshold"`
-	OriginalPrice float32 `json:"original_price"`
-	DiscntRate    float32 `json:"discnt_rate"`
-	Sid           string  `json:"sid"`
+	Pid           string  `gorm:"primaryKey" json:"pid" binding:"required"`
+	Pname         string  `gorm:"not null" json:"pname" binding:"required"`
+	Qoh           int     `gorm:"not null" json:"qoh" binding:"required"`
+	QohThreshold  int     `json:"qoh_threshold" binding:"required"`
+	OriginalPrice float32 `json:"original_price" binding:"required"`
+	DiscntRate    float32 `json:"discnt_rate" binding:"required"`
+	Sid           string  `json:"sid" binding:"required"`
 	//foreign key (sid) references suppliers (sid)
 }
 
@@ -96,13 +96,13 @@ type Products struct {
 //);
 
 type Purchases struct {
-	Purid      int       `gorm:"primaryKey" json:"purid"`
-	Cid        string    `gorm:"not null" json:"cid"`
-	Eid        string    `gorm:"not null" json:"eid"`
-	Pid        string    `gorm:"not null" json:"pid"`
-	Qty        int       `json:"qty"`
-	Ptime      time.Time `json:"ptime"`
-	TotalPrice float32   `json:"total_price"`
+	Purid      int       `gorm:"primaryKey" json:"purid" binding:"required"`
+	Cid        string    `gorm:"not null" json:"cid" binding:"required"`
+	Eid        string    `gorm:"not null" json:"eid" binding:"required"`
+	Pid        string    `gorm:"not null" json:"pid" binding:"required"`
+	Qty        int       `json:"qty" binding:"required"`
+	Ptime      time.Time `json:"ptime" binding:"required"`
+	TotalPrice float32   `json:"total_price" binding:"required"`
 	//foreign key (cid) references customers(cid),
 	//foreign key (eid) references employees(eid),
 	//foreign key (pid) references products(pid)
@@ -122,9 +122,9 @@ type Purchases struct {
 
 type Logs struct {
 	LogId     int       `gorm:"primaryKey;autoIncrement" json:"log_id"`
-	Who       string    `gorm:"not null" json:"who"`
-	Time      time.Time `gorm:"not null" json:"time"`
-	TableName string    `gorm:"not null" json:"table_name"`
-	Operation string    `gorm:"not null" json:"operation"`
-	KeyValue  string    `json:"key_value"`
+	Who       string    `gorm:"not null" json:"who" binding:"required"`
+	Time      time.Time `gorm:"not null" json:"time" binding:"required"`
+	TableName string    `gorm:"not null" json:"table_name" binding:"required"`
+	Operation string    `gorm:"not null" json:"operation" binding:"required"`
+	KeyValue  string    `json:"key_value" binding:"required"`
 }

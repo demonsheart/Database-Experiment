@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 /********************************
@@ -94,8 +95,15 @@ func GetTables(c *gin.Context) {
 
 func PostLogs(c *gin.Context) {
 	method := c.Param("method")
+	var log Logs
+	if err := c.ShouldBindJSON(&log); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	fmt.Println(log)
 	switch method {
 	case "add":
+		db.Create(&log)
 		c.String(200, method)
 	case "delete":
 		c.String(200, method)
