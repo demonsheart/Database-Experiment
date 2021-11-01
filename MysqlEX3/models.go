@@ -34,7 +34,7 @@ type Customers struct {
 	Cname         string    `gorm:"column:cname" json:"cname" binding:"required"`
 	City          string    `gorm:"column:city" json:"city" binding:"required"`
 	VisitsMade    int       `gorm:"column:visits_made" json:"visits_made" binding:"required"`
-	LastVisitTime time.Time `gorm:"column:last_visit_time" json:"last_visit_time" binding:"required"`
+	LastVisitTime time.Time `gorm:"column:last_visit_time;autoUpdateTime" json:"last_visit_time"`
 }
 
 //
@@ -101,7 +101,7 @@ type Purchases struct {
 	Eid        string    `gorm:"column:eid;not null" json:"eid" binding:"required"`
 	Pid        string    `gorm:"column:pid;not null" json:"pid" binding:"required"`
 	Qty        int       `gorm:"column:qty;" json:"qty" binding:"required"`
-	Ptime      time.Time `gorm:"column:ptime;" json:"ptime" binding:"required"`
+	Ptime      time.Time `gorm:"column:ptime;autoCreateTime" json:"ptime"`
 	TotalPrice float32   `gorm:"column:total_price;" json:"total_price" binding:"required"`
 	//foreign key (cid) references customers(cid),
 	//foreign key (eid) references employees(eid),
@@ -123,7 +123,7 @@ type Purchases struct {
 type Logs struct {
 	LogId     uint      `gorm:"column:logid;primaryKey;autoIncrement;type:int(5)" json:"log_id"`
 	Who       string    `gorm:"column:who;not null" json:"who" binding:"required"`
-	Time      time.Time `gorm:"column:time;not null" json:"time" binding:"required"`
+	Time      time.Time `gorm:"column:time;not null;autoCreateTime" json:"time"`
 	TableName string    `gorm:"column:table_name;not null" json:"table_name" binding:"required"`
 	Operation string    `gorm:"column:operation;not null" json:"operation" binding:"required"`
 	KeyValue  string    `gorm:"column:key_value" json:"key_value"`
