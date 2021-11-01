@@ -28,7 +28,7 @@ func GetContents(c *gin.Context) {
 
 	switch table {
 	case "employees":
-		var contents []Employee
+		var contents []Employees
 		GetContent(contents, c)
 	case "customers":
 		var contents []Customers
@@ -86,7 +86,7 @@ func PostLogs(c *gin.Context) {
 	case "delete":
 		c.ShouldBindJSON(&log)
 		fmt.Println(log)
-		res := db.Delete(&Logs{}, log.LogId)
+		res := db.Where("logid = ?", log.LogId).Delete(&log)
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
@@ -115,13 +115,44 @@ func PostLogs(c *gin.Context) {
 
 func PostPurchases(c *gin.Context) {
 	method := c.Param("method")
+	var purchase Purchases
+
 	switch method {
 	case "add":
-		c.String(200, method)
+		if err := c.ShouldBindJSON(&purchase); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		if err := db.Create(&purchase).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.String(200, "added")
 	case "delete":
-		c.String(200, method)
+		c.ShouldBindJSON(&purchase)
+		fmt.Println(purchase)
+		res := db.Where("purid = ?", purchase.Purid).Delete(&purchase)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "deleted")
+		}
 	case "modify":
-		c.String(200, method)
+		c.ShouldBindJSON(&purchase)
+		res := db.Model(&purchase).Updates(&purchase)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "modified")
+		}
 	default:
 		c.String(404, "invalid method")
 	}
@@ -129,13 +160,44 @@ func PostPurchases(c *gin.Context) {
 
 func PostProducts(c *gin.Context) {
 	method := c.Param("method")
+	var product Products
+
 	switch method {
 	case "add":
-		c.String(200, method)
+		if err := c.ShouldBindJSON(&product); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		if err := db.Create(&product).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.String(200, "added")
 	case "delete":
-		c.String(200, method)
+		c.ShouldBindJSON(&product)
+		fmt.Println(product)
+		res := db.Where("pid = ?", product.Pid).Delete(&product)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "deleted")
+		}
 	case "modify":
-		c.String(200, method)
+		c.ShouldBindJSON(&product)
+		res := db.Model(&product).Updates(&product)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "modified")
+		}
 	default:
 		c.String(404, "invalid method")
 	}
@@ -143,13 +205,44 @@ func PostProducts(c *gin.Context) {
 
 func PostSuppliers(c *gin.Context) {
 	method := c.Param("method")
+	var supplier Suppliers
+
 	switch method {
 	case "add":
-		c.String(200, method)
+		if err := c.ShouldBindJSON(&supplier); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		if err := db.Create(&supplier).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.String(200, "added")
 	case "delete":
-		c.String(200, method)
+		c.ShouldBindJSON(&supplier)
+		fmt.Println(supplier)
+		res := db.Where("sid = ?", supplier.Sid).Delete(&supplier)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "deleted")
+		}
 	case "modify":
-		c.String(200, method)
+		c.ShouldBindJSON(&supplier)
+		res := db.Model(&supplier).Updates(&supplier)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "modified")
+		}
 	default:
 		c.String(404, "invalid method")
 	}
@@ -157,13 +250,44 @@ func PostSuppliers(c *gin.Context) {
 
 func PostCustomers(c *gin.Context) {
 	method := c.Param("method")
+	var customer Customers
+
 	switch method {
 	case "add":
-		c.String(200, method)
+		if err := c.ShouldBindJSON(&customer); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		if err := db.Create(&customer).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.String(200, "added")
 	case "delete":
-		c.String(200, method)
+		c.ShouldBindJSON(&customer)
+		fmt.Println(customer)
+		res := db.Where("cid = ?", customer.Cid).Delete(&customer)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "deleted")
+		}
 	case "modify":
-		c.String(200, method)
+		c.ShouldBindJSON(&customer)
+		res := db.Model(&customer).Updates(&customer)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "modified")
+		}
 	default:
 		c.String(404, "invalid method")
 	}
@@ -171,13 +295,44 @@ func PostCustomers(c *gin.Context) {
 
 func PostEmployees(c *gin.Context) {
 	method := c.Param("method")
+	var employee Employees
+
 	switch method {
 	case "add":
-		c.String(200, method)
+		if err := c.ShouldBindJSON(&employee); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		if err := db.Create(&employee).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.String(200, "added")
 	case "delete":
-		c.String(200, method)
+		c.ShouldBindJSON(&employee)
+		fmt.Println(employee)
+		res := db.Where("eid = ?", employee.Eid).Delete(&employee)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "deleted")
+		}
 	case "modify":
-		c.String(200, method)
+		c.ShouldBindJSON(&employee)
+		res := db.Model(&employee).Updates(&employee)
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "modified")
+		}
 	default:
 		c.String(404, "invalid method")
 	}

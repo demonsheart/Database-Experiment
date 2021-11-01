@@ -12,7 +12,7 @@ import (
 //primary key(eid)
 //);
 
-type Employee struct {
+type Employees struct {
 	Eid   string `gorm:"column:eid;primaryKey" json:"eid" binding:"required"`
 	Ename string `gorm:"column:ename" json:"ename" binding:"required"`
 	City  string `gorm:"column:city" json:"city" binding:"required"`
