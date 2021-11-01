@@ -29,19 +29,16 @@ func main() {
 	//db.AutoMigrate(&Person{})
 
 	r := gin.Default()
-
+	// get -> select
 	r.GET("/tables", GetTables)
-	r.GET("/tables/employees", GetEmployees)
+	r.GET("/tables/:table", GetContents)
+
+	// :method
 	r.POST("/tables/employees/:method", PostEmployees)
-	r.GET("/tables/customers", GetCustomers)
 	r.POST("/tables/customers/:method", PostCustomers)
-	r.GET("/tables/suppliers", GetSuppliers)
 	r.POST("/tables/suppliers/:method", PostSuppliers)
-	r.GET("/tables/products", GetProducts)
 	r.POST("/tables/products/:method", PostProducts)
-	r.GET("/tables/purchases", GetPurchases)
 	r.POST("/tables/purchases/:method", PostPurchases)
-	r.GET("/tables/logs", GetLogs)
 	r.POST("/tables/logs/:method", PostLogs)
 
 	r.Run(":8080")
