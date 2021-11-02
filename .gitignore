@@ -19,3 +19,4 @@
 out/
 *.iml
 go.sum
+.DS_Store
