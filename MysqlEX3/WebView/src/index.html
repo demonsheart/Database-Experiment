@@ -1,91 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Tables</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/bootstrap.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, Bootstrap Table!</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
 </head>
 <body>
-<div id="wrapper">
-    <table class="table table-success table-striped" style="text-align: center">
-        <thead>
-        <tr>
-            <th>The tables are as belows</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=customers">customers</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=empin30">empin30</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=employees">employees</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=logs">logs</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=products">products</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=purchases">purchases</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a class="link-success" href="show_tables_content.php?table=suppliers">suppliers</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<table
+        id="table"
+        data-toggle="table"
+        data-url="http://localhost:8080/tables/customers">
+    <thead>
+    <tr>
+        <th data-field="cid" data-sortable="true">cid</th>
+        <th data-field="cname" data-sortable="true">cname</th>
+        <th data-field="city" data-sortable="true">city</th>
+        <th data-field="visits_made" data-sortable="true">visits_made</th>
+        <th data-field="last_visit_time" data-sortable="true">last_visit_time</th>
+
+    </tr>
+    </thead>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
 </body>
 </html>
-<!--<script>-->
-<!--    (function () {-->
-<!--        var ws = new WebSocket('ws://' + window.location.host + '/jb-server-page?reloadServiceClientId=1');-->
-<!--        ws.onmessage = function (msg) {-->
-<!--            if (msg.data === 'reload') {-->
-<!--                window.location.reload();-->
-<!--            }-->
-<!--            if (msg.data.startsWith('update-css ')) {-->
-<!--                var messageId = msg.data.substring(11);-->
-<!--                var links = document.getElementsByTagName('link');-->
-<!--                for (var i = 0; i < links.length; i++) {-->
-<!--                    var link = links[i];-->
-<!--                    if (link.rel !== 'stylesheet') continue;-->
-<!--                    var clonedLink = link.cloneNode(true);-->
-<!--                    var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);-->
-<!--                    if (newHref !== link.href) {-->
-<!--                        clonedLink.href = newHref;-->
-<!--                    } else {-->
-<!--                        var indexOfQuest = newHref.indexOf('?');-->
-<!--                        if (indexOfQuest >= 0) {-->
-<!--                            // to support ?foo#hash-->
-<!--                            clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' +-->
-<!--                                newHref.substring(indexOfQuest + 1);-->
-<!--                        } else {-->
-<!--                            clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;-->
-<!--                        }-->
-<!--                    }-->
-<!--                    link.replaceWith(clonedLink);-->
-<!--                }-->
-<!--            }-->
-<!--        };-->
-<!--    })();-->
-<!--</script>-->

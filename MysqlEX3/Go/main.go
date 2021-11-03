@@ -41,5 +41,5 @@ func main() {
 	r.POST("/tables/purchases/:method", PostPurchases)
 	r.POST("/tables/logs/:method", PostLogs)
 
-	r.Run(":8080")
+	r.Run(":60055")
 }
