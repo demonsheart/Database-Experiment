@@ -6,24 +6,24 @@ function myAlert(selector, message, type) {
     $(selector).append(wrapper)
 }
 
-//  let json = arrayToJson($(this).serializeArray());
+//  let json = arrayToJson($(this).serializeArray())
 function arrayToJson(array) {
-    let data = {};
+    let data = {}
     $.each(array, function (index, item) {
-        data[item.name] = item.value;
-    });
-    let json = JSON.stringify(data);
-    return json
+        data[item.name] = item.value
+    })
+    let jsonStr = JSON.stringify(data)
+    return jsonStr
 }
 
 // deleteData("http://localhost:8080/tables/customers/delete", "cid", $(this).attr("data-key"))
 function deleteData(url, key, value) {
-    let json  = '{"'+ key +'":"'+ value +'"}'
+    let jsonStr  = '{"'+ key +'":"'+ value +'"}'
     $.ajax({
         type: "POST",
         url: url,
         // The key needs to match your method's input parameter (case-sensitive).
-        data: json,
+        data: jsonStr,
         contentType: "application/json; charset=utf-8",
         success: function(data){
             console.log(data)
@@ -32,5 +32,5 @@ function deleteData(url, key, value) {
         error: function(errMsg) {
             console.log(errMsg)
         }
-    });
+    })
 }
