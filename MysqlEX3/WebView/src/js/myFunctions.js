@@ -10,6 +10,7 @@ function myAlert(selector, message, type) {
 function arrayToJson(array) {
     let data = {}
     $.each(array, function (index, item) {
+        // TODO: need to fix string -> int
         data[item.name] = item.value
     })
     let jsonStr = JSON.stringify(data)
@@ -17,8 +18,12 @@ function arrayToJson(array) {
 }
 
 // deleteData("http://localhost:8080/tables/customers/delete", "cid", $(this).attr("data-key"))
-function deleteData(url, key, value) {
+function deleteData(url, key, value, valueType) {
     let jsonStr  = '{"'+ key +'":"'+ value +'"}'
+    if (valueType === "number") {
+        jsonStr  = '{"'+ key +'":'+ value +'}'
+    }
+    console.log(jsonStr)
     $.ajax({
         type: "POST",
         url: url,
@@ -48,4 +53,12 @@ function modifyData(url, jsonStr) {
             setTimeout((() => window.location.reload()), 2000)
         }
     })
+}
+
+
+function createInputField(key, type) {
+    return '<div class="row mb-3">' +
+        '<label for="'+ key +'" class="col-sm-2 col-form-label">'+ key +'</label>' +
+        '<div class="col-sm-10">' +
+        '<input type="'+ type +'" step="any" class="form-control" id="'+ key +'" name="'+ key +'" required></div></div>'
 }
