@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>customers</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <table class='table table-info table-hover table-bordered' id='table'>
+        <thead>
+        <tr>
+            <th>cid</th>
+            <th>cname</th>
+            <th>city</th>
+            <th>visits_made</th>
+            <th>last_visit_time</th>
+            <th>modify</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        <tbody style="vertical-align: middle;"></tbody>
+    </table>
+    <form action="add_content.php" method="post" class="form-control" style="background: #f8f9fa">
+        <div class="row mb-3">
+            <label for="cid" class="col-sm-2 col-form-label">cid</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="cid">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="cname" class="col-sm-2 col-form-label">cname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="cname">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="city" class="col-sm-2 col-form-label">city</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="city">
+            </div>
+        </div>
+<!--        <div class="row mb-3">-->
+<!--            <label for="visits_made" class="col-sm-2 col-form-label">visits_made</label>-->
+<!--            <div class="col-sm-10">-->
+<!--                <input type="number" class="form-control" id="visits_made">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row mb-3">-->
+<!--            <label for="visits_made" class="col-sm-2 col-form-label">last_visit_time</label>-->
+<!--            <div class="col-sm-10">-->
+<!--                <input type="number" class="form-control" id="last_visit_time">-->
+<!--            </div>-->
+<!--        </div>-->
+        <div><button type="button" class="btn btn-success">Add Record</button></div>
+    </form>
+</div>
+</body>
+</html>
+
+<script type="application/javascript">
+    $(function () {
+        $.ajax({
+            method: "get",
+            url: "http://localhost:8080/tables/customers",
+            dataType: "json",
+            success: function (data) {
+                let rows = ""
+                $.each(data, function (k, val) {
+                    let row = "<tr>"
+                    $.each(val, function (key, value) {
+                        row += "<td>"+ value + "</td>"
+                    })
+                    row += "<td><button type=\"button\" class=\"btn btn-info\">modify</button></td>" +
+                        "<td><button type=\"button\" class=\"btn btn-danger\">delete</button></td></tr>"
+                    rows += row
+                })
+                $("tbody").append(rows)
+            }
+        })
+    })
+</script>

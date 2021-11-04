@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
@@ -29,6 +31,11 @@ func main() {
 	//db.AutoMigrate(&Person{})
 
 	r := gin.Default()
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		// 注册 LocalTime 类型的自定义校验规则
+		v.RegisterCustomTypeFunc(ValidateJSONDateType, LocalTime{})
+	}
+
 	// get -> select
 	r.GET("/tables", GetTables)
 	r.GET("/tables/:table", GetContents)

@@ -1,8 +1,71 @@
 package main
 
 import (
+	"database/sql/driver"
+	"reflect"
 	"time"
 )
+
+// https://segmentfault.com/a/1190000022264001
+
+const TimeFormat = "2006-01-02 15:04:05"
+
+type LocalTime time.Time
+
+func (t *LocalTime) UnmarshalJSON(data []byte) (err error) {
+	// 空值不进行解析
+	if len(data) == 2 {
+		*t = LocalTime(time.Time{})
+		return
+	}
+
+	// 指定解析的格式
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+	now, err := time.ParseInLocation(`"`+TimeFormat+`"`, string(data), loc)
+	*t = LocalTime(now)
+	return
+}
+
+func (t LocalTime) MarshalJSON() ([]byte, error) {
+	b := make([]byte, 0, len(TimeFormat)+2)
+	b = append(b, '"')
+	b = time.Time(t).AppendFormat(b, TimeFormat)
+	b = append(b, '"')
+	return b, nil
+}
+
+func (t LocalTime) Value() (driver.Value, error) {
+	// 0001-01-01 00:00:00 属于空值，遇到空值解析成 null 即可
+	if t.String() == "0001-01-01 00:00:00" {
+		return nil, nil
+	}
+	return []byte(time.Time(t).Format(TimeFormat)), nil
+}
+
+func (t *LocalTime) Scan(v interface{}) error {
+	// mysql 内部日期的格式可能是 2006-01-02 15:04:05 +0800 CST 格式，所以检出的时候还需要进行一次格式化
+	tTime, _ := time.Parse("2006-01-02 15:04:05 +0800 CST", v.(time.Time).String())
+	*t = LocalTime(tTime)
+	return nil
+}
+
+// 用于 fmt.Println 和后续验证场景
+func (t LocalTime) String() string {
+	return time.Time(t).Format(TimeFormat)
+}
+
+func ValidateJSONDateType(field reflect.Value) interface{} {
+	if field.Type() == reflect.TypeOf(LocalTime{}) {
+		timeStr := field.Interface().(LocalTime).String()
+		// 0001-01-01 00:00:00 是 go 中 time.Time 类型的空值
+		// 这里返回 Nil 则会被 validator 判定为空值，而无法通过 `binding:"required"` 规则
+		if timeStr == "0001-01-01 00:00:00" {
+			return nil
+		}
+		return timeStr
+	}
+	return nil
+}
 
 //create table employees
 //(
@@ -33,8 +96,8 @@ type Customers struct {
 	Cid           string    `gorm:"column:cid;primaryKey" json:"cid" binding:"required"`
 	Cname         string    `gorm:"column:cname" json:"cname" binding:"required"`
 	City          string    `gorm:"column:city" json:"city" binding:"required"`
-	VisitsMade    int       `gorm:"column:visits_made" json:"visits_made" binding:"required"`
-	LastVisitTime time.Time `gorm:"column:last_visit_time;autoUpdateTime" json:"last_visit_time"`
+	VisitsMade    int       `gorm:"column:visits_made;default:1" json:"visits_made"`
+	LastVisitTime LocalTime `gorm:"column:last_visit_time;autoUpdateTime" json:"last_visit_time"`
 }
 
 //
@@ -101,7 +164,7 @@ type Purchases struct {
 	Eid        string    `gorm:"column:eid;not null" json:"eid" binding:"required"`
 	Pid        string    `gorm:"column:pid;not null" json:"pid" binding:"required"`
 	Qty        int       `gorm:"column:qty;" json:"qty" binding:"required"`
-	Ptime      time.Time `gorm:"column:ptime;autoCreateTime" json:"ptime"`
+	Ptime      LocalTime `gorm:"column:ptime;autoCreateTime" json:"ptime"`
 	TotalPrice float32   `gorm:"column:total_price;" json:"total_price" binding:"required"`
 	//foreign key (cid) references customers(cid),
 	//foreign key (eid) references employees(eid),
@@ -123,7 +186,7 @@ type Purchases struct {
 type Logs struct {
 	LogId     uint      `gorm:"column:logid;primaryKey;autoIncrement;type:int(5)" json:"log_id"`
 	Who       string    `gorm:"column:who;not null" json:"who" binding:"required"`
-	Time      time.Time `gorm:"column:time;not null;autoCreateTime" json:"time"`
+	Time      LocalTime `gorm:"column:time;not null;autoCreateTime" json:"time"`
 	TableName string    `gorm:"column:table_name;not null" json:"table_name" binding:"required"`
 	Operation string    `gorm:"column:operation;not null" json:"operation" binding:"required"`
 	KeyValue  string    `gorm:"column:key_value" json:"key_value"`
