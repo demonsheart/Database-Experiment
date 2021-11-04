@@ -97,7 +97,7 @@ type Customers struct {
 	Cname         string    `gorm:"column:cname" json:"cname" binding:"required"`
 	City          string    `gorm:"column:city" json:"city" binding:"required"`
 	VisitsMade    int       `gorm:"column:visits_made;default:1" json:"visits_made"`
-	LastVisitTime LocalTime `gorm:"column:last_visit_time;autoUpdateTime" json:"last_visit_time"`
+	LastVisitTime LocalTime `gorm:"column:last_visit_time;autoCreateTime" json:"last_visit_time"`
 }
 
 //

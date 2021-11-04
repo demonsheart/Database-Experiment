@@ -11,6 +11,7 @@
 </head>
 <body>
 <div id="wrapper">
+    <div id="alertPlaceholder"></div>
     <table class='table table-info table-hover table-bordered' id='table'>
         <thead>
         <tr>
@@ -92,8 +93,7 @@
                         }
                     })
                     let jsonStr = JSON.stringify(tmpData)
-                    console.log(jsonStr)
-                    // TODO: need to modify
+                    modifyData(baseURL + "/modify", jsonStr)
                 })
             }
         })
@@ -108,7 +108,6 @@
             $.ajax({
                 type: "POST",
                 url: baseURL + "/add",
-                // The key needs to match your method's input parameter (case-sensitive).
                 data: jsonStr,
                 contentType: "application/json; charset=utf-8",
                 success: function(data){

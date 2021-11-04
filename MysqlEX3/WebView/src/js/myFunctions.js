@@ -22,7 +22,6 @@ function deleteData(url, key, value) {
     $.ajax({
         type: "POST",
         url: url,
-        // The key needs to match your method's input parameter (case-sensitive).
         data: jsonStr,
         contentType: "application/json; charset=utf-8",
         success: function(data){
@@ -31,6 +30,22 @@ function deleteData(url, key, value) {
         },
         error: function(errMsg) {
             console.log(errMsg)
+        }
+    })
+}
+
+function modifyData(url, jsonStr) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: jsonStr,
+        contentType: "application/json; charset=utf-8",
+        success: function(data){
+            myAlert("#alertPlaceholder", "Modify successfully!", "success")
+        },
+        error: function(errMsg) {
+            myAlert("#alertPlaceholder", errMsg.responseText, "warning")
+            setTimeout((() => window.location.reload()), 2000)
         }
     })
 }
