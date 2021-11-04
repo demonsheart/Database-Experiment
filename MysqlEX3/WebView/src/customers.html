@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/myFunctions.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -23,38 +25,27 @@
         </thead>
         <tbody style="vertical-align: middle;"></tbody>
     </table>
-    <form action="add_content.php" method="post" class="form-control" style="background: #f8f9fa">
+    <form id="addForm" class="form-control" style="background: #f8f9fa">
         <div class="row mb-3">
             <label for="cid" class="col-sm-2 col-form-label">cid</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="cid">
+                <input type="text" class="form-control" id="cid" name="cid" required>
             </div>
         </div>
         <div class="row mb-3">
             <label for="cname" class="col-sm-2 col-form-label">cname</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="cname">
+                <input type="text" class="form-control" id="cname" name="cname" required>
             </div>
         </div>
         <div class="row mb-3">
             <label for="city" class="col-sm-2 col-form-label">city</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="city">
+                <input type="text" class="form-control" id="city" name="city" required>
             </div>
         </div>
-<!--        <div class="row mb-3">-->
-<!--            <label for="visits_made" class="col-sm-2 col-form-label">visits_made</label>-->
-<!--            <div class="col-sm-10">-->
-<!--                <input type="number" class="form-control" id="visits_made">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row mb-3">-->
-<!--            <label for="visits_made" class="col-sm-2 col-form-label">last_visit_time</label>-->
-<!--            <div class="col-sm-10">-->
-<!--                <input type="number" class="form-control" id="last_visit_time">-->
-<!--            </div>-->
-<!--        </div>-->
-        <div><button type="button" class="btn btn-success">Add Record</button></div>
+        <div id="addAlertPlaceholder"></div>
+        <div><input type="submit" class="btn btn-success" value="Add Record"></div>
     </form>
 </div>
 </body>
@@ -73,12 +64,47 @@
                     $.each(val, function (key, value) {
                         row += "<td>"+ value + "</td>"
                     })
-                    row += "<td><button type=\"button\" class=\"btn btn-info\">modify</button></td>" +
-                        "<td><button type=\"button\" class=\"btn btn-danger\">delete</button></td></tr>"
+                    // console.log(val['cid'])
+                    row += "<td><button type='button' class='btn btn-info' data-key='" + val['cid'] + "'>modify</button></td>" +
+                        "<td><button type='button' class='btn btn-danger' data-key='" + val['cid'] + "'>delete</button></td></tr>"
                     rows += row
                 })
                 $("tbody").append(rows)
+
+                // delete
+                $("button.btn-danger").click(function () {
+                    deleteData("http://localhost:8080/tables/customers/delete", "cid", $(this).attr("data-key"))
+                })
+
+                // modify
+                $("button.btn-info").click(function () {
+                    console.log($(this).attr("data-key"))
+                })
             }
+        })
+
+        // add
+        $("#addForm").on('submit', function (e) {
+            e.preventDefault()
+            // parse to json
+            let json = arrayToJson($(this).serializeArray());
+
+            //ajax post
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/tables/customers/add",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: json,
+                contentType: "application/json; charset=utf-8",
+                success: function(data){
+                    console.log(data)
+                    window.location.reload()
+                },
+                error: function(errMsg) {
+                    console.log(errMsg)
+                    myAlert("#addAlertPlaceholder", errMsg.responseText, "warning")
+                }
+            });
         })
     })
 </script>
