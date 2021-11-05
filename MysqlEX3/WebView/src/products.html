@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <div id="alertPlaceholder"></div>
+    <div id="alertPlaceholder" style="max-width: 800px"></div>
     <table class='table table-info table-hover table-bordered' id='table'>
         <thead>
         <tr>
@@ -36,6 +36,7 @@
 <script type="application/javascript">
     const keyName = 'pid'
     const baseURL = 'http://localhost:8080/tables/products'
+    const numberTypeKeyArr = ['qoh', 'qoh_threshold', 'original_price', 'discnt_rate']
 
     $(function () {
         // append inputs field
@@ -43,7 +44,7 @@
             + createInputField("qoh", "number") + createInputField("qoh_threshold", "number")
             + createInputField("original_price", "number") + createInputField("discnt_rate", "number")
             + createInputField("sid", "text")
-        inputs += '<div id="addAlertPlaceholder"></div>\n' +
+        inputs += '<div id="addAlertPlaceholder" style="max-width: 800px"></div>\n' +
             '<div><input type="submit" class="btn btn-success" value="Add Record"></div>'
         $("form").append(inputs)
 
@@ -69,8 +70,7 @@
 
                 // delete
                 $("button.btn-danger").click(function () {
-                    // TODO: need to define type
-                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"))
+                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"), numberTypeKeyArr.includes(keyName))
                 })
 
                 // modify
@@ -79,9 +79,8 @@
                     let tdArr = trDOM.children("td.value")
                     let tmpData = {}
                     $.each(tdArr, function (index, td) {
-                        // TODO: need to define type
                         let tkey = td.dataset.key
-                        if (tkey === 'qoh' || tkey === 'qoh_threshold' || tkey === 'discnt_rate' || tkey === 'original_price') {
+                        if (numberTypeKeyArr.includes(tkey)) {
                             tmpData[tkey] = parseFloat(td.innerText)
                         } else {
                             tmpData[tkey] = td.innerText
@@ -97,8 +96,15 @@
         $("#addForm").on('submit', function (e) {
             e.preventDefault()
             // parse to json
-            let jsonStr = arrayToJson($(this).serializeArray())
-            console.log(jsonStr)
+            let array = $(this).serializeArray()
+            array.map(function (ele) {
+                if (numberTypeKeyArr.includes(ele['name'])) {
+                    console.log(ele)
+                    ele['value'] = parseFloat(ele['value'])
+                }
+                return ele
+            })
+            let jsonStr = arrayToJson(array)
 
             //ajax post
             $.ajax({

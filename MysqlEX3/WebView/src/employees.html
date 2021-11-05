@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <div id="alertPlaceholder"></div>
+    <div id="alertPlaceholder" style="max-width: 800px"></div>
     <table class='table table-info table-hover table-bordered' id='table'>
         <thead>
         <tr>
@@ -32,12 +32,13 @@
 <script type="application/javascript">
     const keyName = 'eid'
     const baseURL = 'http://localhost:8080/tables/employees'
+    const numberTypeKeyArr = []
 
     $(function () {
         // append inputs field
         let inputs = createInputField("eid", "text") + createInputField("ename", "text")
             + createInputField("city", "text")
-        inputs += '<div id="addAlertPlaceholder"></div>\n' +
+        inputs += '<div id="addAlertPlaceholder" style="max-width: 800px"></div>\n' +
             '<div><input type="submit" class="btn btn-success" value="Add Record"></div>'
         $("form").append(inputs)
 
@@ -61,8 +62,7 @@
 
                 // delete
                 $("button.btn-danger").click(function () {
-                    // TODO: need to define type
-                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"))
+                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"), numberTypeKeyArr.includes(keyName))
                 })
 
                 // modify
@@ -71,8 +71,12 @@
                     let tdArr = trDOM.children("td.value")
                     let tmpData = {}
                     $.each(tdArr, function (index, td) {
-                        // TODO: need to define type
-                        tmpData[td.dataset.key] = td.innerText
+                        let tkey = td.dataset.key
+                        if (numberTypeKeyArr.includes(tkey)) {
+                            tmpData[tkey] = parseFloat(td.innerText)
+                        } else {
+                            tmpData[tkey] = td.innerText
+                        }
                     })
                     let jsonStr = JSON.stringify(tmpData)
                     modifyData(baseURL + "/modify", jsonStr)
@@ -84,7 +88,15 @@
         $("#addForm").on('submit', function (e) {
             e.preventDefault()
             // parse to json
-            let jsonStr = arrayToJson($(this).serializeArray())
+            let array = $(this).serializeArray()
+            array.map(function (ele) {
+                if (numberTypeKeyArr.includes(ele['name'])) {
+                    console.log(ele)
+                    ele['value'] = parseFloat(ele['value'])
+                }
+                return ele
+            })
+            let jsonStr = arrayToJson(array)
 
             //ajax post
             $.ajax({

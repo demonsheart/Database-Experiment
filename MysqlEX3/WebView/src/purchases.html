@@ -15,12 +15,13 @@
     <table class='table table-info table-hover table-bordered' id='table'>
         <thead>
         <tr>
-            <th>logid</th>
-            <th>who</th>
-            <th>time</th>
-            <th>table_name</th>
-            <th>operation</th>
-            <th>key_value</th>
+            <th>purid</th>
+            <th>cid</th>
+            <th>eid</th>
+            <th>pid</th>
+            <th>qty</th>
+            <th>ptime</th>
+            <th>total_price</th>
             <th>modify</th>
             <th>delete</th>
         </tr>
@@ -33,14 +34,15 @@
 </html>
 
 <script type="application/javascript">
-    const keyName = 'log_id'
-    const baseURL = 'http://localhost:8080/tables/logs'
-    const numberTypeKeyArr = ['log_id']
+    const keyName = 'purid'
+    const baseURL = 'http://localhost:8080/tables/purchases'
+    const numberTypeKeyArr = ['purid', 'qty', 'total_price']
 
     $(function () {
         // append inputs field
-        let inputs = createInputField("who", "text") + createInputField("table_name", "text")
-            + createInputField("operation", "text") + createInputField("key_value", "text")
+        let inputs = createInputField("purid", "number") + createInputField("cid", "text")
+            + createInputField("eid", "text") + createInputField("pid", "text")
+            + createInputField("qty", "number") + createInputField("total_price", "number")
         inputs += '<div id="addAlertPlaceholder" style="max-width: 800px"></div>\n' +
             '<div><input type="submit" class="btn btn-success" value="Add Record"></div>'
         $("form").append(inputs)
@@ -67,7 +69,7 @@
 
                 // delete
                 $("button.btn-danger").click(function () {
-                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"), "number", numberTypeKeyArr.includes(keyName))
+                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"), numberTypeKeyArr.includes(keyName))
                 })
 
                 // modify

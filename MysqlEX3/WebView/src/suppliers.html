@@ -15,12 +15,10 @@
     <table class='table table-info table-hover table-bordered' id='table'>
         <thead>
         <tr>
-            <th>logid</th>
-            <th>who</th>
-            <th>time</th>
-            <th>table_name</th>
-            <th>operation</th>
-            <th>key_value</th>
+            <th>sid</th>
+            <th>sname</th>
+            <th>city</th>
+            <th>telephone_no</th>
             <th>modify</th>
             <th>delete</th>
         </tr>
@@ -33,14 +31,14 @@
 </html>
 
 <script type="application/javascript">
-    const keyName = 'log_id'
-    const baseURL = 'http://localhost:8080/tables/logs'
-    const numberTypeKeyArr = ['log_id']
+    const keyName = 'sid'
+    const baseURL = 'http://localhost:8080/tables/suppliers'
+    const numberTypeKeyArr = []
 
     $(function () {
         // append inputs field
-        let inputs = createInputField("who", "text") + createInputField("table_name", "text")
-            + createInputField("operation", "text") + createInputField("key_value", "text")
+        let inputs = createInputField("sid", "text") + createInputField("sname", "text")
+           + createInputField("city", "text") + createInputField("telephone_no", "text")
         inputs += '<div id="addAlertPlaceholder" style="max-width: 800px"></div>\n' +
             '<div><input type="submit" class="btn btn-success" value="Add Record"></div>'
         $("form").append(inputs)
@@ -67,7 +65,7 @@
 
                 // delete
                 $("button.btn-danger").click(function () {
-                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"), "number", numberTypeKeyArr.includes(keyName))
+                    deleteData(baseURL + "/delete", keyName, $(this).attr("data-key"), numberTypeKeyArr.includes(keyName))
                 })
 
                 // modify

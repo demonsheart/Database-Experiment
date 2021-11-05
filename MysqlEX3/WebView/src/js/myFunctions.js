@@ -18,9 +18,9 @@ function arrayToJson(array) {
 }
 
 // deleteData("http://localhost:8080/tables/customers/delete", "cid", $(this).attr("data-key"))
-function deleteData(url, key, value, valueType) {
+function deleteData(url, key, value, isNumber) {
     let jsonStr  = '{"'+ key +'":"'+ value +'"}'
-    if (valueType === "number") {
+    if (isNumber) {
         jsonStr  = '{"'+ key +'":'+ value +'}'
     }
     console.log(jsonStr)
