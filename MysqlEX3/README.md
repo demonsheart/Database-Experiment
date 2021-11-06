@@ -6,8 +6,6 @@
 >
 >    注:所有的思考题均要求网页代码和运行后的界面。注意界面设计及美观性。
 
-
-
 ```mysql
 Use the following SQL DDL statements to create the six tables required for this project. Note that you need to use the exact statements as shown below to ensure that the instructor can test your programs using the instructor’s data later. Please also note that the tables are created in certain order such that by the time when a foreign key needs to be created, the corresponding primary key has already been created.
 
@@ -112,7 +110,46 @@ insert into purchases values (6, 'c003', 'e02', 'pr05', 1, '2018-12-04 16:48:02'
 
 ### 解决方案
 
-> 最简单的方式莫过于MySQL + PHP + HTML + CSS，直接通过PHP连接数据库把查询到的结果嵌入进HTML里面。但这样的话前后端代码相互嵌套，实属难看，而且个人对PHP不太感冒，同时想了解一下新兴语言Go，这里后端采用了gin+gorm编写RESTful API对外接口，前端则用经典的HTML+CSS+JavaScript。
+> 最简单的方式莫过于MySQL + PHP + HTML + CSS，直接通过PHP连接数据库把查询到的结果嵌入进HTML里面。但这样的话前后端代码相互嵌套，实属难看，而且个人对PHP不太感冒，同时想了解一下新兴语言Go，这里后端采用了**gin+gorm编写RESTful API对外接口**，前端则用经典的**HTML+CSS+JavaScript**。
 
 
+
+### 整体架构
+
+![image-20211106163927888](./Pic/architecture.png)
+
+> 为了解决浏览器的同源策略问题，这里通过Nginx反向代理了前端服务器和后端服务器。
+>
+> 浏览器访问localhost:8080/会定位到前端的静态目录，前端Javascript则通过localhost:8080/tables/这个字域名获取api数据
+>
+> **具体细节请查看对应目录下的REAME.md**
+
+### Nginx的配置：
+
+```bash
+ server {
+        listen       8080;
+        server_name  localhost;
+
+        location / {
+            # root   html;
+            # index  index.html index.htm;
+            # 前端打包后的静态目录
+            alias /YourRoot/MysqlEX3/WebView/src/;
+            # 解决页面刷新404问题
+            # try_files $uri $uri/ /index.html;
+        }
+
+        location /tables {
+            # 后端Go服务器地址
+            proxy_pass http://localhost:60055/tables;
+        }
+
+        
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+```
 

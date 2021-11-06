@@ -10,7 +10,6 @@ function myAlert(selector, message, type) {
 function arrayToJson(array) {
     let data = {}
     $.each(array, function (index, item) {
-        // TODO: need to fix string -> int
         data[item.name] = item.value
     })
     let jsonStr = JSON.stringify(data)
