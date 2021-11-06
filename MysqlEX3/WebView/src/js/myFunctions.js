@@ -47,6 +47,7 @@ function modifyData(url, jsonStr) {
         contentType: "application/json; charset=utf-8",
         success: function(data){
             myAlert("#alertPlaceholder", "Modify successfully!", "success")
+            setTimeout((() => window.location.reload()), 2000)
         },
         error: function(errMsg) {
             myAlert("#alertPlaceholder", errMsg.responseText, "warning")

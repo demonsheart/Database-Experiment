@@ -76,9 +76,11 @@ func ValidateJSONDateType(field reflect.Value) interface{} {
 //);
 
 type Employees struct {
-	Eid   string `gorm:"column:eid;primaryKey" json:"eid" binding:"required"`
-	Ename string `gorm:"column:ename" json:"ename" binding:"required"`
-	City  string `gorm:"column:city" json:"city" binding:"required"`
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue *string `gorm:"-" json:"old_key_value,omitempty"`
+	Eid         string  `gorm:"column:eid;primaryKey" json:"eid" binding:"required"`
+	Ename       string  `gorm:"column:ename" json:"ename" binding:"required"`
+	City        string  `gorm:"column:city" json:"city" binding:"required"`
 }
 
 //
@@ -93,6 +95,8 @@ type Employees struct {
 //);
 
 type Customers struct {
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue   *string   `gorm:"-" json:"old_key_value,omitempty"`
 	Cid           string    `gorm:"column:cid;primaryKey" json:"cid" binding:"required"`
 	Cname         string    `gorm:"column:cname" json:"cname" binding:"required"`
 	City          string    `gorm:"column:city" json:"city" binding:"required"`
@@ -112,10 +116,12 @@ type Customers struct {
 //);
 
 type Suppliers struct {
-	Sid         string `gorm:"column:sid;primaryKey" json:"sid" binding:"required"`
-	Sname       string `gorm:"column:sname;unique" json:"sname" binding:"required"`
-	City        string `gorm:"column:city" json:"city" binding:"required"`
-	TelephoneNo string `gorm:"column:telephone_no" json:"telephone_no" binding:"required"`
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue *string `gorm:"-" json:"old_key_value,omitempty"`
+	Sid         string  `gorm:"column:sid;primaryKey" json:"sid" binding:"required"`
+	Sname       string  `gorm:"column:sname;unique" json:"sname" binding:"required"`
+	City        string  `gorm:"column:city" json:"city" binding:"required"`
+	TelephoneNo string  `gorm:"column:telephone_no" json:"telephone_no" binding:"required"`
 }
 
 //create table products
@@ -132,6 +138,8 @@ type Suppliers struct {
 //);
 
 type Products struct {
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue   *string `gorm:"-" json:"old_key_value,omitempty"`
 	Pid           string  `gorm:"column:pid;primaryKey" json:"pid" binding:"required"`
 	Pname         string  `gorm:"column:pname;not null" json:"pname" binding:"required"`
 	Qoh           int     `gorm:"column:qoh;not null" json:"qoh" binding:"required"`
@@ -159,13 +167,15 @@ type Products struct {
 //);
 
 type Purchases struct {
-	Purid      int       `gorm:"column:purid;primaryKey" json:"purid" binding:"required"`
-	Cid        string    `gorm:"column:cid;not null" json:"cid" binding:"required"`
-	Eid        string    `gorm:"column:eid;not null" json:"eid" binding:"required"`
-	Pid        string    `gorm:"column:pid;not null" json:"pid" binding:"required"`
-	Qty        int       `gorm:"column:qty;" json:"qty" binding:"required"`
-	Ptime      LocalTime `gorm:"column:ptime;autoCreateTime" json:"ptime"`
-	TotalPrice float32   `gorm:"column:total_price;" json:"total_price" binding:"required"`
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue *int      `gorm:"-" json:"old_key_value,omitempty"`
+	Purid       int       `gorm:"column:purid;primaryKey" json:"purid" binding:"required"`
+	Cid         string    `gorm:"column:cid;not null" json:"cid" binding:"required"`
+	Eid         string    `gorm:"column:eid;not null" json:"eid" binding:"required"`
+	Pid         string    `gorm:"column:pid;not null" json:"pid" binding:"required"`
+	Qty         int       `gorm:"column:qty;" json:"qty" binding:"required"`
+	Ptime       LocalTime `gorm:"column:ptime;autoCreateTime" json:"ptime"`
+	TotalPrice  float32   `gorm:"column:total_price;" json:"total_price" binding:"required"`
 	//foreign key (cid) references customers(cid),
 	//foreign key (eid) references employees(eid),
 	//foreign key (pid) references products(pid)
@@ -184,10 +194,12 @@ type Purchases struct {
 //);
 
 type Logs struct {
-	LogId     uint      `gorm:"column:logid;primaryKey;autoIncrement;type:int(5)" json:"log_id"`
-	Who       string    `gorm:"column:who;not null" json:"who" binding:"required"`
-	Time      LocalTime `gorm:"column:time;not null;autoCreateTime" json:"time"`
-	TableName string    `gorm:"column:table_name;not null" json:"table_name" binding:"required"`
-	Operation string    `gorm:"column:operation;not null" json:"operation" binding:"required"`
-	KeyValue  string    `gorm:"column:key_value" json:"key_value"`
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue *uint     `gorm:"-" json:"old_key_value,omitempty"`
+	LogId       uint      `gorm:"column:logid;primaryKey;autoIncrement;type:int(5)" json:"log_id"`
+	Who         string    `gorm:"column:who;not null" json:"who" binding:"required"`
+	Time        LocalTime `gorm:"column:time;not null;autoCreateTime" json:"time"`
+	TableName   string    `gorm:"column:table_name;not null" json:"table_name" binding:"required"`
+	Operation   string    `gorm:"column:operation;not null" json:"operation" binding:"required"`
+	KeyValue    string    `gorm:"column:key_value" json:"key_value"`
 }

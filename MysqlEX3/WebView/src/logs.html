@@ -57,7 +57,7 @@
                 $.each(data, function (k, val) {
                     let row = "<tr id = 'row"+ k +"'>"
                     $.each(val, function (key, value) {
-                        row += "<td class='value' contentEditable='true' data-key='"+ key +"'>"+ value + "</td>"
+                        row += "<td class='value' contentEditable='true' data-key='"+ key +"' data-old-value='"+ value +"'>"+ value + "</td>"
                     })
                     row += "<td><button type='button' class='btn btn-info' data-index='" + k + "' data-key='" + val[keyName] + "'>modify</button></td>" +
                         "<td><button type='button' class='btn btn-danger' data-index='" + k + "' data-key='" + val[keyName] + "'>delete</button></td></tr>"
@@ -79,8 +79,14 @@
                         let tkey = td.dataset.key
                         if (numberTypeKeyArr.includes(tkey)) {
                             tmpData[tkey] = parseFloat(td.innerText)
+                            if (tkey === keyName) {
+                                tmpData['old_key_value'] = parseFloat(td.dataset.oldValue)
+                            }
                         } else {
                             tmpData[tkey] = td.innerText
+                            if (tkey === keyName) {
+                                tmpData['old_key_value'] = td.dataset.oldValue
+                            }
                         }
                     })
                     let jsonStr = JSON.stringify(tmpData)

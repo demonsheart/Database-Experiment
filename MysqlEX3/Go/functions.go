@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"net/http"
 )
 
@@ -98,7 +99,13 @@ func PostLogs(c *gin.Context) {
 		}
 	case "modify":
 		c.ShouldBindJSON(&log)
-		res := db.Model(&log).Updates(&log)
+		var res *gorm.DB
+		if log.OldKeyValue == nil {
+			res = db.Model(Logs{}).Where("logid = ?", log.LogId).Updates(&log)
+		} else {
+			// need to update key
+			res = db.Model(Logs{}).Where("logid = ?", *log.OldKeyValue).Updates(&log)
+		}
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
@@ -143,7 +150,13 @@ func PostPurchases(c *gin.Context) {
 		}
 	case "modify":
 		c.ShouldBindJSON(&purchase)
-		res := db.Model(&purchase).Updates(&purchase)
+		var res *gorm.DB
+		if purchase.OldKeyValue == nil {
+			res = db.Model(Purchases{}).Where("purid = ?", purchase.Purid).Updates(&purchase)
+		} else {
+			// need to update key
+			res = db.Model(Purchases{}).Where("purid = ?", *purchase.OldKeyValue).Updates(&purchase)
+		}
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
@@ -188,7 +201,13 @@ func PostProducts(c *gin.Context) {
 		}
 	case "modify":
 		c.ShouldBindJSON(&product)
-		res := db.Model(&product).Updates(&product)
+		var res *gorm.DB
+		if product.OldKeyValue == nil {
+			res = db.Model(Products{}).Where("pid = ?", product.Pid).Updates(&product)
+		} else {
+			// need to update key
+			res = db.Model(Products{}).Where("pid = ?", *product.OldKeyValue).Updates(&product)
+		}
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
@@ -233,7 +252,13 @@ func PostSuppliers(c *gin.Context) {
 		}
 	case "modify":
 		c.ShouldBindJSON(&supplier)
-		res := db.Model(&supplier).Updates(&supplier)
+		var res *gorm.DB
+		if supplier.OldKeyValue == nil {
+			res = db.Model(Suppliers{}).Where("sid = ?", supplier.Sid).Updates(&supplier)
+		} else {
+			// need to update key
+			res = db.Model(Suppliers{}).Where("sid = ?", *supplier.OldKeyValue).Updates(&supplier)
+		}
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
@@ -278,7 +303,13 @@ func PostCustomers(c *gin.Context) {
 		}
 	case "modify":
 		c.ShouldBindJSON(&customer)
-		res := db.Model(&customer).Updates(&customer)
+		var res *gorm.DB
+		if customer.OldKeyValue == nil {
+			res = db.Model(Customers{}).Where("cid = ?", customer.Cid).Updates(&customer)
+		} else {
+			// need to update key
+			res = db.Model(Customers{}).Where("cid = ?", *customer.OldKeyValue).Updates(&customer)
+		}
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
@@ -323,7 +354,13 @@ func PostEmployees(c *gin.Context) {
 		}
 	case "modify":
 		c.ShouldBindJSON(&employee)
-		res := db.Model(&employee).Updates(&employee)
+		var res *gorm.DB
+		if employee.OldKeyValue == nil {
+			res = db.Model(Employees{}).Where("eid = ?", employee.Eid).Updates(&employee)
+		} else {
+			// need to update key
+			res = db.Model(Employees{}).Where("eid = ?", *employee.OldKeyValue).Updates(&employee)
+		}
 		if res.Error != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
 			return
