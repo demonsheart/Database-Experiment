@@ -15,8 +15,8 @@ var err error
 
 func main() {
 
-	username := "php"
-	password := "xuezhiqian"
+	username := "go"
+	password := "XUEZHIQIAN"
 	host := "127.0.0.1"
 	port := 3306
 	Dbname := "my_database"

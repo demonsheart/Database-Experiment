@@ -33,7 +33,7 @@ function deleteData(url, key, value, isNumber) {
             window.location.reload()
         },
         error: function(errMsg) {
-            console.log(errMsg)
+            myAlert("#alertPlaceholder", errMsg.responseText, "warning")
         }
     })
 }
