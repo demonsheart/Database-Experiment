@@ -31,13 +31,13 @@ r.POST("/tables/logs/:method", PostLogs)
 ```mysql
 create table logs
 (
-logid int(5) not null auto_increment,
-who varchar(10) not null,
-time datetime not null,
-table_name varchar(20) not null,
-operation varchar(6) not null,
-key_value varchar(4),
-primary key (logid)
+    logid int(5) not null auto_increment,
+    who varchar(10) not null,
+    time datetime not null,
+    table_name varchar(20) not null,
+    operation varchar(6) not null,
+    key_value varchar(4),
+    primary key (logid)
 );
 ```
 
@@ -256,4 +256,64 @@ if res.RowsAffected == 0 {
 
 
 #### 删除记录(以logs为例)
+
+SQL如下：
+
+```mysql
+DELETE FROM `logs` WHERE `logid` = 1;
+```
+
+转化为Go代码如下：
+
+```go
+var log Logs
+c.ShouldBindJSON(&log)
+fmt.Println(log)
+res := db.Where("logid = ?", log.LogId).Delete(&log)
+if res.Error != nil {
+  c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+  return
+}
+if res.RowsAffected == 0 {
+  c.String(http.StatusBadRequest, "Affected 0 rows!")
+} else {
+  c.String(200, "deleted")
+}
+```
+
+> 核心就是db.Where("logid = ?", log.LogId).Delete(&log)，通过logid定位记录并删除
+
+效果如下：
+
+> POST http://localhost:8080/tables/logs/delete
+>
+> {
+>     "log_id": 1
+> }
+>
+> ___
+>
+> deleted
+
+
+
+### 踩过的坑和一些细节之处
+
+1. Go时间处理格式化问题 
+
+   > 主要根据[这篇文章](https://segmentfault.com/a/1190000022264001)自定义结构体以及重写接口解决
+
+2. 主键改变了需要旧主键的信息，但这是一个可选值，结构体中定义如下
+
+   ```go
+   OldKeyValue *int      `gorm:"-" json:"old_key_value,omitempty"`
+   ```
+
+   > 这里有三个关键点：
+   >
+   > 1. omitempty关键字，golang在处理json转换时，对于标签omitempty定义的field，如果给它赋得值恰好等于空值（比如：false、0、""、nil指针、nil接口、长度为0的数组、切片、映射），则在转为json之后不会输出这个field。
+   > 2. 定义为指针类型，而不是值类型，配合omitempty关键字，可在前端无传递值的时候通过指针类型的nil值判断(而不是值类型的0，0值在此并不可靠，比如说刚好传了个0过来的情况)。
+   > 3. gorm:"-"忽略绑定到数据表。
+
+   
 
