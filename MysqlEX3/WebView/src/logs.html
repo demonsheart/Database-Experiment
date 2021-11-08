@@ -27,7 +27,7 @@
         </thead>
         <tbody style="vertical-align: middle;"></tbody>
     </table>
-    <form id="addForm" class="form-control" style="background: #f8f9fa"></form>
+<!--    <form id="addForm" class="form-control" style="background: #f8f9fa"></form>-->
 </div>
 </body>
 </html>
@@ -39,11 +39,11 @@
 
     $(function () {
         // append inputs field
-        let inputs = createInputField("who", "text") + createInputField("table_name", "text")
-            + createInputField("operation", "text") + createInputField("key_value", "text")
-        inputs += '<div id="addAlertPlaceholder" style="max-width: 800px"></div>\n' +
-            '<div><input type="submit" class="btn btn-success" value="Add Record"></div>'
-        $("form").append(inputs)
+        // let inputs = createInputField("who", "text") + createInputField("table_name", "text")
+        //     + createInputField("operation", "text") + createInputField("key_value", "text")
+        // inputs += '<div id="addAlertPlaceholder" style="max-width: 800px"></div>\n' +
+        //     '<div><input type="submit" class="btn btn-success" value="Add Record"></div>'
+        // $("form").append(inputs)
 
         $.ajax({
             method: "get",

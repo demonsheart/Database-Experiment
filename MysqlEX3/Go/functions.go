@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"
+	"strconv"
 )
 
 /********************************
@@ -74,16 +75,16 @@ func PostLogs(c *gin.Context) {
 	var log Logs
 
 	switch method {
-	case "add":
-		if err := c.ShouldBindJSON(&log); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-		if err := db.Create(&log).Error; err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-		c.String(200, "added")
+	//case "add":
+	//	if err := c.ShouldBindJSON(&log); err != nil {
+	//		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	//		return
+	//	}
+	//	if err := db.Create(&log).Error; err != nil {
+	//		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	//		return
+	//	}
+	//	c.String(200, "added")
 	case "delete":
 		c.ShouldBindJSON(&log)
 		fmt.Println(log)
@@ -134,6 +135,7 @@ func PostPurchases(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		db.Create(&Logs{Who: "go", TableName: "purchases", Operation: "add", KeyValue: strconv.Itoa(purchase.Purid)})
 		c.String(200, "added")
 	case "delete":
 		c.ShouldBindJSON(&purchase)
@@ -146,6 +148,7 @@ func PostPurchases(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "purchases", Operation: "delete", KeyValue: strconv.Itoa(purchase.Purid)})
 			c.String(200, "deleted")
 		}
 	case "modify":
@@ -164,6 +167,7 @@ func PostPurchases(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "purchases", Operation: "modify", KeyValue: strconv.Itoa(purchase.Purid)})
 			c.String(200, "modified")
 		}
 	default:
@@ -185,6 +189,7 @@ func PostProducts(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		db.Create(&Logs{Who: "go", TableName: "products", Operation: "add", KeyValue: product.Pid})
 		c.String(200, "added")
 	case "delete":
 		c.ShouldBindJSON(&product)
@@ -197,6 +202,7 @@ func PostProducts(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "products", Operation: "delete", KeyValue: product.Pid})
 			c.String(200, "deleted")
 		}
 	case "modify":
@@ -215,6 +221,7 @@ func PostProducts(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "products", Operation: "modify", KeyValue: product.Pid})
 			c.String(200, "modified")
 		}
 	default:
@@ -236,6 +243,7 @@ func PostSuppliers(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		db.Create(&Logs{Who: "go", TableName: "suppliers", Operation: "add", KeyValue: supplier.Sid})
 		c.String(200, "added")
 	case "delete":
 		c.ShouldBindJSON(&supplier)
@@ -248,6 +256,7 @@ func PostSuppliers(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "suppliers", Operation: "delete", KeyValue: supplier.Sid})
 			c.String(200, "deleted")
 		}
 	case "modify":
@@ -266,6 +275,7 @@ func PostSuppliers(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "suppliers", Operation: "modify", KeyValue: supplier.Sid})
 			c.String(200, "modified")
 		}
 	default:
@@ -287,6 +297,7 @@ func PostCustomers(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		db.Create(&Logs{Who: "go", TableName: "customers", Operation: "add", KeyValue: customer.Cid})
 		c.String(200, "added")
 	case "delete":
 		c.ShouldBindJSON(&customer)
@@ -299,6 +310,7 @@ func PostCustomers(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "customers", Operation: "delete", KeyValue: customer.Cid})
 			c.String(200, "deleted")
 		}
 	case "modify":
@@ -317,6 +329,7 @@ func PostCustomers(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "customers", Operation: "modify", KeyValue: customer.Cid})
 			c.String(200, "modified")
 		}
 	default:
@@ -338,6 +351,7 @@ func PostEmployees(c *gin.Context) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		db.Create(&Logs{Who: "go", TableName: "employees", Operation: "add", KeyValue: employee.Eid})
 		c.String(200, "added")
 	case "delete":
 		c.ShouldBindJSON(&employee)
@@ -350,6 +364,7 @@ func PostEmployees(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "employees", Operation: "delete", KeyValue: employee.Eid})
 			c.String(200, "deleted")
 		}
 	case "modify":
@@ -368,6 +383,7 @@ func PostEmployees(c *gin.Context) {
 		if res.RowsAffected == 0 {
 			c.String(http.StatusBadRequest, "Affected 0 rows!")
 		} else {
+			db.Create(&Logs{Who: "go", TableName: "employees", Operation: "modify", KeyValue: employee.Eid})
 			c.String(200, "modified")
 		}
 	default:
