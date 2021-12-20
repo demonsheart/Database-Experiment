@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 20/12/2021 09:57:26
+ Date: 20/12/2021 12:21:05
 */
 
 SET NAMES utf8mb4;
@@ -331,7 +331,7 @@ CREATE PROCEDURE `number_of_passengers`(IN cus_num int)
   READS SQL DATA 
   SQL SECURITY INVOKER
 BEGIN
-  SELECT car_id, make, model, price_per_hour, capacity
+  SELECT car_id, make, model, price_per_hour, price_per_day, capacity
 	FROM cars
 	WHERE capacity >= cus_num;
 END
