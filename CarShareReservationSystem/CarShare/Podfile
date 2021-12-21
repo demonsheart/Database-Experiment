@@ -1,0 +1,15 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+target 'CarShare' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for CarShare
+  pod 'SnapKit'
+  pod 'Moya'
+  pod 'Kingfisher'
+  pod 'WMPageController'
+  pod 'RxSwift', '6.2.0'
+  pod 'RxCocoa', '6.2.0'
+end
