@@ -26,9 +26,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        flashNewsNav.navigationBar.isTranslucent = false
 //        flashNewsNav.tabBarItem.image = UIImage(systemName: "mail")
         
+        // uikit example
+//        let newsViewController = UINavigationController(rootViewController: NewsPageViewController())
+//        newsViewController.tabBarItem = UITabBarItem(title: "动态", image: UIImage(named: "动态 灰"), selectedImage: UIImage(named: "动态"))
+        
+//        let pageViewController = TickerPageViewController()
+//        let tickerNav = UINavigationController(rootViewController: pageViewController)
+//        tickerNav.navigationBar.isTranslucent = false
+//        tickerNav.tabBarItem.image = UIImage(systemName: "list.dash")
+
+        
         let tabbar = UITabBarController()
-        let vc = ListViewController()
-        tabbar.viewControllers = [vc]
+        
+        let vc1 = UINavigationController(rootViewController: ListViewController())
+        vc1.navigationBar.isTranslucent = false
+        vc1.tabBarItem.image = UIImage(systemName: "car")
+        
+        let vc2 = UINavigationController(rootViewController: ListViewController())
+        vc2.navigationBar.isTranslucent = false
+        vc2.tabBarItem.image = UIImage(systemName: "car")
+        
+        tabbar.viewControllers = [vc1, vc2]
         window.rootViewController = tabbar
         self.window = window
         window.makeKeyAndVisible()
