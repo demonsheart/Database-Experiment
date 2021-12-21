@@ -92,6 +92,7 @@ type Car struct {
 	PricePerHour float32 `gorm:"column:price_per_hour" json:"price_per_hour"`
 	PricePerDay  float32 `gorm:"column:price_per_day" json:"price_per_day"`
 	Capacity     int     `gorm:"column:capacity" json:"capacity"`
+	PicUrl       string  `gorm:"column:pic_url" json:"pic_url"`
 }
 
 // PopularLoc 热门位置
@@ -114,4 +115,21 @@ type RentalTrend struct {
 type IncreasePriceParams struct {
 	HourlyIncrease float32 `gorm:"column:hourly_increase" json:"hourly_increase" binding:"required"`
 	DailyIncrease  float32 `gorm:"column:daily_increase" json:"daily_increase" binding:"required"`
+}
+
+// Customers 表
+type Customers struct {
+	// old key need to define as pointer type so that we can know if is set by nil.
+	OldKeyValue    *string   `gorm:"-" json:"old_key_value,omitempty"`
+	CusID          int       `gorm:"column:cus_id" json:"cus_id"`
+	LastName       string    `gorm:"column:last_name" json:"last_name" binding:"required"`
+	FirstName      string    `gorm:"column:first_name" json:"first_name" binding:"required"`
+	HomeTown       string    `gorm:"column:home_town" json:"home_town" binding:"required"`
+	CellPhone      string    `gorm:"column:cell_phone" json:"cell_phone" binding:"required"`
+	Email          string    `gorm:"column:email" json:"email" binding:"required"`
+	CreditCard     string    `gorm:"column:cell_phone" json:"credit_card" binding:"required"`
+	IsStudent      int       `gorm:"column:is_student" json:"is_student" binding:"required"`
+	LicenseNumber  string    `gorm:"column:license_number" json:"license_number"`
+	LicenseState   string    `gorm:"column:license_state" json:"license_state"`
+	ExpirationDate LocalTime `gorm:"column:expiration_date" json:"expiration_date"`
 }

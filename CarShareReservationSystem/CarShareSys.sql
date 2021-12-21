@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 20/12/2021 12:21:05
+ Date: 21/12/2021 11:45:44
 */
 
 SET NAMES utf8mb4;
@@ -47,6 +47,7 @@ CREATE TABLE `cars` (
   `model` varchar(30) NOT NULL,
   `price_per_hour` float NOT NULL,
   `price_per_day` float NOT NULL,
+  `pic_url` varchar(255) DEFAULT NULL,
   `capacity` int NOT NULL,
   PRIMARY KEY (`car_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -55,16 +56,16 @@ CREATE TABLE `cars` (
 -- Records of cars
 -- ----------------------------
 BEGIN;
-INSERT INTO `cars` VALUES (101, 'Subaru', 'Impreza', 3.9, 39, 5);
-INSERT INTO `cars` VALUES (102, 'Lexus', 'IS250', 5, 50, 5);
-INSERT INTO `cars` VALUES (103, 'Smart', 'Passion', 4, 40, 3);
-INSERT INTO `cars` VALUES (104, 'Toyota', 'Prius Liftback', 5.5, 55, 5);
-INSERT INTO `cars` VALUES (105, 'Honda', 'Element', 3.9, 39, 4);
-INSERT INTO `cars` VALUES (106, 'Alfa Romeo', 'Saloon', 4.2, 42, 4);
-INSERT INTO `cars` VALUES (107, 'Audi', 'Hatchback', 4.5, 45, 3);
-INSERT INTO `cars` VALUES (108, 'Bentley', 'SUV', 5.6, 56, 5);
-INSERT INTO `cars` VALUES (109, 'Chevrolet', 'Station Wagon', 7.8, 78, 8);
-INSERT INTO `cars` VALUES (110, 'Dodge', 'Sedan', 3.9, 39, 4);
+INSERT INTO `cars` VALUES (101, 'Subaru', 'Impreza', 3.9, 39, 'https://s2.loli.net/2021/12/21/4wzUqSflsbaOZ3J.jpg', 5);
+INSERT INTO `cars` VALUES (102, 'Lexus', 'IS250', 5, 50, 'https://s2.loli.net/2021/12/21/54msQbNehxpTKaU.jpg', 5);
+INSERT INTO `cars` VALUES (103, 'Smart', 'Passion', 4, 40, 'https://s2.loli.net/2021/12/21/vqBPQCTxLnIX6yN.jpg', 3);
+INSERT INTO `cars` VALUES (104, 'Toyota', 'Prius Liftback', 5.5, 55, 'https://s2.loli.net/2021/12/21/VGeTbYuR3WDKQ4P.jpg', 5);
+INSERT INTO `cars` VALUES (105, 'Honda', 'Element', 3.9, 39, 'https://s2.loli.net/2021/12/21/jiVX8TSkIlmFA5b.jpg', 4);
+INSERT INTO `cars` VALUES (106, 'Alfa Romeo', 'Saloon', 4.2, 42, 'https://s2.loli.net/2021/12/21/wXhjWIki8KnAScg.jpg', 4);
+INSERT INTO `cars` VALUES (107, 'Audi', 'Hatchback', 4.5, 45, 'https://s2.loli.net/2021/12/21/uGpLkovryPgbqex.jpg', 3);
+INSERT INTO `cars` VALUES (108, 'Bentley', 'SUV', 5.6, 56, 'https://s2.loli.net/2021/12/21/AyZQGhzJLeTr5Fs.jpg', 5);
+INSERT INTO `cars` VALUES (109, 'Chevrolet', 'Station Wagon', 7.8, 78, 'https://s2.loli.net/2021/12/21/MvYdLka1A4pPnfI.jpg', 8);
+INSERT INTO `cars` VALUES (110, 'Dodge', 'Sedan', 3.9, 39, 'https://s2.loli.net/2021/12/21/vVRU5WPIiOXFNYk.jpg', 4);
 COMMIT;
 
 -- ----------------------------
@@ -331,7 +332,7 @@ CREATE PROCEDURE `number_of_passengers`(IN cus_num int)
   READS SQL DATA 
   SQL SECURITY INVOKER
 BEGIN
-  SELECT car_id, make, model, price_per_hour, price_per_day, capacity
+  SELECT *
 	FROM cars
 	WHERE capacity >= cus_num;
 END

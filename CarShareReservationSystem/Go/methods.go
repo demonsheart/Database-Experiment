@@ -2,7 +2,9 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"net/http"
 )
 
@@ -109,4 +111,62 @@ func IncreasePrice(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"data": cars})
+}
+
+func GetCustomers(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var cus []Customers
+	if err := db.Find(&cus).Error; err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, cus)
+	}
+}
+
+func PostCustomers(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	method := c.Param("method")
+	var cus Customers
+
+	switch method {
+	case "add":
+		if err := c.ShouldBindJSON(&cus); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		if err := db.Create(&cus).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.String(200, "added")
+	case "modify":
+		_ = c.ShouldBindJSON(&cus)
+		var res *gorm.DB
+		if cus.OldKeyValue == nil {
+			res = db.Model(Customers{}).Where("cus_id = ?", cus.CusID).Updates(&cus)
+		} else {
+			// need to update key
+			res = db.Model(Customers{}).Where("cus_id = ?", *cus.OldKeyValue).Updates(&cus)
+		}
+		if res.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": res.Error.Error()})
+			return
+		}
+		if res.RowsAffected == 0 {
+			c.String(http.StatusBadRequest, "Affected 0 rows!")
+		} else {
+			c.String(200, "modified")
+		}
+	default:
+		c.String(404, "invalid method")
+	}
 }
