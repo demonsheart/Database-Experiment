@@ -3,22 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		271DC2FB95B0AEB9678816A5 /* Pods_CarShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 751B8ABC7EC8A1980B423A48 /* Pods_CarShare.framework */; };
+		945AED3527730930001297C9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED3427730930001297C9 /* MainView.swift */; };
+		945AED39277309F6001297C9 /* CarRentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED38277309F6001297C9 /* CarRentView.swift */; };
+		945AED3B27730A1A001297C9 /* PersonalMessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED3A27730A1A001297C9 /* PersonalMessView.swift */; };
+		945AED3E27730C49001297C9 /* AnalyzeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED3D27730C49001297C9 /* AnalyzeListView.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
-		94F2205827730693006B3A91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205727730693006B3A91 /* ContentView.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		751B8ABC7EC8A1980B423A48 /* Pods_CarShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		945AED3427730930001297C9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		945AED38277309F6001297C9 /* CarRentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarRentView.swift; sourceTree = "<group>"; };
+		945AED3A27730A1A001297C9 /* PersonalMessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalMessView.swift; sourceTree = "<group>"; };
+		945AED3D27730C49001297C9 /* AnalyzeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeListView.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
-		94F2205727730693006B3A91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94F2205C27730695006B3A91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		94F2205E27730695006B3A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +52,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		945AED36277309C2001297C9 /* CarRent */ = {
+			isa = PBXGroup;
+			children = (
+				945AED38277309F6001297C9 /* CarRentView.swift */,
+			);
+			path = CarRent;
+			sourceTree = "<group>";
+		};
+		945AED37277309CF001297C9 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				945AED3A27730A1A001297C9 /* PersonalMessView.swift */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		945AED3C27730BF5001297C9 /* Analyze */ = {
+			isa = PBXGroup;
+			children = (
+				945AED3D27730C49001297C9 /* AnalyzeListView.swift */,
+			);
+			path = Analyze;
+			sourceTree = "<group>";
+		};
 		94F2204927730693006B3A91 = {
 			isa = PBXGroup;
 			children = (
@@ -67,11 +97,14 @@
 		94F2205427730693006B3A91 /* CarShare */ = {
 			isa = PBXGroup;
 			children = (
-				94F2205527730693006B3A91 /* CarShareApp.swift */,
-				94F2205727730693006B3A91 /* ContentView.swift */,
 				94F2205927730695006B3A91 /* Assets.xcassets */,
 				94F2205E27730695006B3A91 /* Info.plist */,
+				94F2205527730693006B3A91 /* CarShareApp.swift */,
+				945AED3427730930001297C9 /* MainView.swift */,
 				94F2205B27730695006B3A91 /* Preview Content */,
+				945AED3C27730BF5001297C9 /* Analyze */,
+				945AED37277309CF001297C9 /* Personal */,
+				945AED36277309C2001297C9 /* CarRent */,
 			);
 			path = CarShare;
 			sourceTree = "<group>";
@@ -90,7 +123,6 @@
 				DB2388197F2C1AE8CE63E716 /* Pods-CarShare.debug.xcconfig */,
 				D0745F8B133D9447F5C51A44 /* Pods-CarShare.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,8 +239,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94F2205827730693006B3A91 /* ContentView.swift in Sources */,
+				945AED3527730930001297C9 /* MainView.swift in Sources */,
+				945AED39277309F6001297C9 /* CarRentView.swift in Sources */,
+				945AED3B27730A1A001297C9 /* PersonalMessView.swift in Sources */,
 				94F2205627730693006B3A91 /* CarShareApp.swift in Sources */,
+				945AED3E27730C49001297C9 /* AnalyzeListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
