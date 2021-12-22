@@ -7,131 +7,130 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2683441D5B50F6A223E76FFF /* Pods_CarShareApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C69BA5D35D75D98071E49A1C /* Pods_CarShareApp.framework */; };
-		948A026C2772FB8B0053575E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948A026B2772FB8B0053575E /* AppDelegate.swift */; };
-		948A026E2772FB8B0053575E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948A026D2772FB8B0053575E /* SceneDelegate.swift */; };
-		948A02702772FB8B0053575E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948A026F2772FB8B0053575E /* ViewController.swift */; };
-		948A02732772FB8B0053575E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 948A02712772FB8B0053575E /* Main.storyboard */; };
-		948A02752772FB8C0053575E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 948A02742772FB8C0053575E /* Assets.xcassets */; };
-		948A02782772FB8C0053575E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 948A02762772FB8C0053575E /* LaunchScreen.storyboard */; };
-		948A02802772FBFB0053575E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948A027F2772FBFB0053575E /* ListViewController.swift */; };
+		271DC2FB95B0AEB9678816A5 /* Pods_CarShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 751B8ABC7EC8A1980B423A48 /* Pods_CarShare.framework */; };
+		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
+		94F2205827730693006B3A91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205727730693006B3A91 /* ContentView.swift */; };
+		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
+		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		948A02682772FB8B0053575E /* CarShareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		948A026B2772FB8B0053575E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		948A026D2772FB8B0053575E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		948A026F2772FB8B0053575E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		948A02722772FB8B0053575E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		948A02742772FB8C0053575E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		948A02772772FB8C0053575E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		948A02792772FB8C0053575E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		948A027F2772FBFB0053575E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		95B285BCC3DC351567DA5254 /* Pods-CarShareApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarShareApp.debug.xcconfig"; path = "Target Support Files/Pods-CarShareApp/Pods-CarShareApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C69BA5D35D75D98071E49A1C /* Pods_CarShareApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarShareApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD0B75557D9841EEC8B3326E /* Pods-CarShareApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarShareApp.release.xcconfig"; path = "Target Support Files/Pods-CarShareApp/Pods-CarShareApp.release.xcconfig"; sourceTree = "<group>"; };
+		751B8ABC7EC8A1980B423A48 /* Pods_CarShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
+		94F2205727730693006B3A91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94F2205C27730695006B3A91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		94F2205E27730695006B3A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0745F8B133D9447F5C51A44 /* Pods-CarShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarShare.release.xcconfig"; path = "Target Support Files/Pods-CarShare/Pods-CarShare.release.xcconfig"; sourceTree = "<group>"; };
+		DB2388197F2C1AE8CE63E716 /* Pods-CarShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarShare.debug.xcconfig"; path = "Target Support Files/Pods-CarShare/Pods-CarShare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		948A02652772FB8B0053575E /* Frameworks */ = {
+		94F2204F27730693006B3A91 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2683441D5B50F6A223E76FFF /* Pods_CarShareApp.framework in Frameworks */,
+				271DC2FB95B0AEB9678816A5 /* Pods_CarShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F66F9D620D3F5131ED4CADB /* Pods */ = {
+		01B7599EA7B2E545F66F6FF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				95B285BCC3DC351567DA5254 /* Pods-CarShareApp.debug.xcconfig */,
-				FD0B75557D9841EEC8B3326E /* Pods-CarShareApp.release.xcconfig */,
+				751B8ABC7EC8A1980B423A48 /* Pods_CarShare.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94F2204927730693006B3A91 = {
+			isa = PBXGroup;
+			children = (
+				94F2205427730693006B3A91 /* CarShare */,
+				94F2205327730693006B3A91 /* Products */,
+				CAFD7B4446A04A04F0EE91BE /* Pods */,
+				01B7599EA7B2E545F66F6FF5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		94F2205327730693006B3A91 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94F2205227730693006B3A91 /* CarShare.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94F2205427730693006B3A91 /* CarShare */ = {
+			isa = PBXGroup;
+			children = (
+				94F2205527730693006B3A91 /* CarShareApp.swift */,
+				94F2205727730693006B3A91 /* ContentView.swift */,
+				94F2205927730695006B3A91 /* Assets.xcassets */,
+				94F2205E27730695006B3A91 /* Info.plist */,
+				94F2205B27730695006B3A91 /* Preview Content */,
+			);
+			path = CarShare;
+			sourceTree = "<group>";
+		};
+		94F2205B27730695006B3A91 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				94F2205C27730695006B3A91 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAFD7B4446A04A04F0EE91BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB2388197F2C1AE8CE63E716 /* Pods-CarShare.debug.xcconfig */,
+				D0745F8B133D9447F5C51A44 /* Pods-CarShare.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		5C5207238E5664D8420CACE1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C69BA5D35D75D98071E49A1C /* Pods_CarShareApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		948A025F2772FB8B0053575E = {
-			isa = PBXGroup;
-			children = (
-				948A026A2772FB8B0053575E /* CarShareApp */,
-				948A02692772FB8B0053575E /* Products */,
-				3F66F9D620D3F5131ED4CADB /* Pods */,
-				5C5207238E5664D8420CACE1 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		948A02692772FB8B0053575E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				948A02682772FB8B0053575E /* CarShareApp.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		948A026A2772FB8B0053575E /* CarShareApp */ = {
-			isa = PBXGroup;
-			children = (
-				948A026B2772FB8B0053575E /* AppDelegate.swift */,
-				948A026D2772FB8B0053575E /* SceneDelegate.swift */,
-				948A026F2772FB8B0053575E /* ViewController.swift */,
-				948A02712772FB8B0053575E /* Main.storyboard */,
-				948A02742772FB8C0053575E /* Assets.xcassets */,
-				948A02762772FB8C0053575E /* LaunchScreen.storyboard */,
-				948A02792772FB8C0053575E /* Info.plist */,
-				948A027F2772FBFB0053575E /* ListViewController.swift */,
-			);
-			path = CarShareApp;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		948A02672772FB8B0053575E /* CarShareApp */ = {
+		94F2205127730693006B3A91 /* CarShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 948A027C2772FB8C0053575E /* Build configuration list for PBXNativeTarget "CarShareApp" */;
+			buildConfigurationList = 94F2206127730695006B3A91 /* Build configuration list for PBXNativeTarget "CarShare" */;
 			buildPhases = (
-				FDEF57F9FA5D3CE777B2D704 /* [CP] Check Pods Manifest.lock */,
-				948A02642772FB8B0053575E /* Sources */,
-				948A02652772FB8B0053575E /* Frameworks */,
-				948A02662772FB8B0053575E /* Resources */,
-				8D97832CAA2E97B63C01CDC3 /* [CP] Embed Pods Frameworks */,
+				B4B848C68E8D08EF7BB1525E /* [CP] Check Pods Manifest.lock */,
+				94F2204E27730693006B3A91 /* Sources */,
+				94F2204F27730693006B3A91 /* Frameworks */,
+				94F2205027730693006B3A91 /* Resources */,
+				A745DB8761A877A52605AF34 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CarShareApp;
-			productName = CarShareApp;
-			productReference = 948A02682772FB8B0053575E /* CarShareApp.app */;
+			name = CarShare;
+			productName = CarShare;
+			productReference = 94F2205227730693006B3A91 /* CarShare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		948A02602772FB8B0053575E /* Project object */ = {
+		94F2204A27730693006B3A91 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
-					948A02672772FB8B0053575E = {
+					94F2205127730693006B3A91 = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
 			};
-			buildConfigurationList = 948A02632772FB8B0053575E /* Build configuration list for PBXProject "CarShareApp" */;
+			buildConfigurationList = 94F2204D27730693006B3A91 /* Build configuration list for PBXProject "CarShare" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -139,48 +138,47 @@
 				en,
 				Base,
 			);
-			mainGroup = 948A025F2772FB8B0053575E;
-			productRefGroup = 948A02692772FB8B0053575E /* Products */;
+			mainGroup = 94F2204927730693006B3A91;
+			productRefGroup = 94F2205327730693006B3A91 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				948A02672772FB8B0053575E /* CarShareApp */,
+				94F2205127730693006B3A91 /* CarShare */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		948A02662772FB8B0053575E /* Resources */ = {
+		94F2205027730693006B3A91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				948A02782772FB8C0053575E /* LaunchScreen.storyboard in Resources */,
-				948A02752772FB8C0053575E /* Assets.xcassets in Resources */,
-				948A02732772FB8B0053575E /* Main.storyboard in Resources */,
+				94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */,
+				94F2205A27730695006B3A91 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8D97832CAA2E97B63C01CDC3 /* [CP] Embed Pods Frameworks */ = {
+		A745DB8761A877A52605AF34 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CarShareApp/Pods-CarShareApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CarShare/Pods-CarShare-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CarShareApp/Pods-CarShareApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CarShare/Pods-CarShare-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarShareApp/Pods-CarShareApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarShare/Pods-CarShare-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FDEF57F9FA5D3CE777B2D704 /* [CP] Check Pods Manifest.lock */ = {
+		B4B848C68E8D08EF7BB1525E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -195,7 +193,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CarShareApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CarShare-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -205,40 +203,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		948A02642772FB8B0053575E /* Sources */ = {
+		94F2204E27730693006B3A91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				948A02702772FB8B0053575E /* ViewController.swift in Sources */,
-				948A026C2772FB8B0053575E /* AppDelegate.swift in Sources */,
-				948A02802772FBFB0053575E /* ListViewController.swift in Sources */,
-				948A026E2772FB8B0053575E /* SceneDelegate.swift in Sources */,
+				94F2205827730693006B3A91 /* ContentView.swift in Sources */,
+				94F2205627730693006B3A91 /* CarShareApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		948A02712772FB8B0053575E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				948A02722772FB8B0053575E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		948A02762772FB8C0053575E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				948A02772772FB8C0053575E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		948A027A2772FB8C0053575E /* Debug */ = {
+		94F2205F27730695006B3A91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -299,7 +276,7 @@
 			};
 			name = Debug;
 		};
-		948A027B2772FB8C0053575E /* Release */ = {
+		94F2206027730695006B3A91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -354,38 +331,44 @@
 			};
 			name = Release;
 		};
-		948A027D2772FB8C0053575E /* Debug */ = {
+		94F2206227730695006B3A91 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95B285BCC3DC351567DA5254 /* Pods-CarShareApp.debug.xcconfig */;
+			baseConfigurationReference = DB2388197F2C1AE8CE63E716 /* Pods-CarShare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CarShareApp/Info.plist;
+				DEVELOPMENT_ASSET_PATHS = "\"CarShare/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CarShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.CarShareApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.CarShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		948A027E2772FB8C0053575E /* Release */ = {
+		94F2206327730695006B3A91 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD0B75557D9841EEC8B3326E /* Pods-CarShareApp.release.xcconfig */;
+			baseConfigurationReference = D0745F8B133D9447F5C51A44 /* Pods-CarShare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CarShareApp/Info.plist;
+				DEVELOPMENT_ASSET_PATHS = "\"CarShare/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CarShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.CarShareApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.CarShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -395,25 +378,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		948A02632772FB8B0053575E /* Build configuration list for PBXProject "CarShareApp" */ = {
+		94F2204D27730693006B3A91 /* Build configuration list for PBXProject "CarShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				948A027A2772FB8C0053575E /* Debug */,
-				948A027B2772FB8C0053575E /* Release */,
+				94F2205F27730695006B3A91 /* Debug */,
+				94F2206027730695006B3A91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		948A027C2772FB8C0053575E /* Build configuration list for PBXNativeTarget "CarShareApp" */ = {
+		94F2206127730695006B3A91 /* Build configuration list for PBXNativeTarget "CarShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				948A027D2772FB8C0053575E /* Debug */,
-				948A027E2772FB8C0053575E /* Release */,
+				94F2206227730695006B3A91 /* Debug */,
+				94F2206327730695006B3A91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 948A02602772FB8B0053575E /* Project object */;
+	rootObject = 94F2204A27730693006B3A91 /* Project object */;
 }
