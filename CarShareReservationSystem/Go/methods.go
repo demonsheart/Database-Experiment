@@ -50,7 +50,7 @@ func GetNumOfPassengers(c *gin.Context) {
 		return
 	}
 
-	var cars []Car
+	var cars []Cars
 	if err := db.Raw("CALL number_of_passengers(?)", params.Num).Scan(&cars).Error; err != nil {
 		c.JSON(200, err)
 		return
@@ -104,7 +104,7 @@ func IncreasePrice(c *gin.Context) {
 		return
 	}
 
-	var cars []Car
+	var cars []Cars
 	if err := db.Raw("CALL increase_price(?, ?)", params.HourlyIncrease, params.DailyIncrease).Scan(&cars).Error; err != nil {
 		c.JSON(200, err)
 		return
@@ -124,7 +124,7 @@ func GetCustomers(c *gin.Context) {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
-		c.JSON(200, cus)
+		c.JSON(200, gin.H{"data": cus})
 	}
 }
 
@@ -168,5 +168,20 @@ func PostCustomers(c *gin.Context) {
 		}
 	default:
 		c.String(404, "invalid method")
+	}
+}
+
+func GetCars(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var car []Cars
+	if err := db.Find(&car).Error; err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, gin.H{"data": car})
 	}
 }

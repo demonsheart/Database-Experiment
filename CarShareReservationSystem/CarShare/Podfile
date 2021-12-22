@@ -6,8 +6,6 @@ target 'CarShare' do
   use_frameworks!
 
   # Pods for CarShare
-  pod 'SnapKit'
-  pod 'Moya/Combine', '~> 15.0'
   pod 'Kingfisher', '~> 7.0'
-  pod 'WMPageController'
+  pod 'Alamofire'
 end

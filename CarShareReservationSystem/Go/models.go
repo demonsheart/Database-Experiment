@@ -84,8 +84,8 @@ type NumOfPassengersParams struct {
 	Num int `binding:"required" json:"num"`
 }
 
-// Car 根据乘客数参数返回的车类型
-type Car struct {
+// Cars 根据乘客数参数返回的车类型
+type Cars struct {
 	CarID        int     `gorm:"column:car_id" json:"car_id"`
 	Make         string  `gorm:"column:make" json:"make"`
 	Model        string  `gorm:"column:model" json:"model"`
