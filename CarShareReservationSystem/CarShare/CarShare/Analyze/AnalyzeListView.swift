@@ -17,7 +17,7 @@ struct AnalyzeListView: View {
                 NavigationLink(destination: PopularLocsView()) {
                     Text("Popular Locations")
                 }
-                NavigationLink(destination: ProbationCusView()) {
+                NavigationLink(destination: RentalTrendsView()) {
                     Text("Rental Trends")
                 }
                 .navigationTitle("Analyze")

@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
+import SwiftUI
 
 class PopularLocsViewModel: ObservableObject {
     
@@ -23,6 +24,14 @@ class PopularLocsViewModel: ObservableObject {
     
     var names: [String] {
         locs.map { $0.streetAddress }
+    }
+    
+    var colors: [Color] {
+        var cls: [Color] = []
+        for _ in 0..<locs.count {
+            cls.append(Color.random)
+        }
+        return cls
     }
     
     init(dataManager: ServiceProtocol = Service.shared) {

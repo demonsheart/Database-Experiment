@@ -15,7 +15,7 @@ struct PopularLocsView: View {
         ZStack {
             bgColor
                 .edgesIgnoringSafeArea(.all)
-            PieChartView(values: viewModel.values, names: viewModel.names, formatter: {value in String(format: "%.0f times", value)}, backgroundColor: bgColor)
+            PieChartView(values: viewModel.values, names: viewModel.names, formatter: {value in String(format: "%.0f times", value)}, colors: viewModel.colors, backgroundColor: bgColor)
                 .navigationTitle("Popular Locations")
         }
     }
