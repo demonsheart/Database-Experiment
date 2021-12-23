@@ -29,9 +29,23 @@ struct Car: Identifiable, Codable {
     var make: String
     var model: String
     var pricePerHour: Double
-    var pricePerDay: Int
+    var pricePerDay: Double
     var capacity: Int
     var picURL: String
+    
+    var formatHourPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        return formatter.string(from: NSNumber(value: pricePerHour)) ?? "$-"
+    }
+    
+    var formatDayPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        return formatter.string(from: NSNumber(value: pricePerDay)) ?? "$-"
+    }
     
     enum CodingKeys: String, CodingKey {
         case carID = "car_id"

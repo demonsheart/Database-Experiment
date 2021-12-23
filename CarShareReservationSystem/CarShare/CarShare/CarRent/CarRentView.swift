@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CarRentView: View {
     
-    @ObservedObject var viewModel = CarViewModel()
+    @StateObject var viewModel = CarViewModel()
     let height: CGFloat = 130
     
     var columns: [GridItem] = [
@@ -18,21 +18,23 @@ struct CarRentView: View {
     ]
     
     var body: some View {
-        
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(viewModel.cars) { car in
-                    CarView(picURL: car.picURL)
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(viewModel.cars) { car in
+                        NavigationLink(destination: CarDetails(car: car)) {
+                            CarView(picURL: car.picURL)
+                        }
+                        .navigationTitle("Rent")
+                        .navigationBarHidden(true)
                         .frame(height: height)
-                        .gesture(
-                            TapGesture()
-                                .onEnded({ _ in
-                                    print(car)
-                                })
-                        )
+                    }
                 }
+                .padding()
             }
-            .padding()
+        }
+        .onAppear {
+            viewModel.getCarList()
         }
     }
 }
