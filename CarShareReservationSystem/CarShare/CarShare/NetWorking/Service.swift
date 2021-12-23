@@ -11,6 +11,8 @@ import Alamofire
 
 protocol ServiceProtocol {
     func getCars() -> AnyPublisher<DataResponse<CarListModel, AFError>, Never>
+    func getProbationList() -> AnyPublisher<DataResponse<ProbationListModel, AFError>, Never>
+    func getPopularLocsList() -> AnyPublisher<DataResponse<PopularLocsListModel, AFError>, Never>
 }
 
 
@@ -25,10 +27,11 @@ class Service {
 }
 
 extension Service: ServiceProtocol {
+    
     func getCars() -> AnyPublisher<DataResponse<CarListModel, AFError>, Never> {
         
         // parameters: params, encoder: JSONParameterEncoder.default
-        return AF.request(Service.domain + "cars", method: .get, headers: Service.defaultHeaders)
+        return AF.request(Service.domain + "cars", method: .post, headers: Service.defaultHeaders)
             .validate()
             .publishDecodable(type: CarListModel.self)
             .map { response in
@@ -39,4 +42,35 @@ extension Service: ServiceProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    func getProbationList() -> AnyPublisher<DataResponse<ProbationListModel, AFError>, Never> {
+        
+        // parameters: params, encoder: JSONParameterEncoder.default
+        return AF.request(Service.domain + "probation", method: .post, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: ProbationListModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func getPopularLocsList() -> AnyPublisher<DataResponse<PopularLocsListModel, AFError>, Never> {
+        
+        // parameters: params, encoder: JSONParameterEncoder.default
+        return AF.request(Service.domain + "popular-locations", method: .post, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: PopularLocsListModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
 }

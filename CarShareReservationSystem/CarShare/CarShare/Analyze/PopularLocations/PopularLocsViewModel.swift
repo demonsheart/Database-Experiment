@@ -1,17 +1,17 @@
 //
-//  CarViewModel.swift
+//  PopularLocsViewModel.swift
 //  CarShare
 //
-//  Created by herongjin on 2021/12/22.
+//  Created by herongjin on 2021/12/23.
 //
 
 import Foundation
 import Combine
 import Alamofire
 
-class CarViewModel: ObservableObject {
+class PopularLocsViewModel: ObservableObject {
     
-    @Published var cars: [Car] = []
+    @Published var locs: [PopularLoc] = []
     @Published var isError: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
@@ -23,12 +23,13 @@ class CarViewModel: ObservableObject {
     }
     
     func getData() {
-        dataManager.getCars()
+        dataManager.getPopularLocsList()
             .sink { (dataResponse) in
                 if dataResponse.error != nil {
                     self.isError = true
                 } else {
-                    self.cars = dataResponse.value!.cars
+                    self.locs = dataResponse.value!.locs
+                    self.locs.sort { $0.numberOfRentals > $1.numberOfRentals }
                 }
             }.store(in: &cancellableSet)
     }

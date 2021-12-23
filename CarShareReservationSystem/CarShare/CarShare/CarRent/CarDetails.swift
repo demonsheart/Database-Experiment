@@ -36,8 +36,24 @@ struct CarDetails: View {
                 InfoView(imgName: "person.3.sequence", pricePer: "\(car.capacity)", subffix: "Seats")
                 InfoView(imgName: "dollarsign.circle.fill", pricePer: "\(car.pricePerDay)", subffix: "Per Day")
                 InfoView(imgName: "dollarsign.circle.fill", pricePer: "\(car.pricePerHour)", subffix: "Per Hour")
+                
+                Divider()
+                Button(action: {
+                    print(car)
+                }) {
+                    Text("Rent it")
+                        .foregroundColor(Color(hex: "1E212D"))
+                        .font(Font.custom("Pacifico-Regular", size: 30))
+                        .padding()
+                }
+                .frame(height: 40)
+                .background(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .foregroundColor(Color(hex: "A8ECE7"))
+                
+                Spacer()
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

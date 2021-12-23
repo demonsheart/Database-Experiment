@@ -1,17 +1,16 @@
 //
-//  CarViewModel.swift
+//  ProbationViewModel.swift
 //  CarShare
 //
-//  Created by herongjin on 2021/12/22.
+//  Created by herongjin on 2021/12/23.
 //
 
 import Foundation
 import Combine
 import Alamofire
 
-class CarViewModel: ObservableObject {
-    
-    @Published var cars: [Car] = []
+class ProbationViewModel: ObservableObject {
+    @Published var cus: [ProbationCus] = []
     @Published var isError: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
@@ -23,12 +22,12 @@ class CarViewModel: ObservableObject {
     }
     
     func getData() {
-        dataManager.getCars()
+        dataManager.getProbationList()
             .sink { (dataResponse) in
                 if dataResponse.error != nil {
                     self.isError = true
                 } else {
-                    self.cars = dataResponse.value!.cars
+                    self.cus = dataResponse.value!.cus
                 }
             }.store(in: &cancellableSet)
     }

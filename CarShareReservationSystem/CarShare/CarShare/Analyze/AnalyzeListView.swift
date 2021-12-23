@@ -9,12 +9,20 @@ import SwiftUI
 
 struct AnalyzeListView: View {
     var body: some View {
-        List {
-            Text("sdd")
-            Text("sss")
-            Text("ddd")
+        NavigationView {
+            List {
+                NavigationLink(destination: ProbationCusView()) {
+                    Text("Probation Customers")
+                }
+                NavigationLink(destination: PopularLocsView()) {
+                    Text("Popular Locations")
+                }
+                NavigationLink(destination: ProbationCusView()) {
+                    Text("Rental Trends")
+                }
+                .navigationTitle("Analyze")
+            }
         }
-//        .listStyle(GroupedListStyle())
     }
 }
 

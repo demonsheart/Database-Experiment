@@ -35,7 +35,7 @@ func main() {
 
 	// methods
 	r.GET("/customers", GetCustomers)
-	r.GET("/cars", GetCars)
+	r.POST("/cars", GetCars)
 	r.POST("/customers", PostCustomers)
 	r.POST("/probation", GetCusOnProbation)
 	r.POST("/passengers", GetNumOfPassengers)

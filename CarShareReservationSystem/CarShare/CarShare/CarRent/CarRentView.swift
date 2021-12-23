@@ -34,7 +34,7 @@ struct CarRentView: View {
             }
         }
         .onAppear {
-            viewModel.getCarList()
+            viewModel.getData()
         }
     }
 }

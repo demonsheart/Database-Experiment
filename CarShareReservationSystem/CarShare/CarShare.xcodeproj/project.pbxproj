@@ -21,6 +21,12 @@
 		945AED5627741BE3001297C9 /* CarDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED5527741BE3001297C9 /* CarDetails.swift */; };
 		945AED59277431A9001297C9 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 945AED58277431A9001297C9 /* Pacifico-Regular.ttf */; };
 		945AED5B27743F5C001297C9 /* VujahdayScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 945AED5A27743BFD001297C9 /* VujahdayScript-Regular.ttf */; };
+		945AED5D27745684001297C9 /* ProbationCusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED5C27745684001297C9 /* ProbationCusView.swift */; };
+		945AED6127745743001297C9 /* ProbationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6027745743001297C9 /* ProbationListModel.swift */; };
+		945AED63277459E2001297C9 /* ProbationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED62277459E2001297C9 /* ProbationViewModel.swift */; };
+		945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6627746169001297C9 /* PopularLocsListModel.swift */; };
+		945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED68277463A5001297C9 /* PopularLocsViewModel.swift */; };
+		945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6A277464B4001297C9 /* PopularLocsView.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
@@ -41,6 +47,12 @@
 		945AED5527741BE3001297C9 /* CarDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetails.swift; sourceTree = "<group>"; };
 		945AED58277431A9001297C9 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		945AED5A27743BFD001297C9 /* VujahdayScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VujahdayScript-Regular.ttf"; sourceTree = "<group>"; };
+		945AED5C27745684001297C9 /* ProbationCusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbationCusView.swift; sourceTree = "<group>"; };
+		945AED6027745743001297C9 /* ProbationListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbationListModel.swift; sourceTree = "<group>"; };
+		945AED62277459E2001297C9 /* ProbationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbationViewModel.swift; sourceTree = "<group>"; };
+		945AED6627746169001297C9 /* PopularLocsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsListModel.swift; sourceTree = "<group>"; };
+		945AED68277463A5001297C9 /* PopularLocsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsViewModel.swift; sourceTree = "<group>"; };
+		945AED6A277464B4001297C9 /* PopularLocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsView.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +105,9 @@
 		945AED3C27730BF5001297C9 /* Analyze */ = {
 			isa = PBXGroup;
 			children = (
+				945AED652774613C001297C9 /* RentalTrends */,
+				945AED642774612F001297C9 /* PopularLocations */,
+				945AED5F27745719001297C9 /* Probation */,
 				945AED3D27730C49001297C9 /* AnalyzeListView.swift */,
 			);
 			path = Analyze;
@@ -122,6 +137,33 @@
 				945AED58277431A9001297C9 /* Pacifico-Regular.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		945AED5F27745719001297C9 /* Probation */ = {
+			isa = PBXGroup;
+			children = (
+				945AED5C27745684001297C9 /* ProbationCusView.swift */,
+				945AED6027745743001297C9 /* ProbationListModel.swift */,
+				945AED62277459E2001297C9 /* ProbationViewModel.swift */,
+			);
+			path = Probation;
+			sourceTree = "<group>";
+		};
+		945AED642774612F001297C9 /* PopularLocations */ = {
+			isa = PBXGroup;
+			children = (
+				945AED6627746169001297C9 /* PopularLocsListModel.swift */,
+				945AED68277463A5001297C9 /* PopularLocsViewModel.swift */,
+				945AED6A277464B4001297C9 /* PopularLocsView.swift */,
+			);
+			path = PopularLocations;
+			sourceTree = "<group>";
+		};
+		945AED652774613C001297C9 /* RentalTrends */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RentalTrends;
 			sourceTree = "<group>";
 		};
 		94F2204927730693006B3A91 = {
@@ -292,10 +334,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945AED6127745743001297C9 /* ProbationListModel.swift in Sources */,
 				945AED502773571E001297C9 /* Service.swift in Sources */,
+				945AED63277459E2001297C9 /* ProbationViewModel.swift in Sources */,
+				945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */,
 				945AED43277343A2001297C9 /* CarView.swift in Sources */,
 				945AED3527730930001297C9 /* MainView.swift in Sources */,
 				945AED5627741BE3001297C9 /* CarDetails.swift in Sources */,
+				945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */,
+				945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */,
 				945AED452773481E001297C9 /* CarListModel.swift in Sources */,
 				945AED4D27735550001297C9 /* CarViewModel.swift in Sources */,
 				945AED4B27734D05001297C9 /* Bundle+extension.swift in Sources */,
@@ -303,6 +350,7 @@
 				945AED39277309F6001297C9 /* CarRentView.swift in Sources */,
 				945AED3B27730A1A001297C9 /* PersonalMessView.swift in Sources */,
 				94F2205627730693006B3A91 /* CarShareApp.swift in Sources */,
+				945AED5D27745684001297C9 /* ProbationCusView.swift in Sources */,
 				945AED3E27730C49001297C9 /* AnalyzeListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
