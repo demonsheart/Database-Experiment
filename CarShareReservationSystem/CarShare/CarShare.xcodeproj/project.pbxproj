@@ -27,13 +27,13 @@
 		945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6627746169001297C9 /* PopularLocsListModel.swift */; };
 		945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED68277463A5001297C9 /* PopularLocsViewModel.swift */; };
 		945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6A277464B4001297C9 /* PopularLocsView.swift */; };
-		94C222F92774980A008AF778 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222F82774980A008AF778 /* PieChartView.swift */; };
 		94C222FB27749839008AF778 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FA27749839008AF778 /* PieSliceView.swift */; };
 		94C222FD2774AB1E008AF778 /* RentalTrendListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FC2774AB1E008AF778 /* RentalTrendListModel.swift */; };
 		94C222FF2774ABFD008AF778 /* RentalTrendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FE2774ABFD008AF778 /* RentalTrendsViewModel.swift */; };
 		94C223012774AD2B008AF778 /* RentalTrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223002774AD2B008AF778 /* RentalTrendsView.swift */; };
 		94C223052774B219008AF778 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223032774B218008AF778 /* BarChartCell.swift */; };
 		94C223062774B219008AF778 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223042774B219008AF778 /* BarChart.swift */; };
+		94C223082774C0F2008AF778 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223072774C0F2008AF778 /* PieChartView.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
@@ -60,13 +60,13 @@
 		945AED6627746169001297C9 /* PopularLocsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsListModel.swift; sourceTree = "<group>"; };
 		945AED68277463A5001297C9 /* PopularLocsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsViewModel.swift; sourceTree = "<group>"; };
 		945AED6A277464B4001297C9 /* PopularLocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsView.swift; sourceTree = "<group>"; };
-		94C222F82774980A008AF778 /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieChartView.swift; path = ../../../../../../SwiftPieChart/Sources/SwiftPieChart/PieChartView.swift; sourceTree = "<group>"; };
 		94C222FA27749839008AF778 /* PieSliceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
 		94C222FC2774AB1E008AF778 /* RentalTrendListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalTrendListModel.swift; sourceTree = "<group>"; };
 		94C222FE2774ABFD008AF778 /* RentalTrendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalTrendsViewModel.swift; sourceTree = "<group>"; };
 		94C223002774AD2B008AF778 /* RentalTrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalTrendsView.swift; sourceTree = "<group>"; };
 		94C223032774B218008AF778 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		94C223042774B219008AF778 /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
+		94C223072774C0F2008AF778 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				94C222FA27749839008AF778 /* PieSliceView.swift */,
-				94C222F82774980A008AF778 /* PieChartView.swift */,
+				94C223072774C0F2008AF778 /* PieChartView.swift */,
 			);
 			path = Pie;
 			sourceTree = "<group>";
@@ -379,13 +379,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94C222F92774980A008AF778 /* PieChartView.swift in Sources */,
 				945AED6127745743001297C9 /* ProbationListModel.swift in Sources */,
 				945AED502773571E001297C9 /* Service.swift in Sources */,
 				94C222FD2774AB1E008AF778 /* RentalTrendListModel.swift in Sources */,
 				94C223052774B219008AF778 /* BarChartCell.swift in Sources */,
 				945AED63277459E2001297C9 /* ProbationViewModel.swift in Sources */,
 				945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */,
+				94C223082774C0F2008AF778 /* PieChartView.swift in Sources */,
 				945AED43277343A2001297C9 /* CarView.swift in Sources */,
 				94C223062774B219008AF778 /* BarChart.swift in Sources */,
 				945AED3527730930001297C9 /* MainView.swift in Sources */,
