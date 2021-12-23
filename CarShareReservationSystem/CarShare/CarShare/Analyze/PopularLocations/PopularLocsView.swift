@@ -9,12 +9,14 @@ import SwiftUI
 
 struct PopularLocsView: View {
     @StateObject var viewModel = PopularLocsViewModel()
+    let bgColor = Color(hex: "29C6CD")
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.locs) { loc in
-                Text("\(loc.numberOfRentals)")
-            }
+        ZStack {
+            bgColor
+                .edgesIgnoringSafeArea(.all)
+            PieChartView(values: viewModel.values, names: viewModel.names, formatter: {value in String(format: "%.0f times", value)}, backgroundColor: bgColor)
+                .navigationTitle("Popular Locations")
         }
     }
 }

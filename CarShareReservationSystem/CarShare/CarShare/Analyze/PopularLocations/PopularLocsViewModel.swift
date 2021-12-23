@@ -17,6 +17,14 @@ class PopularLocsViewModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ServiceProtocol
     
+    var values: [Double] {
+        locs.map { Double($0.numberOfRentals) }
+    }
+    
+    var names: [String] {
+        locs.map { $0.streetAddress }
+    }
+    
     init(dataManager: ServiceProtocol = Service.shared) {
         self.dataManager = dataManager
         getData()

@@ -27,6 +27,8 @@
 		945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6627746169001297C9 /* PopularLocsListModel.swift */; };
 		945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED68277463A5001297C9 /* PopularLocsViewModel.swift */; };
 		945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6A277464B4001297C9 /* PopularLocsView.swift */; };
+		94C222F92774980A008AF778 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222F82774980A008AF778 /* PieChartView.swift */; };
+		94C222FB27749839008AF778 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FA27749839008AF778 /* PieSliceView.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		945AED6627746169001297C9 /* PopularLocsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsListModel.swift; sourceTree = "<group>"; };
 		945AED68277463A5001297C9 /* PopularLocsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsViewModel.swift; sourceTree = "<group>"; };
 		945AED6A277464B4001297C9 /* PopularLocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsView.swift; sourceTree = "<group>"; };
+		94C222F82774980A008AF778 /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieChartView.swift; path = ../../../../../../SwiftPieChart/Sources/SwiftPieChart/PieChartView.swift; sourceTree = "<group>"; };
+		94C222FA27749839008AF778 /* PieSliceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -166,6 +170,23 @@
 			path = RentalTrends;
 			sourceTree = "<group>";
 		};
+		94C222F2277492B4008AF778 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				94C222F527749550008AF778 /* Pie */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		94C222F527749550008AF778 /* Pie */ = {
+			isa = PBXGroup;
+			children = (
+				94C222FA27749839008AF778 /* PieSliceView.swift */,
+				94C222F82774980A008AF778 /* PieChartView.swift */,
+			);
+			path = Pie;
+			sourceTree = "<group>";
+		};
 		94F2204927730693006B3A91 = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +208,7 @@
 		94F2205427730693006B3A91 /* CarShare */ = {
 			isa = PBXGroup;
 			children = (
+				94C222F2277492B4008AF778 /* Charts */,
 				945AED57277431A9001297C9 /* fonts */,
 				945AED4E277356E4001297C9 /* NetWorking */,
 				945AED3F277342E9001297C9 /* extension */,
@@ -334,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94C222F92774980A008AF778 /* PieChartView.swift in Sources */,
 				945AED6127745743001297C9 /* ProbationListModel.swift in Sources */,
 				945AED502773571E001297C9 /* Service.swift in Sources */,
 				945AED63277459E2001297C9 /* ProbationViewModel.swift in Sources */,
@@ -343,6 +366,7 @@
 				945AED5627741BE3001297C9 /* CarDetails.swift in Sources */,
 				945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */,
 				945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */,
+				94C222FB27749839008AF778 /* PieSliceView.swift in Sources */,
 				945AED452773481E001297C9 /* CarListModel.swift in Sources */,
 				945AED4D27735550001297C9 /* CarViewModel.swift in Sources */,
 				945AED4B27734D05001297C9 /* Bundle+extension.swift in Sources */,
