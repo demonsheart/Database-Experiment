@@ -24,6 +24,6 @@ struct CarView: View {
 
 struct CarView_Previews: PreviewProvider {
     static var previews: some View {
-        CarView(picURL: "https://s2.loli.net/2021/12/21/4wzUqSflsbaOZ3J.jpg")
+        CarView(picURL: "https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car1.jpg")
     }
 }

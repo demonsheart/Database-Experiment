@@ -10,7 +10,6 @@ import SwiftUI
 struct CarRentView: View {
     
     @StateObject var viewModel = CarViewModel()
-    let height: CGFloat = 130
     
     var columns: [GridItem] = [
         GridItem(.flexible()),
@@ -19,18 +18,37 @@ struct CarRentView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(viewModel.cars) { car in
-                        NavigationLink(destination: CarDetails(car: car)) {
-                            CarView(picURL: car.picURL)
+            VStack {
+                Spacer()
+                TextField("Enter Search Capacity", text: $viewModel.searchText)
+                    .padding(.horizontal, 40)
+                    .frame(width: UIScreen.main.bounds.width - 40, height: 45, alignment: .leading)
+                    .background(Color(#colorLiteral(red: 0.9294475317, green: 0.9239223003, blue: 0.9336946607, alpha: 1)))
+                    .clipped()
+                    .cornerRadius(10)
+                    .overlay(
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.gray)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 16)
                         }
-                        .navigationTitle("Rent")
-                        .navigationBarHidden(true)
-                        .frame(height: height)
+                    )
+                
+                Divider()
+                
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 15) {
+                        ForEach(viewModel.filterCar) { car in
+                            NavigationLink(destination: CarDetails(car: car)) {
+                                CarView(picURL: car.picURL)
+                            }
+                            .navigationTitle("Rent")
+                            .navigationBarHidden(true)
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                .padding()
             }
         }
         .onAppear {
