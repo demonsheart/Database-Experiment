@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct PersonalMessView: View {
+    
     var body: some View {
-        Text("person!")
+        NavigationView {
+            List {
+                NavigationLink(destination: ProbationCusView()) {
+                    Text("Probation Customers")
+                }
+                .navigationTitle("personal")
+                .navigationBarHidden(true)
+            }
+        }
     }
 }
 

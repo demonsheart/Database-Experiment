@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 23/12/2021 22:28:07
+ Date: 24/12/2021 10:53:18
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `cars`;
 CREATE TABLE `cars` (
-  `car_id` int NOT NULL,
+  `car_id` int NOT NULL AUTO_INCREMENT,
   `make` varchar(20) NOT NULL,
   `model` varchar(30) NOT NULL,
   `price_per_hour` float NOT NULL,
@@ -50,22 +50,22 @@ CREATE TABLE `cars` (
   `pic_url` varchar(255) DEFAULT NULL,
   `capacity` int NOT NULL,
   PRIMARY KEY (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of cars
 -- ----------------------------
 BEGIN;
-INSERT INTO `cars` VALUES (101, 'Subaru', 'Impreza', 3.9, 39, 'https://s2.loli.net/2021/12/21/4wzUqSflsbaOZ3J.jpg', 5);
-INSERT INTO `cars` VALUES (102, 'Lexus', 'IS250', 5, 50, 'https://s2.loli.net/2021/12/21/54msQbNehxpTKaU.jpg', 5);
-INSERT INTO `cars` VALUES (103, 'Smart', 'Passion', 4, 40, 'https://s2.loli.net/2021/12/21/vqBPQCTxLnIX6yN.jpg', 3);
-INSERT INTO `cars` VALUES (104, 'Toyota', 'Prius Liftback', 5.5, 55, 'https://s2.loli.net/2021/12/21/VGeTbYuR3WDKQ4P.jpg', 5);
-INSERT INTO `cars` VALUES (105, 'Honda', 'Element', 3.9, 39, 'https://s2.loli.net/2021/12/21/jiVX8TSkIlmFA5b.jpg', 4);
-INSERT INTO `cars` VALUES (106, 'Alfa Romeo', 'Saloon', 4.2, 42, 'https://s2.loli.net/2021/12/21/wXhjWIki8KnAScg.jpg', 4);
-INSERT INTO `cars` VALUES (107, 'Audi', 'Hatchback', 4.5, 45, 'https://s2.loli.net/2021/12/21/uGpLkovryPgbqex.jpg', 3);
-INSERT INTO `cars` VALUES (108, 'Bentley', 'SUV', 5.6, 56, 'https://s2.loli.net/2021/12/21/AyZQGhzJLeTr5Fs.jpg', 5);
-INSERT INTO `cars` VALUES (109, 'Chevrolet', 'Station Wagon', 7.8, 78, 'https://s2.loli.net/2021/12/21/MvYdLka1A4pPnfI.jpg', 8);
-INSERT INTO `cars` VALUES (110, 'Dodge', 'Sedan', 3.9, 39, 'https://s2.loli.net/2021/12/21/vVRU5WPIiOXFNYk.jpg', 4);
+INSERT INTO `cars` VALUES (101, 'Subaru', 'Impreza', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car1.jpg', 5);
+INSERT INTO `cars` VALUES (102, 'Lexus', 'IS250', 5, 50, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car2.jpg', 5);
+INSERT INTO `cars` VALUES (103, 'Smart', 'Passion', 4, 40, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car3.jpg', 3);
+INSERT INTO `cars` VALUES (104, 'Toyota', 'Prius Liftback', 5.5, 55, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car4.jpg', 5);
+INSERT INTO `cars` VALUES (105, 'Honda', 'Element', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car5.jpg', 4);
+INSERT INTO `cars` VALUES (106, 'Alfa Romeo', 'Saloon', 4.2, 42, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car6.jpg', 4);
+INSERT INTO `cars` VALUES (107, 'Audi', 'Hatchback', 4.5, 45, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car7.jpg', 3);
+INSERT INTO `cars` VALUES (108, 'Bentley', 'SUV', 5.6, 56, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car8.jpg', 5);
+INSERT INTO `cars` VALUES (109, 'Chevrolet', 'Station Wagon', 7.8, 78, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car9.jpg', 8);
+INSERT INTO `cars` VALUES (110, 'Dodge', 'Sedan', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car10.jpg', 4);
 COMMIT;
 
 -- ----------------------------

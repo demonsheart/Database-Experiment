@@ -121,7 +121,7 @@ type IncreasePriceParams struct {
 type Customers struct {
 	// old key need to define as pointer type so that we can know if is set by nil.
 	OldKeyValue    *string   `gorm:"-" json:"old_key_value,omitempty"`
-	CusID          int       `gorm:"column:cus_id" json:"cus_id"`
+	CusID          int       `gorm:"column:cus_id,autoIncrement;" json:"cus_id"`
 	LastName       string    `gorm:"column:last_name" json:"last_name" binding:"required"`
 	FirstName      string    `gorm:"column:first_name" json:"first_name" binding:"required"`
 	HomeTown       string    `gorm:"column:home_town" json:"home_town" binding:"required"`
