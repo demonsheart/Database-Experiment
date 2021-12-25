@@ -24,7 +24,7 @@ struct LoginView: View {
             
             Image(systemName: "person.circle")
                 .resizable()
-                .foregroundColor(Color(hex: "06FF00"))
+                .foregroundColor(Color.green)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 150, height: 150)
                 .clipped()
@@ -45,11 +45,10 @@ struct LoginView: View {
                 .autocapitalization(.none)
                 .padding(.bottom, 20)
             
-            NavigationLink(destination: Text("register form")) {
+            NavigationLink(destination: RegisterFormView()) {
                 Text("Create An account")
                     .foregroundColor(Color.blue)
             }
-            .navigationBarTitleDisplayMode(.inline)
             
             Button(action: {
                 userState.login(params: LoginModel(account: username, password: password)) { isLogin in
@@ -61,7 +60,7 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: 220, height: 60)
-                    .background(Color(hex: "06FF00"))
+                    .background(Color.green)
                     .cornerRadius(15.0)
             }
             .alert(isPresented: $showingAlert) {
