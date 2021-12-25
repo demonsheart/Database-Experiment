@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 25/12/2021 11:25:19
+ Date: 25/12/2021 16:26:55
 */
 
 SET NAMES utf8mb4;
@@ -87,8 +87,9 @@ CREATE TABLE `customers` (
   `license_state` enum('valid','invalid') DEFAULT NULL,
   `expiration_date` date DEFAULT NULL,
   PRIMARY KEY (`cus_id`),
-  UNIQUE KEY `unique_account` (`account`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=909 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `unique_account` (`account`) USING BTREE,
+  UNIQUE KEY `unique_phone` (`cell_phone`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=913 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of customers

@@ -185,3 +185,127 @@ func GetCars(c *gin.Context) {
 		c.JSON(200, gin.H{"data": car})
 	}
 }
+
+func Login(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	// bind params
+	var params LoginParams
+	if err := c.ShouldBindJSON(&params); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// find user
+	var userMessage Customers
+	var re *gorm.DB
+	re = db.Model(Customers{}).
+		Where(&Customers{Account: params.Account, Password: params.Password}).
+		First(&userMessage)
+
+	if re.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": re.Error.Error()})
+		return
+	}
+
+	// return res
+	userMessage.Password = "" // not need pw
+	c.JSON(200, gin.H{"data": userMessage})
+}
+
+func Register(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var cus Customers
+	if err := c.ShouldBindJSON(&cus); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		return
+	}
+	if err := db.Create(&cus).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		return
+	}
+	c.JSON(200, gin.H{"success": true})
+
+}
+
+// IsAccRegister 判断是否被注册(account is unique)
+func IsAccRegister(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+	var account IsAccountRegister
+	var cus Customers
+	err1 := c.ShouldBindJSON(&account)
+
+	if err1 == nil { // account
+		if err := db.Model(Customers{}).Where(Customers{Account: account.Account}).First(&cus).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(200, gin.H{"success": true})
+		}
+		return
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "not valid params"})
+		return
+	}
+}
+
+// IsPhoneRegister 判断是否被注册(cell_phone is unique)
+func IsPhoneRegister(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+	var cell IsCellPhoneRegister
+	var cus Customers
+	err1 := c.ShouldBindJSON(&cell)
+
+	if err1 == nil { // account
+		if err := db.Model(Customers{}).Where(Customers{CellPhone: cell.CellPhone}).First(&cus).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(200, gin.H{"success": true})
+		}
+		return
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "not valid params"})
+		return
+	}
+}
+
+func RentCar(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var rent Rental
+	if err := c.ShouldBindJSON(&rent); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		return
+	}
+	if err := db.Create(&rent).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		return
+	}
+	c.JSON(200, gin.H{"success": true})
+}
+
+func GetCenters(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var locs []ACSCenter
+	if err := db.Model(ACSCenter{}).Find(&locs).Error; err != nil {
+		c.JSON(200, err)
+		return
+	}
+
+	c.JSON(200, gin.H{"data": locs})
+}

@@ -34,16 +34,21 @@ func main() {
 	}
 
 	// methods
-	r.GET("/customers", GetCustomers)
+	r.POST("/login", Login)
+	r.POST("/register", Register)
+	r.POST("/is-acc-register", IsAccRegister)
+	r.POST("/is-phone-register", IsPhoneRegister)
+	r.POST("/rent-car", RentCar)
 	r.POST("/cars", GetCars)
-	r.POST("/customers", PostCustomers)
 	r.POST("/probation", GetCusOnProbation)
 	r.POST("/passengers", GetNumOfPassengers)
 	r.POST("/popular-locations", GetPopularLocations)
 	r.POST("/rental-trends", GetRentalTrends)
 	r.POST("/increase-price", IncreasePrice)
+	r.GET("/center-loc", GetCenters)
 
 	_ = r.Run(":60036")
 }
+
 
 
