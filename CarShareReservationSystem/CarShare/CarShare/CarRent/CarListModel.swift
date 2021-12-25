@@ -32,6 +32,7 @@ struct Car: Identifiable, Codable {
     var pricePerDay: Double
     var capacity: Int
     var picURL: String
+    var description: String
     
     var formatHourPrice: String {
         let formatter = NumberFormatter()
@@ -55,5 +56,6 @@ struct Car: Identifiable, Codable {
         case pricePerDay = "price_per_day"
         case capacity = "capacity"
         case picURL = "pic_url"
+        case description = "description"
     }
 }

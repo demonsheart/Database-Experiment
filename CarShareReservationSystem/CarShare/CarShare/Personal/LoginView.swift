@@ -51,7 +51,7 @@ struct LoginView: View {
             }
             
             Button(action: {
-                userState.login(params: LoginModel(account: username, password: password)) { isLogin in
+                userState.login(params: LoginModel(cusId: username, password: password)) { isLogin in
                     self.showingAlert = !isLogin
                 }
             }) {

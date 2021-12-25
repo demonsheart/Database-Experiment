@@ -14,16 +14,16 @@ struct UserDetailView: View {
     var body: some View {
         VStack {
             List {
-                UserDetailBar(title: "account", content: user.account)
+                UserDetailBar(title: "account", content: user.cusID)
                 UserDetailBar(title: "name", content: user.firstName + " " + user.lastName)
                 UserDetailBar(title: "hometown", content: user.hometown)
                 UserDetailBar(title: "cellPhone", content: user.cellPhone)
                 UserDetailBar(title: "email", content: user.email)
                 UserDetailBar(title: "creditCard", content: user.creditCard)
                 UserDetailBar(title: "isStudent", content: "\(user.isStudent)")
-                UserDetailBar(title: "licenseNumber", content: user.licenseNumber)
-                UserDetailBar(title: "licenseState", content: user.licenseState)
-                UserDetailBar(title: "expirationDate", content: user.expirationDate.convertDate())
+                UserDetailBar(title: "licenseNumber", content: user.license)
+                UserDetailBar(title: "licenseState", content: user.state)
+                UserDetailBar(title: "expirationDate", content: user.expireDate.convertDate())
             }
             .navigationBarTitleDisplayMode(.inline)
             
@@ -45,7 +45,7 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: User(cusID: 888, account: "demo1", password: "", lastName: "RJ", firstName: "H", hometown: "GuangDong", cellPhone: "7758258", email: "2509875617@qq.com", creditCard: "0438038", isStudent: 1, licenseNumber: "888888", licenseState: "valid", expirationDate: "2027-12-17 00:00:00"))
+        UserDetailView(user: User(cusID: "333", password: "", lastName: "RJ", firstName: "H", hometown: "GuangDong", cellPhone: "7758258",telephone: "7777777" , email: "2509875617@qq.com", creditCard: "0438038", isStudent: 1, license: "888888", state: "valid", expireDate: "2027-12-17 00:00:00", tickets: 3))
             .environmentObject(UserStateModel())
     }
 }

@@ -46,8 +46,13 @@ class UserStateModel: ObservableObject {
 
 // MARK: - LoginModel
 struct LoginModel: Codable {
-    let account: String
+    let cusId: String
     let password: String
+    
+    enum CodingKeys: String, CodingKey {
+        case cusId = "cus_id"
+        case password
+    }
 }
 
 
@@ -64,33 +69,35 @@ struct UserModel: Codable {
 
 // MARK: - User
 struct User: Codable {
-    var cusID: Int
-    var account: String
-    var password: String
-    var lastName: String
-    var firstName: String
-    var hometown: String
-    var cellPhone: String
-    var email: String
-    var creditCard: String
-    var isStudent: Int
-    var licenseNumber: String
-    var licenseState: String
-    var expirationDate: String
+    let cusID: String
+    let password: String
+    let lastName: String
+    let firstName: String
+    let hometown: String
+    let cellPhone: String
+    let telephone: String
+    let email: String
+    let creditCard: String
+    let isStudent: Int
+    let license: String
+    let state: String
+    let expireDate: String
+    let tickets: Int
     
     enum CodingKeys: String, CodingKey {
         case cusID = "cus_id"
-        case account = "account"
         case password = "password"
         case lastName = "last_name"
         case firstName = "first_name"
         case hometown = "hometown"
         case cellPhone = "cell_phone"
+        case telephone = "telephone"
         case email = "email"
         case creditCard = "credit_card"
         case isStudent = "is_student"
-        case licenseNumber = "license_number"
-        case licenseState = "license_state"
-        case expirationDate = "expiration_date"
+        case license = "license"
+        case state = "state"
+        case expireDate = "expire_date"
+        case tickets = "tickets"
     }
 }
