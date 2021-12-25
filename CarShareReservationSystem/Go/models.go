@@ -81,34 +81,35 @@ type Probation struct {
 
 // NumOfPassengersParams 乘客数参数
 type NumOfPassengersParams struct {
-	Num int `binding:"required" json:"num"`
+	Num *int `binding:"required" json:"num"`
 }
 
 // Cars 根据乘客数参数返回的车类型
 type Cars struct {
-	CarID        int     `gorm:"column:car_id" json:"car_id"`
+	CarID        *int    `gorm:"column:car_id" json:"car_id"`
 	Make         string  `gorm:"column:make" json:"make"`
 	Model        string  `gorm:"column:model" json:"model"`
 	PricePerHour float32 `gorm:"column:price_per_hour" json:"price_per_hour"`
 	PricePerDay  float32 `gorm:"column:price_per_day" json:"price_per_day"`
-	Capacity     int     `gorm:"column:capacity" json:"capacity"`
+	Capacity     *int    `gorm:"column:capacity" json:"capacity"`
 	PicUrl       string  `gorm:"column:pic_url" json:"pic_url"`
+	Description  string  `gorm:"column:description" json:"description"`
 }
 
 // PopularLoc 热门位置
 type PopularLoc struct {
-	LocID           int    `gorm:"column:loc_id" json:"loc_id"`
+	LocID           *int   `gorm:"column:loc_id" json:"loc_id"`
 	StreetAddress   string `gorm:"column:street_address" json:"street_address"`
 	TelephoneNumber string `gorm:"column:telephone_number" json:"telephone_number"`
-	NumberOfRentals int    `gorm:"column:number_of_rentals" json:"number_of_rentals"`
+	NumberOfRentals *int   `gorm:"column:number_of_rentals" json:"number_of_rentals"`
 }
 
 // RentalTrend 租赁趋势
 type RentalTrend struct {
 	Make      string `gorm:"column:make" json:"make"`
 	Model     string `gorm:"column:model" json:"model"`
-	IsStudent int    `gorm:"column:is_student" json:"is_student"`
-	Num       int    `gorm:"column:number_of_times_rented" json:"number_of_times_rented"`
+	IsStudent *int   `gorm:"column:is_student" json:"is_student"`
+	Num       *int   `gorm:"column:number_of_times_rented" json:"number_of_times_rented"`
 }
 
 // IncreasePriceParams 提高价格参数
@@ -121,28 +122,29 @@ type IncreasePriceParams struct {
 type Customers struct {
 	// old key need to define as pointer type so that we can know if is set by nil.
 	OldKeyValue    *string   `gorm:"-" json:"old_key_value,omitempty"`
-	CusID          int       `gorm:"column:cus_id;primaryKey" json:"cus_id"`
-	Account        string    `gorm:"column:account;unique" json:"account" binding:"required"`
+	CusID          string    `gorm:"column:cus_id;primaryKey;unique" json:"cus_id" binding:"required"`
 	Password       string    `gorm:"column:password" json:"password" binding:"required"`
 	LastName       string    `gorm:"column:last_name" json:"last_name" binding:"required"`
 	FirstName      string    `gorm:"column:first_name" json:"first_name" binding:"required"`
 	HomeTown       string    `gorm:"column:hometown" json:"hometown" binding:"required"`
 	CellPhone      string    `gorm:"column:cell_phone" json:"cell_phone" binding:"required"`
+	Telephone      string    `gorm:"column:telephone" json:"telephone" binding:"required"`
 	Email          string    `gorm:"column:email" json:"email" binding:"required"`
 	CreditCard     string    `gorm:"column:credit_card" json:"credit_card" binding:"required"`
-	IsStudent      int       `gorm:"column:is_student" json:"is_student" binding:"required"`
-	LicenseNumber  string    `gorm:"column:license_number" json:"license_number"`
-	LicenseState   string    `gorm:"column:license_state" json:"license_state"`
-	ExpirationDate LocalTime `gorm:"column:expiration_date" json:"expiration_date"`
+	IsStudent      *int      `gorm:"column:is_student" json:"is_student" binding:"required"`
+	License        string    `gorm:"column:license" json:"license"`
+	State          string    `gorm:"column:state" json:"state"`
+	ExpirationDate LocalTime `gorm:"column:expire_date" json:"expire_date"`
+	Tickets        *int      `gorm:"column:tickets" json:"tickets" binding:"required"`
 }
 
 type LoginParams struct {
-	Account  string `gorm:"column:account,unique" json:"account" binding:"required"`
+	CusID    string `gorm:"column:cus_id;primaryKey" json:"cus_id"`
 	Password string `gorm:"column:password" json:"password" binding:"required"`
 }
 
-type IsAccountRegister struct {
-	Account string `gorm:"column:account,unique" json:"account" binding:"required"`
+type IsIDRegister struct {
+	CusID string `gorm:"column:cus_id;primaryKey" json:"cus_id"`
 }
 
 type IsCellPhoneRegister struct {
@@ -150,18 +152,17 @@ type IsCellPhoneRegister struct {
 }
 
 type Rental struct {
-	CusID        int       `gorm:"column:cus_id" json:"cus_id" binding:"required"`
-	CarID        int       `gorm:"column:car_id" json:"car_id" binding:"required"`
-	PickUpLocID  int       `gorm:"column:pick_up_loc_id" json:"pick_up_loc_id" binding:"required"`
-	DropOffLocID int       `gorm:"column:drop_off_loc_id" json:"drop_off_loc_id" binding:"required"`
-	StartTime    LocalTime `gorm:"column:start_time" json:"start_time" binding:"required"`
-	BilledType   string    `gorm:"column:billed_type" json:"billed_type" binding:"required"`
-	BilledCount  int       `gorm:"column:billed_count" json:"billed_count" binding:"required"`
-	TotalPrice   float32   `gorm:"column:total_price" json:"total_price"`
+	RentalId   string    `gorm:"column:rental_id" json:"rental_id"`
+	RentalDate string    `gorm:"column:rental_date" json:"rental_date"`
+	CusID      string    `gorm:"column:cus_id" json:"cus_id" binding:"required"`
+	CarID      *int      `gorm:"column:car_id" json:"car_id" binding:"required"`
+	LocID      *int      `gorm:"column:loc_id" json:"loc_id" binding:"required"`
+	StartTime  LocalTime `gorm:"column:pick_up_time" json:"pick_up_time" binding:"required"`
+	EndTime    LocalTime `gorm:"column:drop_off_time" json:"drop_off_time" binding:"required"`
 }
 
 type ACSCenter struct {
-	LocID           int    `gorm:"column:loc_id;primaryKey" json:"loc_id"`
+	LocID           *int   `gorm:"column:loc_id;primaryKey" json:"loc_id"`
 	StreetAddress   string `gorm:"column:street_address" json:"street_address"`
 	TelephoneNumber string `gorm:"column:telephone_number" json:"telephone_number"`
 }

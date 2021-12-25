@@ -203,7 +203,7 @@ func Login(c *gin.Context) {
 	var userMessage Customers
 	var re *gorm.DB
 	re = db.Model(Customers{}).
-		Where(&Customers{Account: params.Account, Password: params.Password}).
+		Where("cus_id = ? AND password = ?", params.CusID, params.Password).
 		First(&userMessage)
 
 	if re.Error != nil {
@@ -235,18 +235,18 @@ func Register(c *gin.Context) {
 
 }
 
-// IsAccRegister 判断是否被注册(account is unique)
-func IsAccRegister(c *gin.Context) {
+// IsIdRegister 判断是否被注册(account is unique)
+func IsIdRegister(c *gin.Context) {
 	if err := MyHeaderValidate(c); err != nil {
 		c.AbortWithStatus(404)
 		return
 	}
-	var account IsAccountRegister
+	var account IsIDRegister
 	var cus Customers
 	err1 := c.ShouldBindJSON(&account)
 
 	if err1 == nil { // account
-		if err := db.Model(Customers{}).Where(Customers{Account: account.Account}).First(&cus).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+		if err := db.Model(Customers{}).Where(Customers{CusID: account.CusID}).First(&cus).Error; errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(200, gin.H{"success": true})
 		}
 		return

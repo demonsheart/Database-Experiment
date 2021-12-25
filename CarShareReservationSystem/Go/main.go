@@ -36,9 +36,9 @@ func main() {
 	// methods
 	r.POST("/login", Login)
 	r.POST("/register", Register)
-	r.POST("/is-acc-register", IsAccRegister)
+	r.POST("/is-id-register", IsIdRegister)
 	r.POST("/is-phone-register", IsPhoneRegister)
-	r.POST("/rent-car", RentCar)
+	r.POST("/rent-car", RentCar) // FIXME: need to test
 	r.POST("/cars", GetCars)
 	r.POST("/probation", GetCusOnProbation)
 	r.POST("/passengers", GetNumOfPassengers)

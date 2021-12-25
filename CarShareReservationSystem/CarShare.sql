@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 25/12/2021 16:26:55
+ Date: 26/12/2021 04:52:58
 */
 
 SET NAMES utf8mb4;
@@ -23,18 +23,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `acs_centers`;
 CREATE TABLE `acs_centers` (
   `loc_id` int NOT NULL,
-  `street_address` varchar(100) NOT NULL,
-  `telephone_number` varchar(20) NOT NULL,
-  PRIMARY KEY (`loc_id`)
+  `street_address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `telephone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`loc_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of acs_centers
 -- ----------------------------
 BEGIN;
-INSERT INTO `acs_centers` VALUES (111, 'SZU', '88888888');
-INSERT INTO `acs_centers` VALUES (222, 'NanShan Hospital', '120');
-INSERT INTO `acs_centers` VALUES (333, 'Software Industry Base', '99999999');
+INSERT INTO `acs_centers` VALUES (59, '1400 W Peachtree NE', '404-897-0021');
+INSERT INTO `acs_centers` VALUES (60, '800 Cherokee Drive', '404-776-1022');
+INSERT INTO `acs_centers` VALUES (61, '2238 Perkerson Road', '404-223-1056');
 COMMIT;
 
 -- ----------------------------
@@ -42,30 +42,26 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `cars`;
 CREATE TABLE `cars` (
-  `car_id` int NOT NULL AUTO_INCREMENT,
-  `make` varchar(20) NOT NULL,
-  `model` varchar(30) NOT NULL,
+  `car_id` int NOT NULL,
+  `make` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `model` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `capacity` int NOT NULL,
+  `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `price_per_hour` float unsigned NOT NULL,
   `price_per_day` float unsigned NOT NULL,
-  `pic_url` varchar(255) DEFAULT NULL,
-  `capacity` int NOT NULL,
+  `pic_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of cars
 -- ----------------------------
 BEGIN;
-INSERT INTO `cars` VALUES (101, 'Subaru', 'Impreza', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car1.jpg', 5);
-INSERT INTO `cars` VALUES (102, 'Lexus', 'IS250', 5, 50, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car2.jpg', 5);
-INSERT INTO `cars` VALUES (103, 'Smart', 'Passion', 4, 40, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car3.jpg', 3);
-INSERT INTO `cars` VALUES (104, 'Toyota', 'Prius Liftback', 5.5, 55, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car4.jpg', 5);
-INSERT INTO `cars` VALUES (105, 'Honda', 'Element', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car5.jpg', 4);
-INSERT INTO `cars` VALUES (106, 'Alfa Romeo', 'Saloon', 4.2, 42, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car6.jpg', 4);
-INSERT INTO `cars` VALUES (107, 'Audi', 'Hatchback', 4.5, 45, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car7.jpg', 3);
-INSERT INTO `cars` VALUES (108, 'Bentley', 'SUV', 5.6, 56, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car8.jpg', 5);
-INSERT INTO `cars` VALUES (109, 'Chevrolet', 'Station Wagon', 7.8, 78, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car9.jpg', 8);
-INSERT INTO `cars` VALUES (110, 'Dodge', 'Sedan', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car10.jpg', 4);
+INSERT INTO `cars` VALUES (101, 'Subaru', 'Impreza', 5, '4 Door 4WD Sedan', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car1.jpg');
+INSERT INTO `cars` VALUES (102, 'Lexus', 'IS250', 5, '4 Door Luxury Sedan', 5, 50, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car2.jpg');
+INSERT INTO `cars` VALUES (103, 'Smart', 'Passion', 2, '2 Door Microcar', 4, 40, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car3.jpg');
+INSERT INTO `cars` VALUES (104, 'Toyota', 'Prius Liftback', 5, '4 Door Hybrid', 5.5, 55, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car4.jpg');
+INSERT INTO `cars` VALUES (105, 'Honda', 'Element', 5, '5 Door SUV', 3.9, 39, 'https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car5.jpg');
 COMMIT;
 
 -- ----------------------------
@@ -73,62 +69,36 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
-  `cus_id` int NOT NULL AUTO_INCREMENT,
-  `account` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `cus_id` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `credit_card` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `is_student` tinyint NOT NULL,
+  `tickets` int NOT NULL,
+  `license` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `state` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `expire_date` date DEFAULT NULL,
+  `last_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `first_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `last_name` varchar(20) NOT NULL,
-  `hometown` varchar(50) NOT NULL,
-  `cell_phone` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `credit_card` varchar(20) DEFAULT NULL,
-  `is_student` tinyint(1) NOT NULL,
-  `license_number` varchar(20) DEFAULT NULL,
-  `license_state` enum('valid','invalid') DEFAULT NULL,
-  `expiration_date` date DEFAULT NULL,
-  PRIMARY KEY (`cus_id`),
-  UNIQUE KEY `unique_account` (`account`) USING BTREE,
-  UNIQUE KEY `unique_phone` (`cell_phone`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=913 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `hometown` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `telephone` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cell_phone` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`cus_id`) USING BTREE,
+  UNIQUE KEY `cus_id_un` (`cus_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of customers
 -- ----------------------------
 BEGIN;
-INSERT INTO `customers` VALUES (888, 'demo1', 'demodemo1', 'H', 'RJ', 'GuangDong', '7758258', '2509875617@qq.com', '0438038', 1, '888888', 'valid', '2027-12-17');
-INSERT INTO `customers` VALUES (889, 'demo2', 'demodemo2', 'Annabelle', 'Murray', 'ShangHai', '1111111', 'belle@comcast.net', '0903333', 0, '129038', 'invalid', NULL);
-INSERT INTO `customers` VALUES (890, 'demo3', 'demodemo3', 'Patricia', 'Smith', 'NanNing', '3333333', 'patti1@gmail.com', '3223232', 0, '878787', 'valid', '2029-12-11');
-INSERT INTO `customers` VALUES (900, 'demo4', 'demodemo4', 'Sean', 'Quinn', 'ShenZhen', '2222222', 'quinn45@gmail.com', '3243244', 0, '787878', 'valid', '2026-12-17');
-INSERT INTO `customers` VALUES (901, 'demo5', 'demodemo5', 'Jay', 'Theodore', 'ChongQing', '7878939', 'jicwhv@gmail.com', '8989898', 0, '647633', 'valid', '2022-07-21');
-INSERT INTO `customers` VALUES (902, 'demo6', 'demodemo6', 'Mike', 'Arthur', 'Alaska', '3737333', 'hajhd@twitter.com', '7832733', 1, NULL, NULL, NULL);
-INSERT INTO `customers` VALUES (903, 'demo7', 'demodemo7', 'Smiss', 'Luna', 'California', '883333', 'Luna@appple.com', '7238728', 0, NULL, NULL, NULL);
-INSERT INTO `customers` VALUES (904, 'demo8', 'demodemo8', 'Zhou', 'Riley', 'Georgia', '823444', 'Rilley@qq.com', '8333323', 0, NULL, NULL, NULL);
-INSERT INTO `customers` VALUES (905, 'demo9', 'demodemo9', 'Zoe', 'Victoria', 'Illinois', '672633', 'Viddd@appleid.com', '2738464', 1, '232323', 'invalid', NULL);
-INSERT INTO `customers` VALUES (906, 'demo10', 'demodemo10', 'Ruby', 'Elizabeth', 'Maryland', '743874', '834665@163.com', '3672534', 1, NULL, NULL, NULL);
-COMMIT;
-
--- ----------------------------
--- Table structure for punishments
--- ----------------------------
-DROP TABLE IF EXISTS `punishments`;
-CREATE TABLE `punishments` (
-  `punish_id` int NOT NULL AUTO_INCREMENT,
-  `cus_id` int NOT NULL,
-  `punish_time` datetime NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`punish_id`),
-  KEY `punishments_fk` (`cus_id`),
-  CONSTRAINT `punishments_fk` FOREIGN KEY (`cus_id`) REFERENCES `customers` (`cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ----------------------------
--- Records of punishments
--- ----------------------------
-BEGIN;
-INSERT INTO `punishments` VALUES (2, 888, '2021-12-17 20:40:26', 'Running red light');
-INSERT INTO `punishments` VALUES (3, 889, '2021-12-17 21:19:32', 'Drunk driving');
-INSERT INTO `punishments` VALUES (4, 901, '2021-12-15 10:15:01', 'Drunk driving');
-INSERT INTO `punishments` VALUES (5, 904, '2018-12-13 10:20:37', 'Running red light');
+INSERT INTO `customers` VALUES ('B-17', 'demodemo', '443376562837', 0, 0, '67556', 'GA', NULL, 'Berry', 'Anna', '9 Pleasant Way', '404-887-4673', '404-876-3376', 'aberry@hotmail.com');
+INSERT INTO `customers` VALUES ('F-59', 'demodemo', '443398764532', 0, 0, '88765', 'GA', '2015-08-09', 'Franco', 'Gianne', '1012 Peachtree St', '404-887-2342', '404-765-1263', 'gf59@gmail.com');
+INSERT INTO `customers` VALUES ('L-29', 'demodemo', '443352635423', 0, 0, '76789', 'GA', '2011-03-15', 'Lopato', 'Maria', '5490 West 5th', '404-234-8876', '569-001-0989', 'mrl@hotmail.com');
+INSERT INTO `customers` VALUES ('M-62', 'demodemo', '443355463212', 1, 2, '92019', 'NY', '2012-06-06', 'Murray', 'Annabelle', '59 W. Central Ave', '404-998-3928', '404-887-3829', 'belle@comcast.net');
+INSERT INTO `customers` VALUES ('P-91', 'demodemo', '443367256543', 0, 0, '12332', 'GA', '2015-07-11', 'Pao', 'Jack', '89 Orchard', '404-887-9238', '404-342-9087', 'pao@comcast.net');
+INSERT INTO `customers` VALUES ('Q-13', 'demodemo', '443398765439', 1, 1, '87678', 'GA', '2013-09-01', 'Quinn', 'Sean', '54 Oak Ave', '404-987-3427', '569-984-3894', 'quinn45@gmail.com');
+INSERT INTO `customers` VALUES ('S-63', 'demodemo', '443398762534', 1, 2, '76877', 'PA', '2011-05-01', 'Smith', 'Patricia', '1700 E. Lincoln Ave', '404-765-3342', '404-121-4736', 'patti1@gmail.com');
+INSERT INTO `customers` VALUES ('Z-30', 'demodemo', '443357643254', 0, 0, '56876', 'GA', '2010-04-30', 'Zern', 'John', '58 W. Central Ave', '404-675-0091', '404-776-4536', 'zern@comcast.net');
 COMMIT;
 
 -- ----------------------------
@@ -136,48 +106,37 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `rentals`;
 CREATE TABLE `rentals` (
-  `rental_id` int NOT NULL AUTO_INCREMENT,
-  `cus_id` int NOT NULL,
+  `rental_id` varchar(20) NOT NULL,
+  `rental_date` date DEFAULT NULL,
+  `pick_up_time` datetime DEFAULT NULL,
+  `drop_off_time` datetime DEFAULT NULL,
+  `cus_id` varchar(10) NOT NULL,
   `car_id` int NOT NULL,
-  `pick_up_loc_id` int NOT NULL,
-  `drop_off_loc_id` int NOT NULL,
-  `start_time` datetime NOT NULL,
-  `billed_type` enum('hour','day') NOT NULL,
-  `billed_count` int NOT NULL,
-  `total_price` float NOT NULL DEFAULT '0',
+  `loc_id` int NOT NULL,
   PRIMARY KEY (`rental_id`),
   KEY `rentals_car_fk` (`car_id`),
   KEY `rentals_cus_fk` (`cus_id`),
-  KEY `rentals_drop_fk` (`drop_off_loc_id`),
-  KEY `rentals_pick_fk` (`pick_up_loc_id`),
+  KEY `rentals_loc_fk` (`loc_id`),
   CONSTRAINT `rentals_car_fk` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
   CONSTRAINT `rentals_cus_fk` FOREIGN KEY (`cus_id`) REFERENCES `customers` (`cus_id`),
-  CONSTRAINT `rentals_drop_fk` FOREIGN KEY (`drop_off_loc_id`) REFERENCES `acs_centers` (`loc_id`),
-  CONSTRAINT `rentals_pick_fk` FOREIGN KEY (`pick_up_loc_id`) REFERENCES `acs_centers` (`loc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `rentals_loc_fk` FOREIGN KEY (`loc_id`) REFERENCES `acs_centers` (`loc_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of rentals
 -- ----------------------------
 BEGIN;
-INSERT INTO `rentals` VALUES (1, 888, 101, 222, 111, '2021-12-17 22:32:13', 'hour', 5, 19.5);
-INSERT INTO `rentals` VALUES (2, 889, 102, 111, 111, '2021-12-16 22:29:13', 'day', 2, 100);
-INSERT INTO `rentals` VALUES (3, 890, 103, 333, 222, '2021-12-08 22:39:08', 'hour', 4, 16);
-INSERT INTO `rentals` VALUES (4, 900, 104, 222, 333, '2021-12-13 22:40:11', 'day', 3, 165);
-INSERT INTO `rentals` VALUES (5, 901, 105, 222, 222, '2021-11-11 19:40:50', 'hour', 5, 19.5);
-INSERT INTO `rentals` VALUES (6, 902, 106, 333, 111, '2021-10-21 18:41:34', 'day', 6, 252);
-INSERT INTO `rentals` VALUES (7, 903, 107, 111, 333, '2020-12-17 22:42:44', 'hour', 4, 18);
-INSERT INTO `rentals` VALUES (8, 904, 108, 222, 333, '2021-12-15 18:43:16', 'day', 3, 168);
-INSERT INTO `rentals` VALUES (9, 905, 109, 333, 333, '2021-12-10 16:40:42', 'hour', 2, 15.6);
-INSERT INTO `rentals` VALUES (10, 906, 110, 222, 222, '2021-09-17 22:31:19', 'hour', 6, 23.4);
-INSERT INTO `rentals` VALUES (11, 888, 105, 222, 333, '2021-12-18 14:33:00', 'day', 4, 156);
-INSERT INTO `rentals` VALUES (12, 889, 103, 111, 111, '2021-10-18 14:33:27', 'hour', 4, 16);
-INSERT INTO `rentals` VALUES (13, 890, 101, 333, 222, '2021-12-16 16:33:55', 'day', 3, 117);
-INSERT INTO `rentals` VALUES (14, 900, 109, 333, 111, '2021-12-18 14:34:27', 'hour', 6, 46.8);
-INSERT INTO `rentals` VALUES (15, 901, 108, 222, 222, '2021-10-20 14:34:49', 'day', 4, 224);
-INSERT INTO `rentals` VALUES (16, 888, 101, 222, 222, '2021-12-18 14:47:31', 'day', 3, 117);
-INSERT INTO `rentals` VALUES (17, 888, 101, 222, 222, '2021-10-18 14:49:33', 'day', 1, 39);
-INSERT INTO `rentals` VALUES (18, 888, 106, 222, 222, '2021-12-20 09:55:52', 'hour', 3, 12.6);
+INSERT INTO `rentals` VALUES ('Feb-101', '2010-02-03', '2010-02-03 09:00:00', '2010-02-03 12:00:00', 'M-62', 101, 60);
+INSERT INTO `rentals` VALUES ('Feb-102', '2010-02-03', '2010-02-03 13:00:00', '2010-02-03 17:00:00', 'F-59', 101, 59);
+INSERT INTO `rentals` VALUES ('Feb-103', '2010-02-04', '2010-02-04 08:00:00', '2010-02-04 17:00:00', 'Q-13', 103, 60);
+INSERT INTO `rentals` VALUES ('Feb-104', '2010-02-05', '2010-02-05 12:00:00', '2010-02-07 12:00:00', 'L-29', 105, 60);
+INSERT INTO `rentals` VALUES ('Feb-105', '2010-02-07', '2010-02-07 10:00:00', '2010-02-07 16:00:00', 'Z-30', 104, 61);
+INSERT INTO `rentals` VALUES ('Feb-106', '2010-02-10', '2010-02-10 11:00:00', '2010-02-10 13:00:00', 'S-63', 102, 60);
+INSERT INTO `rentals` VALUES ('Feb-107', '2010-02-10', '2010-02-10 08:00:00', '2010-02-10 11:30:00', 'Q-13', 103, 60);
+INSERT INTO `rentals` VALUES ('Feb-108', '2010-02-15', '2010-02-15 14:00:00', '2010-02-16 14:00:00', 'S-63', 102, 59);
+INSERT INTO `rentals` VALUES ('Feb-109', '2010-02-15', '2010-02-15 10:00:00', '2010-02-15 20:00:00', 'P-91', 105, 60);
+INSERT INTO `rentals` VALUES ('Feb-110', '2010-02-15', '2010-02-15 09:00:00', '2010-02-15 17:00:00', 'B-17', 101, 60);
+INSERT INTO `rentals` VALUES ('Feb-111', '2010-02-17', '2010-02-17 09:00:00', '2010-02-17 17:00:00', 'B-17', 101, 60);
 COMMIT;
 
 -- ----------------------------
@@ -190,34 +149,8 @@ CREATE PROCEDURE `cus_on_probation`()
   SQL SECURITY INVOKER
 BEGIN
   SELECT last_name, first_name, email
-	FROM customers AS c LEFT JOIN punishments AS p
-	ON c.cus_id = p.cus_id
-	WHERE c.is_student = 1 
-	OR ((p.punish_id IS NOT NULL) AND (p.punish_time > DATE_SUB(CURDATE(),INTERVAL 3 YEAR)));
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Function structure for get_car_per_price
--- ----------------------------
-DROP FUNCTION IF EXISTS `get_car_per_price`;
-delimiter ;;
-CREATE FUNCTION `get_car_per_price`(id int,  billed_type enum('hour', 'day'))
- RETURNS float
-  READS SQL DATA 
-  SQL SECURITY INVOKER
-BEGIN
-  		DECLARE per_price FLOAT;
-		SET per_price = 0;
-
-		IF billed_type = 'hour' THEN
-		SELECT price_per_hour INTO per_price FROM cars WHERE car_id = id;
-		ELSEIF billed_type = 'day' THEN
-		SELECT price_per_day INTO per_price FROM cars WHERE car_id = id;
-		END IF;
-		
-		RETURN per_price;
+	FROM customers
+	WHERE is_student = 1 OR tickets > 0;
 END
 ;;
 delimiter ;
@@ -235,36 +168,6 @@ BEGIN
 	SET price_per_hour = price_per_hour + hourly_increase, price_per_day = price_per_day + daily_increase;
 	
 	SELECT * FROM cars;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for init_total_price
--- ----------------------------
-DROP PROCEDURE IF EXISTS `init_total_price`;
-delimiter ;;
-CREATE PROCEDURE `init_total_price`()
-  MODIFIES SQL DATA 
-  SQL SECURITY INVOKER
-BEGIN
-  DECLARE c_id INT DEFAULT 0;
-	DECLARE r_id INT DEFAULT 0;
-	DECLARE type VARCHAR(10) DEFAULT '';
-	DECLARE num INT DEFAULT 0;
-	DECLARE done BOOLEAN DEFAULT 0;
-	DECLARE rentals_cursor CURSOR FOR SELECT rental_id, car_id, billed_type, billed_count FROM rentals;
-	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
-	
-OPEN rentals_cursor;
-REPEAT
-	FETCH rentals_cursor INTO r_id, c_id, type, num;
-	IF done != 1 THEN
-	  UPDATE rentals SET total_price = get_car_per_price(c_id, type) * num WHERE rental_id = r_id;
-	END IF;
-UNTIL done END REPEAT;
-CLOSE rentals_cursor;
-
 END
 ;;
 delimiter ;
@@ -296,7 +199,7 @@ CREATE PROCEDURE `popular_locations`()
 BEGIN
   SELECT ac.loc_id, ac.street_address, ac.telephone_number, COUNT(*) AS number_of_rentals
 	FROM acs_centers AS ac, rentals as r
-	WHERE ac.loc_id = r.pick_up_loc_id
+	WHERE ac.loc_id = r.loc_id
 	GROUP BY ac.loc_id
 	ORDER BY number_of_rentals DESC;
 END
@@ -312,22 +215,11 @@ CREATE PROCEDURE `rental_trends`()
   READS SQL DATA 
   SQL SECURITY INVOKER
 BEGIN
-  SELECT c.make, c.model, cus.is_student, COUNT(*) AS number_of_times_rented
-	FROM customers AS cus, rentals AS r, cars AS c
-	WHERE cus.cus_id = r.cus_id AND r.car_id = c.car_id
-	GROUP BY c.make, c.model, cus.is_student
-	ORDER BY cus.is_student;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Triggers structure for table rentals
--- ----------------------------
-DROP TRIGGER IF EXISTS `insert_total_price`;
-delimiter ;;
-CREATE TRIGGER `insert_total_price` BEFORE INSERT ON `rentals` FOR EACH ROW BEGIN
-	SET new.total_price = get_car_per_price(new.car_id, new.billed_type) * new.billed_count;
+	SELECT c.make, c.model, s.is_student, COUNT(*) as number_of_times_rented 
+	FROM cars c,customers s, rentals r
+	WHERE c.car_id = r.car_id and r.cus_id = s.cus_id
+	GROUP BY c.make, c.model ,s.is_student
+	ORDER BY s.is_student DESC;
 END
 ;;
 delimiter ;
