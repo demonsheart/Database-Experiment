@@ -29,7 +29,7 @@ struct LoginView: View {
                 .frame(width: 150, height: 150)
                 .clipped()
                 .cornerRadius(150)
-                .padding(.bottom, 75)
+                .padding(.bottom, 40)
             
             TextField("Username", text: $username)
                 .padding()
@@ -44,6 +44,12 @@ struct LoginView: View {
                 .cornerRadius(5.0)
                 .autocapitalization(.none)
                 .padding(.bottom, 20)
+            
+            NavigationLink(destination: Text("register form")) {
+                Text("Create An account")
+                    .foregroundColor(Color.blue)
+            }
+            .navigationBarTitleDisplayMode(.inline)
             
             Button(action: {
                 userState.login(params: LoginModel(account: username, password: password)) { isLogin in

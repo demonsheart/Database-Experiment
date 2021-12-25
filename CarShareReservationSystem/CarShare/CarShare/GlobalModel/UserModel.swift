@@ -37,6 +37,11 @@ class UserStateModel: ObservableObject {
                 callback(self.isLogin)
             }.store(in: &cancellableSet)
     }
+    
+    func logout() {
+        self.isLogin = false
+        self.user = nil
+    }
 }
 
 // MARK: - LoginModel

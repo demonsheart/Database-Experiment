@@ -59,7 +59,7 @@ struct CarDetails: View {
 
 struct CarDetails_Previews: PreviewProvider {
     static var previews: some View {
-        CarDetails(car: Car(carID: 101, make: "Subaru", model: "Impreza", pricePerHour: 3.9, pricePerDay: 39, capacity: 5, picURL: "https://s2.loli.net/2021/12/21/4wzUqSflsbaOZ3J.jpg"))
+        CarDetails(car: Car(carID: 101, make: "Subaru", model: "Impreza", pricePerHour: 3.9, pricePerDay: 39, capacity: 5, picURL: "https://cdn.jsdelivr.net/gh/demonsheart/Pic@main/car/car1.jpg"))
     }
 }
 

@@ -27,6 +27,8 @@
 		945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6627746169001297C9 /* PopularLocsListModel.swift */; };
 		945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED68277463A5001297C9 /* PopularLocsViewModel.swift */; };
 		945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945AED6A277464B4001297C9 /* PopularLocsView.swift */; };
+		9470C289277757EA007B3CB7 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470C288277757EA007B3CB7 /* UserDetailView.swift */; };
+		9470C28B27775FB5007B3CB7 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470C28A27775FB5007B3CB7 /* Date+extension.swift */; };
 		94C222FB27749839008AF778 /* PieSliceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FA27749839008AF778 /* PieSliceView.swift */; };
 		94C222FD2774AB1E008AF778 /* RentalTrendListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FC2774AB1E008AF778 /* RentalTrendListModel.swift */; };
 		94C222FF2774ABFD008AF778 /* RentalTrendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C222FE2774ABFD008AF778 /* RentalTrendsViewModel.swift */; };
@@ -62,6 +64,8 @@
 		945AED6627746169001297C9 /* PopularLocsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsListModel.swift; sourceTree = "<group>"; };
 		945AED68277463A5001297C9 /* PopularLocsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsViewModel.swift; sourceTree = "<group>"; };
 		945AED6A277464B4001297C9 /* PopularLocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocsView.swift; sourceTree = "<group>"; };
+		9470C288277757EA007B3CB7 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		9470C28A27775FB5007B3CB7 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		94C222FA27749839008AF778 /* PieSliceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieSliceView.swift; sourceTree = "<group>"; };
 		94C222FC2774AB1E008AF778 /* RentalTrendListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalTrendListModel.swift; sourceTree = "<group>"; };
 		94C222FE2774ABFD008AF778 /* RentalTrendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalTrendsViewModel.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				945AED3A27730A1A001297C9 /* PersonalMessView.swift */,
 				94C2230C27771FEE008AF778 /* LoginView.swift */,
+				9470C288277757EA007B3CB7 /* UserDetailView.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			children = (
 				945AED4027734314001297C9 /* Color+extension.swift */,
 				945AED4A27734D05001297C9 /* Bundle+extension.swift */,
+				9470C28A27775FB5007B3CB7 /* Date+extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 		94F2205427730693006B3A91 /* CarShare */ = {
 			isa = PBXGroup;
 			children = (
+				94F2205B27730695006B3A91 /* Preview Content */,
 				94C2230B277715A9008AF778 /* GlobalModel */,
 				94C222F2277492B4008AF778 /* Charts */,
 				945AED57277431A9001297C9 /* fonts */,
@@ -253,7 +260,6 @@
 				94F2205E27730695006B3A91 /* Info.plist */,
 				94F2205527730693006B3A91 /* CarShareApp.swift */,
 				945AED3427730930001297C9 /* MainView.swift */,
-				94F2205B27730695006B3A91 /* Preview Content */,
 				945AED3C27730BF5001297C9 /* Analyze */,
 				945AED37277309CF001297C9 /* Personal */,
 				945AED36277309C2001297C9 /* CarRent */,
@@ -397,9 +403,11 @@
 				945AED502773571E001297C9 /* Service.swift in Sources */,
 				94C222FD2774AB1E008AF778 /* RentalTrendListModel.swift in Sources */,
 				94C223052774B219008AF778 /* BarChartCell.swift in Sources */,
+				9470C289277757EA007B3CB7 /* UserDetailView.swift in Sources */,
 				945AED63277459E2001297C9 /* ProbationViewModel.swift in Sources */,
 				945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */,
 				94C2230A2777153F008AF778 /* UserModel.swift in Sources */,
+				9470C28B27775FB5007B3CB7 /* Date+extension.swift in Sources */,
 				94C223082774C0F2008AF778 /* PieChartView.swift in Sources */,
 				945AED43277343A2001297C9 /* CarView.swift in Sources */,
 				94C223062774B219008AF778 /* BarChart.swift in Sources */,

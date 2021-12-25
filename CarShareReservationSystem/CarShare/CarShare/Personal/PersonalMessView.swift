@@ -14,7 +14,7 @@ struct PersonalMessView: View {
         NavigationView {
             List {
                 if let user = userState.user {
-                    NavigationLink(destination: Text("Null")) {
+                    NavigationLink(destination: UserDetailView(user: user.data).environmentObject(userState)) {
                         UserInfoView(firstName: user.data.firstName, lastName: user.data.lastName, email: user.data.email)
                     }
                     .navigationTitle("personal")
@@ -35,5 +35,6 @@ struct PersonalMessView: View {
 struct PersonalMessView_Previews: PreviewProvider {
     static var previews: some View {
         PersonalMessView()
+            .environmentObject(UserStateModel())
     }
 }
