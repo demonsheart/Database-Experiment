@@ -10,7 +10,6 @@ import SwiftUI
 struct CarRentView: View {
     
     @StateObject var viewModel = CarViewModel()
-    @State var minNum: String = ""
     
     var columns: [GridItem] = [
         GridItem(.flexible()),
@@ -21,12 +20,24 @@ struct CarRentView: View {
         NavigationView {
             VStack {
                 Spacer()
-                // FIXME: dddd
-//                Picker("Please choose a color", selection: $minNum) {
-//                    ForEach(viewModel.minMaxCapacity, id: \.self) {
-//                        Text($0)
-//                    }
-//                }
+                Stepper(value: $viewModel.curNum, in: viewModel.minMaxCapacity) {
+                    HStack {
+                        Text("Min of Passagers: \(self.viewModel.curNum)")
+                            .font(Font.custom("Pacifico-Regular", size: 20))
+                            .bold()
+                            .foregroundColor(Color(hex: "1E212D"))
+                            .padding(.leading)
+                        Image(systemName: "person.3")
+                            .scaledToFit()
+                            .gesture(
+                                TapGesture()
+                                    .onEnded({ _ in
+                                        viewModel.getData()
+                                    })
+                            )
+                            .offset(y: 3)
+                    }
+                }
                 Divider()
                 
                 ScrollView {
@@ -42,9 +53,6 @@ struct CarRentView: View {
                     .padding(.horizontal)
                 }
             }
-        }
-        .onAppear {
-            viewModel.getData()
         }
     }
 }

@@ -15,15 +15,20 @@ class CarViewModel: ObservableObject {
     @Published var isError: Bool = false
     @Published var filterCar: [Car] = []
     
-    var minMaxCapacity: [Int] = []
+    @Published var minMaxCapacity: ClosedRange<Int> = 0...5
+    @Published var curNum: Int = 0
+    var max: Int = 0
+    var min: Int = 0
     
     private var cancellableSet: Set<AnyCancellable> = []
-    var subscription: Set<AnyCancellable> = []
+    var curNumSubcription: Set<AnyCancellable> = []
     var dataManager: ServiceProtocol
     
     init(dataManager: ServiceProtocol = Service.shared) {
         self.dataManager = dataManager
         getData()
+        $curNum.sink { self.searchCarForCapacity(num: $0) }
+        .store(in: &curNumSubcription)
     }
     
     func getData() {
@@ -34,12 +39,10 @@ class CarViewModel: ObservableObject {
                 } else {
                     self.cars = dataResponse.value!.cars
                     self.filterCar = dataResponse.value!.cars
-                    let min = self.cars.min(by: { $0.capacity < $1.capacity })?.capacity ?? 0
-                    let max = self.cars.max(by: { $0.capacity < $1.capacity })?.capacity ?? 0
-                    self.minMaxCapacity = []
-                    for i in min..<max {
-                        self.minMaxCapacity.append(i)
-                    }
+                    self.min = self.cars.min(by: { $0.capacity < $1.capacity })?.capacity ?? 0
+                    self.max = self.cars.max(by: { $0.capacity < $1.capacity })?.capacity ?? 0
+                    self.minMaxCapacity = self.min...self.max
+                    self.curNum = self.min
                 }
             }.store(in: &cancellableSet)
     }
