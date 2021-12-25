@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 24/12/2021 10:53:18
+ Date: 25/12/2021 11:25:19
 */
 
 SET NAMES utf8mb4;
@@ -45,8 +45,8 @@ CREATE TABLE `cars` (
   `car_id` int NOT NULL AUTO_INCREMENT,
   `make` varchar(20) NOT NULL,
   `model` varchar(30) NOT NULL,
-  `price_per_hour` float NOT NULL,
-  `price_per_day` float NOT NULL,
+  `price_per_hour` float unsigned NOT NULL,
+  `price_per_day` float unsigned NOT NULL,
   `pic_url` varchar(255) DEFAULT NULL,
   `capacity` int NOT NULL,
   PRIMARY KEY (`car_id`)
@@ -69,71 +69,15 @@ INSERT INTO `cars` VALUES (110, 'Dodge', 'Sedan', 3.9, 39, 'https://cdn.jsdelivr
 COMMIT;
 
 -- ----------------------------
--- Table structure for cus_pw
--- ----------------------------
-DROP TABLE IF EXISTS `cus_pw`;
-CREATE TABLE `cus_pw` (
-  `cp_id` int NOT NULL AUTO_INCREMENT,
-  `cus_id` int NOT NULL,
-  `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`cp_id`),
-  UNIQUE KEY `cus_id` (`cus_id`),
-  CONSTRAINT `cus_pw_fk` FOREIGN KEY (`cus_id`) REFERENCES `customers` (`cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ----------------------------
--- Records of cus_pw
--- ----------------------------
-BEGIN;
-INSERT INTO `cus_pw` VALUES (1, 888, '888888');
-INSERT INTO `cus_pw` VALUES (2, 889, '889889');
-INSERT INTO `cus_pw` VALUES (3, 890, '890890');
-INSERT INTO `cus_pw` VALUES (4, 900, '900900');
-INSERT INTO `cus_pw` VALUES (5, 901, '901901');
-INSERT INTO `cus_pw` VALUES (6, 902, '902902');
-INSERT INTO `cus_pw` VALUES (7, 903, '903903');
-INSERT INTO `cus_pw` VALUES (8, 904, '904904');
-INSERT INTO `cus_pw` VALUES (9, 905, '905905');
-INSERT INTO `cus_pw` VALUES (10, 906, '906906');
-COMMIT;
-
--- ----------------------------
--- Table structure for cus_token
--- ----------------------------
-DROP TABLE IF EXISTS `cus_token`;
-CREATE TABLE `cus_token` (
-  `ct_id` int NOT NULL AUTO_INCREMENT,
-  `cus_id` int NOT NULL,
-  `token` varchar(50) NOT NULL,
-  PRIMARY KEY (`ct_id`),
-  UNIQUE KEY `cus_id` (`cus_id`),
-  CONSTRAINT `cus_token_fk` FOREIGN KEY (`cus_id`) REFERENCES `customers` (`cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ----------------------------
--- Records of cus_token
--- ----------------------------
-BEGIN;
-INSERT INTO `cus_token` VALUES (1, 888, '888888');
-INSERT INTO `cus_token` VALUES (2, 889, '889889');
-INSERT INTO `cus_token` VALUES (3, 890, '890890');
-INSERT INTO `cus_token` VALUES (4, 900, '900900');
-INSERT INTO `cus_token` VALUES (5, 901, '901901');
-INSERT INTO `cus_token` VALUES (6, 902, '902902');
-INSERT INTO `cus_token` VALUES (7, 903, '903903');
-INSERT INTO `cus_token` VALUES (8, 904, '904904');
-INSERT INTO `cus_token` VALUES (9, 905, '905905');
-INSERT INTO `cus_token` VALUES (10, 906, '906906');
-COMMIT;
-
--- ----------------------------
 -- Table structure for customers
 -- ----------------------------
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
-  `cus_id` int NOT NULL,
+  `cus_id` int NOT NULL AUTO_INCREMENT,
+  `account` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `first_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `last_name` varchar(20) NOT NULL,
-  `first_name` varchar(20) NOT NULL,
   `hometown` varchar(50) NOT NULL,
   `cell_phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -142,23 +86,24 @@ CREATE TABLE `customers` (
   `license_number` varchar(20) DEFAULT NULL,
   `license_state` enum('valid','invalid') DEFAULT NULL,
   `expiration_date` date DEFAULT NULL,
-  PRIMARY KEY (`cus_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`cus_id`),
+  UNIQUE KEY `unique_account` (`account`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=909 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of customers
 -- ----------------------------
 BEGIN;
-INSERT INTO `customers` VALUES (888, 'RJ', 'H', 'GuangDong', '7758258', '2509875617@qq.com', '0438038', 1, '888888', 'valid', '2027-12-17');
-INSERT INTO `customers` VALUES (889, 'Murray', 'Annabelle', 'ShangHai', '1111111', 'belle@comcast.net', '0903333', 0, '129038', 'invalid', NULL);
-INSERT INTO `customers` VALUES (890, 'Smith', 'Patricia', 'NanNing', '3333333', 'patti1@gmail.com', '3223232', 0, '878787', 'valid', '2029-12-11');
-INSERT INTO `customers` VALUES (900, 'Quinn', 'Sean', 'ShenZhen', '2222222', 'quinn45@gmail.com', '3243244', 0, '787878', 'valid', '2026-12-17');
-INSERT INTO `customers` VALUES (901, 'Theodore', 'Jay', 'ChongQing', '7878939', 'jicwhv@gmail.com', '8989898', 0, '647633', 'valid', '2022-07-21');
-INSERT INTO `customers` VALUES (902, 'Arthur', 'Mike', 'Alaska', '3737333', 'hajhd@twitter.com', '7832733', 1, NULL, NULL, NULL);
-INSERT INTO `customers` VALUES (903, 'Luna', 'Smiss', 'California', '883333', 'Luna@appple.com', '7238728', 0, NULL, NULL, NULL);
-INSERT INTO `customers` VALUES (904, 'Riley', 'Zhou', 'Georgia', '823444', 'Rilley@qq.com', '8333323', 0, NULL, NULL, NULL);
-INSERT INTO `customers` VALUES (905, 'Victoria', 'Zoe', 'Illinois', '672633', 'Viddd@appleid.com', '2738464', 1, '232323', 'invalid', NULL);
-INSERT INTO `customers` VALUES (906, 'Elizabeth', 'Ruby', 'Maryland', '743874', '834665@163.com', '3672534', 1, NULL, NULL, NULL);
+INSERT INTO `customers` VALUES (888, 'demo1', 'demodemo1', 'H', 'RJ', 'GuangDong', '7758258', '2509875617@qq.com', '0438038', 1, '888888', 'valid', '2027-12-17');
+INSERT INTO `customers` VALUES (889, 'demo2', 'demodemo2', 'Annabelle', 'Murray', 'ShangHai', '1111111', 'belle@comcast.net', '0903333', 0, '129038', 'invalid', NULL);
+INSERT INTO `customers` VALUES (890, 'demo3', 'demodemo3', 'Patricia', 'Smith', 'NanNing', '3333333', 'patti1@gmail.com', '3223232', 0, '878787', 'valid', '2029-12-11');
+INSERT INTO `customers` VALUES (900, 'demo4', 'demodemo4', 'Sean', 'Quinn', 'ShenZhen', '2222222', 'quinn45@gmail.com', '3243244', 0, '787878', 'valid', '2026-12-17');
+INSERT INTO `customers` VALUES (901, 'demo5', 'demodemo5', 'Jay', 'Theodore', 'ChongQing', '7878939', 'jicwhv@gmail.com', '8989898', 0, '647633', 'valid', '2022-07-21');
+INSERT INTO `customers` VALUES (902, 'demo6', 'demodemo6', 'Mike', 'Arthur', 'Alaska', '3737333', 'hajhd@twitter.com', '7832733', 1, NULL, NULL, NULL);
+INSERT INTO `customers` VALUES (903, 'demo7', 'demodemo7', 'Smiss', 'Luna', 'California', '883333', 'Luna@appple.com', '7238728', 0, NULL, NULL, NULL);
+INSERT INTO `customers` VALUES (904, 'demo8', 'demodemo8', 'Zhou', 'Riley', 'Georgia', '823444', 'Rilley@qq.com', '8333323', 0, NULL, NULL, NULL);
+INSERT INTO `customers` VALUES (905, 'demo9', 'demodemo9', 'Zoe', 'Victoria', 'Illinois', '672633', 'Viddd@appleid.com', '2738464', 1, '232323', 'invalid', NULL);
+INSERT INTO `customers` VALUES (906, 'demo10', 'demodemo10', 'Ruby', 'Elizabeth', 'Maryland', '743874', '834665@163.com', '3672534', 1, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
