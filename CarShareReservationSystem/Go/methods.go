@@ -207,13 +207,13 @@ func Login(c *gin.Context) {
 		First(&userMessage)
 
 	if re.Error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": re.Error.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"success": false,"error": re.Error.Error()})
 		return
 	}
 
 	// return res
 	userMessage.Password = "" // not need pw
-	c.JSON(200, gin.H{"data": userMessage})
+	c.JSON(200, gin.H{"success": true, "data": userMessage})
 }
 
 func Register(c *gin.Context) {

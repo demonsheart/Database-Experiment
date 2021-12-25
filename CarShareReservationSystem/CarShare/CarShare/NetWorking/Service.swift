@@ -14,6 +14,7 @@ protocol ServiceProtocol {
     func getProbationList() -> AnyPublisher<DataResponse<ProbationListModel, AFError>, Never>
     func getPopularLocsList() -> AnyPublisher<DataResponse<PopularLocsListModel, AFError>, Never>
     func getRentalTrendsList() -> AnyPublisher<DataResponse<RentalTrendsListModel, AFError>, Never>
+    func login(params: LoginModel) -> AnyPublisher<DataResponse<UserModel, AFError>, Never>
 }
 
 
@@ -80,6 +81,21 @@ extension Service: ServiceProtocol {
         return AF.request(Service.domain + "rental-trends", method: .post, headers: Service.defaultHeaders)
             .validate()
             .publishDecodable(type: RentalTrendsListModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func login(params: LoginModel) -> AnyPublisher<DataResponse<UserModel, AFError>, Never> {
+        
+        // parameters: params, encoder: JSONParameterEncoder.default
+        return AF.request(Service.domain + "login", method: .post, parameters: params, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: UserModel.self)
             .map { response in
                 response.mapError { error in
                     return error

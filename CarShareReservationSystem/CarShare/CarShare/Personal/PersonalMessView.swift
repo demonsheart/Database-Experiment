@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct PersonalMessView: View {
+    @EnvironmentObject var userState: UserStateModel
     
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: ProbationCusView()) {
-                    Text("Probation Customers")
+                if let user = userState.user {
+                    NavigationLink(destination: Text("Null")) {
+                        UserInfoView(firstName: user.data.firstName, lastName: user.data.lastName, email: user.data.email)
+                    }
+                    .navigationTitle("personal")
+                    .navigationBarHidden(true)
+                } else {
+                    NavigationLink(destination: LoginView()) {
+                        Text("Login")
+                    }
+                    .navigationTitle("personal")
+                    .navigationBarHidden(true)
+                    .environmentObject(userState)
                 }
-                .navigationTitle("personal")
-                .navigationBarHidden(true)
             }
         }
     }

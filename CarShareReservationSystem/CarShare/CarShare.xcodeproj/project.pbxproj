@@ -34,6 +34,8 @@
 		94C223052774B219008AF778 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223032774B218008AF778 /* BarChartCell.swift */; };
 		94C223062774B219008AF778 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223042774B219008AF778 /* BarChart.swift */; };
 		94C223082774C0F2008AF778 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223072774C0F2008AF778 /* PieChartView.swift */; };
+		94C2230A2777153F008AF778 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223092777153F008AF778 /* UserModel.swift */; };
+		94C2230D27771FEE008AF778 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C2230C27771FEE008AF778 /* LoginView.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		94C223032774B218008AF778 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		94C223042774B219008AF778 /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		94C223072774C0F2008AF778 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		94C223092777153F008AF778 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		94C2230C27771FEE008AF778 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				945AED3A27730A1A001297C9 /* PersonalMessView.swift */,
+				94C2230C27771FEE008AF778 /* LoginView.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -210,6 +215,14 @@
 			path = Bar;
 			sourceTree = "<group>";
 		};
+		94C2230B277715A9008AF778 /* GlobalModel */ = {
+			isa = PBXGroup;
+			children = (
+				94C223092777153F008AF778 /* UserModel.swift */,
+			);
+			path = GlobalModel;
+			sourceTree = "<group>";
+		};
 		94F2204927730693006B3A91 = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +244,7 @@
 		94F2205427730693006B3A91 /* CarShare */ = {
 			isa = PBXGroup;
 			children = (
+				94C2230B277715A9008AF778 /* GlobalModel */,
 				94C222F2277492B4008AF778 /* Charts */,
 				945AED57277431A9001297C9 /* fonts */,
 				945AED4E277356E4001297C9 /* NetWorking */,
@@ -385,6 +399,7 @@
 				94C223052774B219008AF778 /* BarChartCell.swift in Sources */,
 				945AED63277459E2001297C9 /* ProbationViewModel.swift in Sources */,
 				945AED6B277464B4001297C9 /* PopularLocsView.swift in Sources */,
+				94C2230A2777153F008AF778 /* UserModel.swift in Sources */,
 				94C223082774C0F2008AF778 /* PieChartView.swift in Sources */,
 				945AED43277343A2001297C9 /* CarView.swift in Sources */,
 				94C223062774B219008AF778 /* BarChart.swift in Sources */,
@@ -399,6 +414,7 @@
 				945AED4B27734D05001297C9 /* Bundle+extension.swift in Sources */,
 				945AED4127734314001297C9 /* Color+extension.swift in Sources */,
 				945AED39277309F6001297C9 /* CarRentView.swift in Sources */,
+				94C2230D27771FEE008AF778 /* LoginView.swift in Sources */,
 				945AED3B27730A1A001297C9 /* PersonalMessView.swift in Sources */,
 				94F2205627730693006B3A91 /* CarShareApp.swift in Sources */,
 				945AED5D27745684001297C9 /* ProbationCusView.swift in Sources */,
