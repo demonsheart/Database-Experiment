@@ -38,17 +38,19 @@ func main() {
 	r.POST("/register", Register)
 	r.POST("/is-id-register", IsIdRegister)
 	r.POST("/is-phone-register", IsPhoneRegister)
-	r.POST("/rent-car", RentCar) // FIXME: need to test
+	r.POST("/rent-car", RentCar)
 	r.POST("/cars", GetCars)
 	r.POST("/probation", GetCusOnProbation)
 	r.POST("/passengers", GetNumOfPassengers)
 	r.POST("/popular-locations", GetPopularLocations)
 	r.POST("/rental-trends", GetRentalTrends)
 	r.POST("/increase-price", IncreasePrice)
+	r.POST("/validate-rent", ValidateRent)
 	r.GET("/center-loc", GetCenters)
 
 	_ = r.Run(":60036")
 }
+
 
 
 

@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"
+	"time"
 )
 
 func MyHeaderValidate(c *gin.Context) error {
@@ -283,14 +284,110 @@ func RentCar(c *gin.Context) {
 
 	var rent Rental
 	if err := c.ShouldBindJSON(&rent); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		c.JSON(200, gin.H{"success": false, "error": err.Error()})
 		return
 	}
+
+	// validate
+	valid, mess := validateRentTime(rent)
+	if !valid {
+		c.JSON(200, gin.H{"success": valid, "error": mess})
+		return
+	}
+
+	//insert
+	// 主键由数据库触发器
+	rent.RentalId = "#"
 	if err := db.Create(&rent).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		c.JSON(200, gin.H{"success": false, "error": err.Error()})
 		return
 	}
-	c.JSON(200, gin.H{"success": true})
+
+	c.JSON(200, gin.H{"success": true, "error": ""})
+}
+
+func ValidateRent(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var rent Rental
+	if err := c.ShouldBindJSON(&rent); err != nil {
+		c.JSON(200, gin.H{"success": false, "error": err.Error()})
+		return
+	}
+
+	// validate
+	valid, mess := validateRentTime(rent)
+	c.JSON(200, gin.H{"success": valid, "error": mess})
+}
+
+func validateRentTime(rent Rental) (bool, string) {
+	var rentsForCar []Rental
+	var res string
+	var valid bool = true
+
+	if err := db.Model(Rental{}).Where(Rental{CarID: rent.CarID}).Find(&rentsForCar).Error; err != nil {
+		return false, "Server Fail"
+	}
+
+	// time validate
+	if myAfter(rent.StartTime, rent.EndTime) || rent.StartTime.String() == rent.EndTime.String() {
+		return false, "StartTime must less than endTime"
+	}
+
+	for _, v := range rentsForCar {
+		fmt.Println(*v.CarID, " ", v.StartTime, " ", v.EndTime)
+
+		judge1 := myAfter(rent.StartTime, v.StartTime) && myBefore(rent.StartTime, v.EndTime)
+		judge2 := myAfter(rent.EndTime, v.StartTime) && myBefore(rent.EndTime, v.EndTime)
+		judge3 := myBefore(rent.StartTime, v.StartTime) && myAfter(rent.EndTime, v.EndTime)
+
+		if judge1 && judge2 {
+			valid = false
+			res = "This period has been fully occupied"
+			break
+		}
+
+		if judge1 {
+			valid = false
+			res = "You might try to rent after " + v.EndTime.String()
+			break
+		}
+
+		if judge2 {
+			valid = false
+			res = "You might try to rent before " + v.StartTime.String()
+			break
+		}
+
+		if judge3 {
+			valid = false
+			res = "You need to end before " + v.StartTime.String() + " or start after " + v.EndTime.String()
+			break;
+		}
+	}
+
+	return valid, res
+}
+
+func myBefore(t1 LocalTime, t2 LocalTime) bool {
+	timeLayout := "2006-01-02 15:04:05"
+	location, _ := time.LoadLocation("Local") // timeStr是北京时间，注意使用Local
+	tt1, _ := time.ParseInLocation(timeLayout, t1.String(), location)
+	tt2, _ := time.ParseInLocation(timeLayout, t2.String(), location)
+
+	return tt1.Before(tt2) || tt1.Equal(tt2)
+}
+
+func myAfter(t1 LocalTime, t2 LocalTime) bool {
+	timeLayout := "2006-01-02 15:04:05"
+	location, _ := time.LoadLocation("Local") // timeStr是北京时间，注意使用Local
+	tt1, _ := time.ParseInLocation(timeLayout, t1.String(), location)
+	tt2, _ := time.ParseInLocation(timeLayout, t2.String(), location)
+
+	return tt1.After(tt2) || tt1.Equal(tt2)
 }
 
 func GetCenters(c *gin.Context) {

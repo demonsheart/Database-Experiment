@@ -153,12 +153,13 @@ type IsCellPhoneRegister struct {
 
 type Rental struct {
 	RentalId   string    `gorm:"column:rental_id" json:"rental_id"`
-	RentalDate string    `gorm:"column:rental_date" json:"rental_date"`
+	RentalDate string    `gorm:"column:rental_date" json:"rental_date" binding:"required"`
 	CusID      string    `gorm:"column:cus_id" json:"cus_id" binding:"required"`
 	CarID      *int      `gorm:"column:car_id" json:"car_id" binding:"required"`
 	LocID      *int      `gorm:"column:loc_id" json:"loc_id" binding:"required"`
 	StartTime  LocalTime `gorm:"column:pick_up_time" json:"pick_up_time" binding:"required"`
 	EndTime    LocalTime `gorm:"column:drop_off_time" json:"drop_off_time" binding:"required"`
+	Price      float32   `gorm:"column:total_price" json:"total_price"`
 }
 
 type ACSCenter struct {
