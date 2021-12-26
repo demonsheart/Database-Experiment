@@ -10,6 +10,7 @@ import Kingfisher
 
 struct CarDetails: View {
     let car: Car
+    @ObservedObject var userState: UserStateModel = .shared
     
     var body: some View {
         ZStack {
@@ -38,17 +39,18 @@ struct CarDetails: View {
                 InfoView(imgName: "dollarsign.circle.fill", pricePer: "\(car.pricePerHour)", subffix: "Per Hour")
                 
                 Divider()
-                Button(action: {
-                    print(car)
-                }) {
+                
+                NavigationLink(destination: CarRentDetailView()) {
                     Text("Rent it")
                         .foregroundColor(Color(hex: "1E212D"))
                         .font(Font.custom("Pacifico-Regular", size: 30))
-                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.gray, lineWidth: 3)
+                        )
                 }
-                .frame(height: 40)
-                .background(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .foregroundColor(Color(hex: "A8ECE7"))
+                .navigationTitle("Rent")
+                .navigationBarTitleDisplayMode(.inline)
                 
                 Spacer()
             }

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct LoginView: View {
-    @EnvironmentObject var userState: UserStateModel
+    @ObservedObject var userState: UserStateModel = .shared
     @State var username: String = ""
     @State var password: String = ""
     @State var showingAlert: Bool = false

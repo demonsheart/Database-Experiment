@@ -14,6 +14,8 @@ class UserStateModel: ObservableObject {
     @Published var isError: Bool = false
     @Published var isLogin: Bool = false
     
+    static let shared = UserStateModel()
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ServiceProtocol
     

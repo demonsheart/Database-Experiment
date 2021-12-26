@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    @EnvironmentObject var userState: UserStateModel
+    @ObservedObject var userState: UserStateModel = .shared
     var user: User
     
     var body: some View {
@@ -46,7 +46,6 @@ struct UserDetailView: View {
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
         UserDetailView(user: User(cusID: "333", password: "", lastName: "RJ", firstName: "H", hometown: "GuangDong", cellPhone: "7758258",telephone: "7777777" , email: "2509875617@qq.com", creditCard: "0438038", isStudent: 1, license: "888888", state: "valid", expireDate: "2027-12-17 00:00:00", tickets: 3))
-            .environmentObject(UserStateModel())
     }
 }
 

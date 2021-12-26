@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CarRentView: View {
-    
     @StateObject var viewModel = CarViewModel()
+    @ObservedObject var userState: UserStateModel = .shared
     
     var columns: [GridItem] = [
         GridItem(.flexible()),
