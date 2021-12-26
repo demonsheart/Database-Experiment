@@ -39,6 +39,7 @@
 		94C223082774C0F2008AF778 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223072774C0F2008AF778 /* PieChartView.swift */; };
 		94C2230A2777153F008AF778 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223092777153F008AF778 /* UserModel.swift */; };
 		94C2230D27771FEE008AF778 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C2230C27771FEE008AF778 /* LoginView.swift */; };
+		94E2FCFF27787300005CC252 /* RegisterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FCFE27787300005CC252 /* RegisterViewModel.swift.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		94C223072774C0F2008AF778 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		94C223092777153F008AF778 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		94C2230C27771FEE008AF778 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		94E2FCFE27787300005CC252 /* RegisterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				94C2230C27771FEE008AF778 /* LoginView.swift */,
 				9470C288277757EA007B3CB7 /* UserDetailView.swift */,
 				9470C28C2777681E007B3CB7 /* RegisterFormView.swift */,
+				94E2FCFE27787300005CC252 /* RegisterViewModel.swift.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				94C223012774AD2B008AF778 /* RentalTrendsView.swift in Sources */,
 				945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */,
 				9470C28D2777681E007B3CB7 /* RegisterFormView.swift in Sources */,
+				94E2FCFF27787300005CC252 /* RegisterViewModel.swift.swift in Sources */,
 				94C222FB27749839008AF778 /* PieSliceView.swift in Sources */,
 				945AED452773481E001297C9 /* CarListModel.swift in Sources */,
 				945AED4D27735550001297C9 /* CarViewModel.swift in Sources */,

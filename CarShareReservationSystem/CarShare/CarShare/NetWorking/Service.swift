@@ -9,12 +9,19 @@ import Foundation
 import Combine
 import Alamofire
 
+struct CommonNetModel: Codable {
+    let success: Bool
+    let error: String
+}
+
 protocol ServiceProtocol {
     func getCars() -> AnyPublisher<DataResponse<CarListModel, AFError>, Never>
     func getProbationList() -> AnyPublisher<DataResponse<ProbationListModel, AFError>, Never>
     func getPopularLocsList() -> AnyPublisher<DataResponse<PopularLocsListModel, AFError>, Never>
     func getRentalTrendsList() -> AnyPublisher<DataResponse<RentalTrendsListModel, AFError>, Never>
     func login(params: LoginModel) -> AnyPublisher<DataResponse<UserModel, AFError>, Never>
+    func registor(params: User) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
+    func validateID(params: IDModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
 }
 
 
@@ -96,6 +103,32 @@ extension Service: ServiceProtocol {
         return AF.request(Service.domain + "login", method: .post, parameters: params, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
             .validate()
             .publishDecodable(type: UserModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func registor(params: User) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never> {
+        return AF.request(Service.domain + "register", method: .post, parameters: params, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: CommonNetModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func validateID(params: IDModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never> {
+        return AF.request(Service.domain + "is-id-register", method: .post, parameters: params, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: CommonNetModel.self)
             .map { response in
                 response.mapError { error in
                     return error

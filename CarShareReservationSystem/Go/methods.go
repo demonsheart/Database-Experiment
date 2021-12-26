@@ -224,15 +224,15 @@ func Register(c *gin.Context) {
 
 	var cus Customers
 	if err := c.ShouldBindJSON(&cus); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		c.JSON(200, gin.H{"success": false, "error": err.Error()})
 		return
 	}
 	if err := db.Create(&cus).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": err.Error()})
+		c.JSON(200, gin.H{"success": false, "error": err.Error()})
 		return
 	}
-	c.JSON(200, gin.H{"success": true})
-
+	println("true")
+	c.JSON(200, gin.H{"success": true, "error": ""})
 }
 
 // IsIdRegister 判断是否被注册(account is unique)
@@ -247,13 +247,12 @@ func IsIdRegister(c *gin.Context) {
 
 	if err1 == nil { // account
 		if err := db.Model(Customers{}).Where(Customers{CusID: account.CusID}).First(&cus).Error; errors.Is(err, gorm.ErrRecordNotFound) {
-			c.JSON(200, gin.H{"success": true})
+			c.JSON(200, gin.H{"success": true, "error": ""})
+			return
 		}
-		return
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "not valid params"})
-		return
 	}
+	c.JSON(200, gin.H{"success": false, "error": "not valid params"})
+	return
 }
 
 // IsPhoneRegister 判断是否被注册(cell_phone is unique)
@@ -268,13 +267,12 @@ func IsPhoneRegister(c *gin.Context) {
 
 	if err1 == nil { // account
 		if err := db.Model(Customers{}).Where(Customers{CellPhone: cell.CellPhone}).First(&cus).Error; errors.Is(err, gorm.ErrRecordNotFound) {
-			c.JSON(200, gin.H{"success": true})
+			c.JSON(200, gin.H{"success": true, "error": ""})
+			return
 		}
-		return
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "not valid params"})
-		return
 	}
+	c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "not valid params"})
+	return
 }
 
 func RentCar(c *gin.Context) {
