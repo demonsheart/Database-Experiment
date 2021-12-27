@@ -40,7 +40,7 @@ struct CarDetails: View {
                 
                 Divider()
                 
-                NavigationLink(destination: CarRentDetailView()) {
+                NavigationLink(destination: CarRentDetailView(model: CarRentViewModel(selectedCar: car))) {
                     Text("Rent it")
                         .foregroundColor(Color(hex: "1E212D"))
                         .font(Font.custom("Pacifico-Regular", size: 30))

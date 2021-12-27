@@ -19,6 +19,12 @@ struct PersonalMessView: View {
                     }
                     .navigationTitle("personal")
                     .navigationBarHidden(true)
+                    
+                    NavigationLink(destination: MyRentalsView()) {
+                        Text("My rentals")
+                    }
+                    .navigationTitle("personal")
+                    .navigationBarHidden(true)
                 } else {
                     NavigationLink(destination: LoginView()) {
                         Text("Login")

@@ -22,6 +22,9 @@ protocol ServiceProtocol {
     func login(params: LoginModel) -> AnyPublisher<DataResponse<UserModel, AFError>, Never>
     func registor(params: User) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
     func validateID(params: IDModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
+    func getLocs() -> AnyPublisher<DataResponse<LocsListModel, AFError>, Never>
+    func rentCar(model: RentModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
+    func validateRent(model: RentModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
 }
 
 
@@ -138,4 +141,43 @@ extension Service: ServiceProtocol {
             .eraseToAnyPublisher()
     }
     
+    func getLocs() -> AnyPublisher<DataResponse<LocsListModel, AFError>, Never> {
+        return AF.request(Service.domain + "center-loc", method: .get, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: LocsListModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func rentCar(model: RentModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never> {
+        return AF.request(Service.domain + "rent-car", method: .post, parameters: model, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: CommonNetModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    
+    func validateRent(model: RentModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never> {
+        return AF.request(Service.domain + "validate-rent", method: .post, parameters: model, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: CommonNetModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
 }

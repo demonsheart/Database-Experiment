@@ -41,6 +41,10 @@
 		94C2230D27771FEE008AF778 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C2230C27771FEE008AF778 /* LoginView.swift */; };
 		94E2FCFF27787300005CC252 /* RegisterViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FCFE27787300005CC252 /* RegisterViewModel.swift.swift */; };
 		94E2FD012778ABFB005CC252 /* CarRentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FD002778ABFB005CC252 /* CarRentDetailView.swift */; };
+		94E2FD0327793E87005CC252 /* CarRentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FD0227793E87005CC252 /* CarRentViewModel.swift */; };
+		94E2FD0527793F08005CC252 /* LocModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FD0427793F08005CC252 /* LocModel.swift */; };
+		94E2FD07277943DF005CC252 /* RentModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FD06277943DF005CC252 /* RentModel.swift.swift */; };
+		94E2FD0927796B87005CC252 /* MyRentalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E2FD0827796B87005CC252 /* MyRentalsView.swift */; };
 		94F2205627730693006B3A91 /* CarShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2205527730693006B3A91 /* CarShareApp.swift */; };
 		94F2205A27730695006B3A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205927730695006B3A91 /* Assets.xcassets */; };
 		94F2205D27730695006B3A91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F2205C27730695006B3A91 /* Preview Assets.xcassets */; };
@@ -81,6 +85,10 @@
 		94C2230C27771FEE008AF778 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		94E2FCFE27787300005CC252 /* RegisterViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift.swift; sourceTree = "<group>"; };
 		94E2FD002778ABFB005CC252 /* CarRentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarRentDetailView.swift; sourceTree = "<group>"; };
+		94E2FD0227793E87005CC252 /* CarRentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarRentViewModel.swift; sourceTree = "<group>"; };
+		94E2FD0427793F08005CC252 /* LocModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocModel.swift; sourceTree = "<group>"; };
+		94E2FD06277943DF005CC252 /* RentModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentModel.swift.swift; sourceTree = "<group>"; };
+		94E2FD0827796B87005CC252 /* MyRentalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRentalsView.swift; sourceTree = "<group>"; };
 		94F2205227730693006B3A91 /* CarShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F2205527730693006B3A91 /* CarShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarShareApp.swift; sourceTree = "<group>"; };
 		94F2205927730695006B3A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,12 +121,15 @@
 		945AED36277309C2001297C9 /* CarRent */ = {
 			isa = PBXGroup;
 			children = (
+				94E2FD0427793F08005CC252 /* LocModel.swift */,
 				945AED38277309F6001297C9 /* CarRentView.swift */,
 				945AED442773481E001297C9 /* CarListModel.swift */,
 				945AED42277343A2001297C9 /* CarView.swift */,
 				945AED4C27735550001297C9 /* CarViewModel.swift */,
 				945AED5527741BE3001297C9 /* CarDetails.swift */,
 				94E2FD002778ABFB005CC252 /* CarRentDetailView.swift */,
+				94E2FD0227793E87005CC252 /* CarRentViewModel.swift */,
+				94E2FD06277943DF005CC252 /* RentModel.swift.swift */,
 			);
 			path = CarRent;
 			sourceTree = "<group>";
@@ -131,6 +142,7 @@
 				9470C288277757EA007B3CB7 /* UserDetailView.swift */,
 				9470C28C2777681E007B3CB7 /* RegisterFormView.swift */,
 				94E2FCFE27787300005CC252 /* RegisterViewModel.swift.swift */,
+				94E2FD0827796B87005CC252 /* MyRentalsView.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -423,6 +435,8 @@
 				945AED3527730930001297C9 /* MainView.swift in Sources */,
 				945AED5627741BE3001297C9 /* CarDetails.swift in Sources */,
 				945AED6727746169001297C9 /* PopularLocsListModel.swift in Sources */,
+				94E2FD0327793E87005CC252 /* CarRentViewModel.swift in Sources */,
+				94E2FD0927796B87005CC252 /* MyRentalsView.swift in Sources */,
 				94E2FD012778ABFB005CC252 /* CarRentDetailView.swift in Sources */,
 				94C223012774AD2B008AF778 /* RentalTrendsView.swift in Sources */,
 				945AED69277463A5001297C9 /* PopularLocsViewModel.swift in Sources */,
@@ -433,6 +447,8 @@
 				945AED4D27735550001297C9 /* CarViewModel.swift in Sources */,
 				945AED4B27734D05001297C9 /* Bundle+extension.swift in Sources */,
 				945AED4127734314001297C9 /* Color+extension.swift in Sources */,
+				94E2FD07277943DF005CC252 /* RentModel.swift.swift in Sources */,
+				94E2FD0527793F08005CC252 /* LocModel.swift in Sources */,
 				945AED39277309F6001297C9 /* CarRentView.swift in Sources */,
 				94C2230D27771FEE008AF778 /* LoginView.swift in Sources */,
 				945AED3B27730A1A001297C9 /* PersonalMessView.swift in Sources */,

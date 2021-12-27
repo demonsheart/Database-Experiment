@@ -75,7 +75,7 @@ struct RegisterFormView: View {
             Section(header: Text("card info")) {
                 TextField("License", text: $model.license)
                     .keyboardType(.numberPad)
-                DatePicker(selection: $model.date, in: ...Date(), displayedComponents: .date) {
+                DatePicker(selection: $model.date, displayedComponents: .date) {
                     Text("expire_date")
                 }
                 TextField("tickets", text: $model.tickers)

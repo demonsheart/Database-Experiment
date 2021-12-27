@@ -338,8 +338,6 @@ func validateRentTime(rent Rental) (bool, string) {
 	}
 
 	for _, v := range rentsForCar {
-		fmt.Println(*v.CarID, " ", v.StartTime, " ", v.EndTime)
-
 		judge1 := myAfter(rent.StartTime, v.StartTime) && myBefore(rent.StartTime, v.EndTime)
 		judge2 := myAfter(rent.EndTime, v.StartTime) && myBefore(rent.EndTime, v.EndTime)
 		judge3 := myBefore(rent.StartTime, v.StartTime) && myAfter(rent.EndTime, v.EndTime)
