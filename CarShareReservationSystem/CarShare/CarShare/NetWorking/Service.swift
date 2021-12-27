@@ -25,6 +25,7 @@ protocol ServiceProtocol {
     func getLocs() -> AnyPublisher<DataResponse<LocsListModel, AFError>, Never>
     func rentCar(model: RentModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
     func validateRent(model: RentModel) -> AnyPublisher<DataResponse<CommonNetModel, AFError>, Never>
+    func getRentals(cusid: String) -> AnyPublisher<DataResponse<FullRentalListModel, AFError>, Never>
 }
 
 
@@ -39,6 +40,28 @@ class Service {
 }
 
 extension Service: ServiceProtocol {
+    
+    func getRentals(cusid: String) -> AnyPublisher<DataResponse<FullRentalListModel, AFError>, Never> {
+        struct tmpParams: Codable {
+            var cusID: String
+            
+            enum CodingKeys: String, CodingKey {
+                case cusID = "cus_id"
+            }
+        }
+        let params = tmpParams(cusID: cusid)
+        return AF.request(Service.domain + "get-rentals", method: .post, parameters: params, encoder: JSONParameterEncoder.default, headers: Service.defaultHeaders)
+            .validate()
+            .publishDecodable(type: FullRentalListModel.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
     
     func getCars() -> AnyPublisher<DataResponse<CarListModel, AFError>, Never> {
         

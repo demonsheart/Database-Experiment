@@ -47,9 +47,11 @@ func main() {
 	r.POST("/increase-price", IncreasePrice)
 	r.POST("/validate-rent", ValidateRent)
 	r.GET("/center-loc", GetCenters)
+	r.POST("/get-rentals", GetRentals)
 
 	_ = r.Run(":60036")
 }
+
 
 
 

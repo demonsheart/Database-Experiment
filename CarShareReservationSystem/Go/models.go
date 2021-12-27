@@ -167,3 +167,7 @@ type ACSCenter struct {
 	StreetAddress   string `gorm:"column:street_address" json:"street_address"`
 	TelephoneNumber string `gorm:"column:telephone_number" json:"telephone_number"`
 }
+
+type RentalParam struct {
+	CusID string `json:"cus_id" binding:"required"`
+}

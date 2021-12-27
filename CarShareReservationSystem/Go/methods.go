@@ -402,3 +402,26 @@ func GetCenters(c *gin.Context) {
 
 	c.JSON(200, gin.H{"data": locs})
 }
+
+func GetRentals(c *gin.Context) {
+	if err := MyHeaderValidate(c); err != nil {
+		c.AbortWithStatus(404)
+		return
+	}
+
+	var param RentalParam
+
+	if err := c.ShouldBindJSON(&param); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	fmt.Println(param.CusID)
+
+	var rentals []Rental
+	if err := db.Model(Rental{}).Where(Rental{CusID: param.CusID}).Find(&rentals).Error; err != nil {
+		c.JSON(200, gin.H{"success": false, "error": "Server Fail"})
+		return
+	}
+	c.JSON(200, gin.H{"success": true, "data": rentals})
+}

@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 26/12/2021 23:11:15
+ Date: 27/12/2021 13:02:22
 */
 
 SET NAMES utf8mb4;
@@ -92,6 +92,7 @@ CREATE TABLE `customers` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `customers` VALUES ('B-17', 'demodemo', '443376562837', 0, 0, '67556', 'GA', NULL, 'Berry', 'Anna', '9 Pleasant Way', '404-887-4673', '404-876-3376', 'aberry@hotmail.com');
+INSERT INTO `customers` VALUES ('bank', 'demodemo', '232', 1, 5, '3232', 'NY', '2021-12-27', 'Dw', 'Dwe', 'Dwe dwe', 'dwed', 'dwe', 'dwed');
 INSERT INTO `customers` VALUES ('F-59', 'demodemo', '443398764532', 0, 0, '88765', 'GA', '2015-08-09', 'Franco', 'Gianne', '1012 Peachtree St', '404-887-2342', '404-765-1263', 'gf59@gmail.com');
 INSERT INTO `customers` VALUES ('L-29', 'demodemo', '443352635423', 0, 0, '76789', 'GA', '2011-03-15', 'Lopato', 'Maria', '5490 West 5th', '404-234-8876', '569-001-0989', 'mrl@hotmail.com');
 INSERT INTO `customers` VALUES ('M-62', 'demodemo', '443355463212', 1, 2, '92019', 'NY', '2012-06-06', 'Murray', 'Annabelle', '59 W. Central Ave', '404-998-3928', '404-887-3829', 'belle@comcast.net');
@@ -127,6 +128,15 @@ CREATE TABLE `rentals` (
 -- Records of rentals
 -- ----------------------------
 BEGIN;
+INSERT INTO `rentals` VALUES ('Dec-112', '2021-12-27', '2021-12-27 09:33:40', '2021-12-27 13:33:00', 'B-17', 102, 59, 19.9167);
+INSERT INTO `rentals` VALUES ('Dec-113', '2021-12-27', '2021-12-27 10:38:29', '2021-12-27 10:40:00', 'B-17', 104, 60, 0.0916667);
+INSERT INTO `rentals` VALUES ('Dec-114', '2021-12-27', '2021-12-27 10:40:57', '2021-12-27 12:40:00', 'B-17', 101, 61, 7.735);
+INSERT INTO `rentals` VALUES ('Dec-115', '2021-12-27', '2021-12-27 11:20:24', '2021-12-27 23:21:00', 'B-17', 105, 60, 46.8);
+INSERT INTO `rentals` VALUES ('Dec-116', '2021-12-27', '2021-12-28 11:27:00', '2021-12-28 11:28:00', 'bank', 101, 60, 0.065);
+INSERT INTO `rentals` VALUES ('Dec-117', '2021-12-27', '2021-12-27 11:35:42', '2021-12-27 11:36:00', 'bank', 103, 61, 0);
+INSERT INTO `rentals` VALUES ('Dec-118', '2021-12-27', '2021-12-27 11:38:36', '2021-12-27 11:45:00', 'bank', 104, 59, 0.55);
+INSERT INTO `rentals` VALUES ('Dec-119', '2021-12-27', '2021-12-27 12:59:59', '2021-12-27 13:59:00', 'bank', 103, 60, 3.93333);
+INSERT INTO `rentals` VALUES ('Dec-120', '2021-12-27', '2021-12-27 13:01:12', '2021-12-27 20:02:00', 'bank', 104, 61, 38.5);
 INSERT INTO `rentals` VALUES ('Feb-101', '2010-02-03', '2010-02-03 09:00:00', '2010-02-03 12:00:00', 'M-62', 101, 60, 11.7);
 INSERT INTO `rentals` VALUES ('Feb-102', '2010-02-03', '2010-02-03 13:00:00', '2010-02-03 17:00:00', 'F-59', 101, 59, 15.6);
 INSERT INTO `rentals` VALUES ('Feb-103', '2010-02-04', '2010-02-04 08:00:00', '2010-02-04 17:00:00', 'Q-13', 103, 60, 36);
@@ -221,6 +231,46 @@ BEGIN
 	WHERE c.car_id = r.car_id and r.cus_id = s.cus_id
 	GROUP BY c.make, c.model ,s.is_student
 	ORDER BY s.is_student DESC;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Triggers structure for table rentals
+-- ----------------------------
+DROP TRIGGER IF EXISTS `init_pk`;
+delimiter ;;
+CREATE TRIGGER `init_pk` BEFORE INSERT ON `rentals` FOR EACH ROW BEGIN
+  # create pk
+	DECLARE month varchar(10);
+	DECLARE n int;
+	
+	SELECT count(*) into n FROM rentals;
+	
+	set month = left(MONTHNAME(new.rental_date), 3);
+	set new.rental_id = concat(month,"-",n + 101);
+	
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Triggers structure for table rentals
+-- ----------------------------
+DROP TRIGGER IF EXISTS `init_price`;
+delimiter ;;
+CREATE TRIGGER `init_price` BEFORE INSERT ON `rentals` FOR EACH ROW BEGIN
+
+DECLARE hourly_price, day_price, interval_min, day_num, hour_num float;
+
+SELECT price_per_hour INTO hourly_price from cars where new.car_id = cars.car_id;
+SELECT price_per_day INTO day_price from cars where new.car_id = cars.car_id;
+
+set interval_min = TIMESTAMPDIFF(MINUTE, new.pick_up_time, new.drop_off_time);
+set day_num = floor(interval_min / 1440);
+set hour_num = interval_min / 60 - day_num * 24;
+set new.total_price = hour_num * hourly_price + day_num * day_price;
+
 END
 ;;
 delimiter ;

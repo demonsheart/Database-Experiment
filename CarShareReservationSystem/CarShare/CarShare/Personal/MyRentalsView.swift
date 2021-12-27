@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct MyRentalsView: View {
+    
+    @StateObject var model = MyRentalsViewModel()
+    
     var body: some View {
-        Text("Hello, World!")
+        List {
+            ForEach(model.rentals) { rental in
+                Section {
+                    Text("date: " + rental.rentalDate)
+                    Text("carID: \(rental.carID)")
+                    Text("locID: \(rental.locID)")
+                    Text("pickUpTime: \(rental.pickUpTime)")
+                    Text("dropOffTime: \(rental.dropOffTime)")
+                    Text("totalPrice: \(rental.totalPrice)")
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
