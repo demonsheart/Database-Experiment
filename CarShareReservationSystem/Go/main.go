@@ -34,20 +34,20 @@ func main() {
 	}
 
 	// methods
-	r.POST("/login", Login)
-	r.POST("/register", Register)
-	r.POST("/is-id-register", IsIdRegister)
-	r.POST("/is-phone-register", IsPhoneRegister)
-	r.POST("/rent-car", RentCar)
-	r.POST("/cars", GetCars)
-	r.POST("/probation", GetCusOnProbation)
-	r.POST("/passengers", GetNumOfPassengers)
-	r.POST("/popular-locations", GetPopularLocations)
-	r.POST("/rental-trends", GetRentalTrends)
-	r.POST("/increase-price", IncreasePrice)
-	r.POST("/validate-rent", ValidateRent)
-	r.GET("/center-loc", GetCenters)
-	r.POST("/get-rentals", GetRentals)
+	r.POST("/login", Login) // 登录
+	r.POST("/register", Register) // 注册
+	r.POST("/is-id-register", IsIdRegister) // id是否已注册
+	r.POST("/is-phone-register", IsPhoneRegister) // 手机是否已注册
+	r.POST("/rent-car", RentCar) // 租车
+	r.POST("/cars", GetCars) // 展示车型
+	r.POST("/probation", GetCusOnProbation) // 试用期客户
+	r.POST("/passengers", GetNumOfPassengers)// 根据人数返回合适的汽车
+	r.POST("/popular-locations", GetPopularLocations) // 热门地点
+	r.POST("/rental-trends", GetRentalTrends) // 租车趋势
+	r.POST("/increase-price", IncreasePrice) // 增加价格
+	r.POST("/validate-rent", ValidateRent) // 验证租车日期的有效性
+	r.GET("/center-loc", GetCenters) // 获取地点中心
+	r.POST("/get-rentals", GetRentals) // 获取个人租车信息
 
 	_ = r.Run(":60036")
 }
